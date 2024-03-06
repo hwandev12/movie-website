@@ -7,56 +7,25 @@
         <li>
             <a href="#">Bosh Sahifa</a>
         </li>
+        {% for category in categories %}
         <li class="nav__janr">
-            <a href="#">Janr
+            <a href="#">{{ category.name }}
                 <i class="fa-solid fa-chevron-down"></i>
             </a>
+            {% if not category.sub_category.all %}
+            {% else %}
             <div class="dropdown__janr">
                 <ul>
+                    {% for subcategory in category.sub_category.all %}
                     <li>
-                        <a href="#">Action</a>
+                        <a href="#">{{ subcategory.name }}</a>
                     </li>
-                    <li>
-                        <a href="#">Animation</a>
-                    </li>
-                    <li>
-                        <a href="#">Adventure</a>
-                    </li>
-                    <li>
-                        <a href="#">Biography</a>
-                    </li>
-                    <li>
-                        <a href="#">Comedy</a>
-                    </li>
-                    <li>
-                        <a href="#">Crime</a>
-                    </li>
-                    <li>
-                        <a href="#">Documentary</a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
+            {% endif %}
         </li>
-        <li>
-            <a href="#">Ommabop
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#">Eng Oxirgilar
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#">Seriallar
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#">Kinolar
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-        </li>
+        {% endfor %}
     </ul>
     <div class="home__navigation-end flex justify-center items-center">
         <i class="fa-solid fa-search text-stone-50 mr-6 text-xl cursor-pointer"></i>
