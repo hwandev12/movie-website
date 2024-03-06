@@ -1,0 +1,7 @@
+.environment
+.venv
+venv
+.muhit
+__pycache__/
+media/
+db.sqlite3
