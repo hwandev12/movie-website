@@ -1333,13 +1333,12 @@ body {
 .carousel__item .active {
   opacity: 1 !important;
   transform: translateY(0) !important;
-  transition: 2s all ease !important;
+  transition: 1s all ease-in-out !important;
 }
 
 .carousel__item p {
   opacity: 0;
   transform: translateY(-20px);
-  transition: 2s all ease;
 }
 
 .carousel__item {
@@ -1373,7 +1372,7 @@ body {
   letter-spacing: 1.3px;
   transform: translateY(-20px);
   opacity: 0;
-  transition: 2s all ease;
+  transition: 0.5s all ease-in;
 }
 
 .carousel__item-left h1 span {
@@ -1384,7 +1383,7 @@ body {
 .carousel__item-left .carousel__item-left-p {
   color: #fff;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 19px;
   letter-spacing: 1.1px;
   margin-bottom: 15px;
   transition-delay: 0.2s;
@@ -1404,7 +1403,7 @@ body {
   color: #fff;
   font-weight: 500;
   line-height: 1.7;
-  font-size: 17px;
+  font-size: 19px;
   transition-delay: 0.3s;
 }
 
@@ -1421,6 +1420,36 @@ body {
   margin-right: 30px;
   border-radius: 10px;
   text-transform: uppercase;
+  transition: 0.4s all ease-in-out;
+}
+
+.carousel__item-left > div a:hover {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+
+.carousel__item-right a {
+  color: #fff;
+  font-size: 22px;
+  text-transform: capitalize;
+  display: flex;
+  letter-spacing: 1.5px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.carousel__item-right i {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.carousel__item-right {
+  transform: translateY(-10px);
+  transition: 1s all ease-in-out;
+}
+
+.activeC {
+  transform: translateY(0) !important;
 }
 
 .carousel__item-left > div a:last-child {
@@ -1463,6 +1492,29 @@ body {
 
 .home__carousel .fa-chevron-left {
   left: 20px;
+}
+
+.home__carousel .circle {
+  /* position: absolute; */
+  color: #fff;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.circle_full {
+  background-color: #28b5f5;
+}
+
+.circle_container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
 }
 
 /* live at #mancuted */
