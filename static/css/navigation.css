@@ -3,7 +3,6 @@
     box-sizing: border-box;
 }
 .home__navigation {
-    font-family: 'Mulish', sans-serif;
     width: 100%;
     height: auto;
     display: flex;
@@ -45,7 +44,6 @@
     color: #28B5F5;
 }.home__navigation-center > li i {
     margin-left: 5px;
-}.home__navigation-end > i {
 }.home__navigation-center {
     position: relative;
 }.dropdown__janr {

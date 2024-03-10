@@ -89,5 +89,6 @@ const changeImage = () => {
 };
 
 let animationCarousel = setInterval(() => {
+  counterCarousel += 1
   changeImage();
-}, 3000);
+}, 5000);

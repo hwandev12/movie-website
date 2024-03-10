@@ -1,34 +1,36 @@
-<div class="home__navigation container">
-    <a href="#" class="home__nav-logo">
-        <i class="fa-regular fa-circle-play"></i>
-        lo<span>g</span>o
-    </a>
-    <ul class="home__navigation-center flex just-content-center align-items-center m-0 p-0">
-        <li>
-            <a href="#">Bosh Sahifa</a>
-        </li>
-        {% for category in categories %}
-        <li class="nav__janr">
-            <a href="#">{{ category.name }}
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-            {% if not category.sub_category.all %}
-            {% else %}
-            <div class="dropdown__janr">
-                <ul>
-                    {% for subcategory in category.sub_category.all %}
-                    <li>
-                        <a href="#">{{ subcategory.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    <div class="home__navigation-end flex justify-center items-center">
-        <i class="fa-solid fa-search text-stone-50 mr-6 text-xl cursor-pointer"></i>
-        <i class="fa-solid fa-sun text-stone-50 text-xl cursor-pointer"></i>
+<div class="home__navigation-wrapper">
+    <div class="home__navigation container">
+        <a href="#" class="home__nav-logo ">
+            <i class="fa-regular fa-circle-play"></i>
+            lo<span>g</span>o
+        </a>
+        <ul class="home__navigation-center flex just-content-center align-items-center m-0 p-0">
+            <li>
+                <a href="#">Bosh Sahifa</a>
+            </li>
+            {% for category in categories %}
+            <li class="nav__janr">
+                <a href="#">{{ category.name }}
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                {% if not category.sub_category.all %}
+                {% else %}
+                <div class="dropdown__janr">
+                    <ul>
+                        {% for subcategory in category.sub_category.all %}
+                        <li>
+                            <a href="#">{{ subcategory.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="home__navigation-end flex justify-center items-center">
+            <i class="fa-solid fa-search text-stone-50 mr-6 text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-sun text-stone-50 text-xl cursor-pointer"></i>
+        </div>
     </div>
 </div>
