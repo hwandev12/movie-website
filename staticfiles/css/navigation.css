@@ -3,19 +3,19 @@
     box-sizing: border-box;
 }
 .home__navigation {
-    font-family: 'Mulish', sans-serif;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 .home__nav-logo {
     text-decoration: none;
     color: #fff;
     font-size: 25px;
     font-weight: 700;
-    padding-bottom: 25px;
 }.home__nav-logo span {
     color: #28B5F5;
     font-weight: 800;
@@ -25,7 +25,6 @@
     margin-right: 40px;
     list-style: none;
     position: relative;
-    padding-bottom: 25px;
 }.home__navigation-center li a {
     text-decoration: none;
     color: #fff;
@@ -45,13 +44,12 @@
     color: #28B5F5;
 }.home__navigation-center > li i {
     margin-left: 5px;
-}.home__navigation-end > i {
-    padding-bottom: 25px;
 }.home__navigation-center {
     position: relative;
 }.dropdown__janr {
     display: none;
     position: absolute;
+    z-index: 3;
     color: #fff;
     width: 400px;
     height: auto;

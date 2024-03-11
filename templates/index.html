@@ -28,10 +28,12 @@
 </head>
 
 <body>
-    {% include 'components/nav.html' %}
-    {% block content %}
-    {% endblock %}
-    {% include 'components/footer.html' %}
+    <div>
+        {% include 'components/nav.html' %}
+        {% block content %}
+        {% endblock %}
+        {% include 'components/footer.html' %}
+    </div>
 
     <script src="{% static 'js/navigation.js' %}"></script>
     <script src="{% static 'js/carousel.js' %}"></script>

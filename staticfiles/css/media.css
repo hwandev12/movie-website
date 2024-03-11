@@ -1,0 +1,68 @@
+@media (min-width: 100px) and (max-width: 430px) {
+  body {
+    padding: 0px 15px;
+  }
+  .home__navigation-center {
+    display: none !important;
+  }
+  .carousel__item {
+    flex-direction: column;
+    padding: 30px 30px !important;
+  }
+  .carousel__item-left {
+    width: 100% !important;
+  }
+  .carousel__item-left h1 {
+    font-size: 25px !important;
+  }
+  .carousel__item-left .carousel__item-left-p {
+    font-size: 18px !important;
+  }
+  .carousel__item-left > div a {
+    height: 50px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .home__carousel .fa-chevron-left {
+    bottom: 0px;
+  }
+  .home__carousel .fa-chevron-right {
+    bottom: 0px;
+  }
+  .carousel__item-right {
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+  }
+  .carousel__item-right a {
+    font-size: 18px !important;
+  }
+  .carousel__item-right i {
+    font-size: 30px !important;
+  }
+  .latest_movies-cards-top-inner {
+    width: 48% !important;
+  }
+  .a_wrapper a {
+    margin: 0 !important;
+  }
+  .a_wrapper a:last-child {
+    margin-left: 10px !important;
+    display: inline-block;
+  }
+  .latest_movies-cards {
+    gap: 0 !important;
+    justify-content: space-between !important;
+  }
+  .latest_movies-cards > div p {
+    text-align: left !important;
+  }
+  .latest_movies-cards span {
+    display: block !important;
+    margin: 0 !important;
+  }
+  .latest_movies-cards-inner {
+    height: 200px !important;
+  }
+}
