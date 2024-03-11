@@ -26,13 +26,13 @@ body {
   transition: 0.4s all ease;
 }
 .carousel__item .active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: 1s all ease-in-out !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: 1s all ease-in-out !important;
 }
 .carousel__item p {
-    opacity: 0;
-    transform: translateY(-20px);
+  opacity: 0;
+  transform: translateY(-20px);
 }
 .carousel__item {
   width: 100%;
@@ -112,22 +112,23 @@ body {
   color: #fff !important;
 }
 .carousel__item-right a {
-    color: #fff;
-    font-size: 22px;
-    text-transform: capitalize;
-    display: flex;
-    letter-spacing: 1.5px;
-    align-items: center;
-    margin-right: 10px;
+  color: #fff;
+  font-size: 22px;
+  text-transform: capitalize;
+  display: flex;
+  letter-spacing: 1.5px;
+  align-items: center;
+  margin-right: 10px;
 }
 .carousel__item-right i {
-    font-size: 40px;
-    margin-right: 10px;
+  font-size: 40px;
+  margin-right: 10px;
 }
 .carousel__item-right {
   transform: translateY(-10px);
   transition: 1s all ease-in-out;
-}.activeC {
+}
+.activeC {
   transform: translateY(0) !important;
 }
 
@@ -155,16 +156,16 @@ body {
   z-index: 9000;
 }
 .home__carousel .fa-chevron-right:hover {
-    transform: translateX(10px);
+  transform: translateX(10px);
 }
 .home__carousel .fa-chevron-left:hover {
-    transform: translateX(-10px);
+  transform: translateX(-10px);
 }
 .home__carousel .fa-chevron-right {
-    right: 20px;
+  right: 20px;
 }
 .home__carousel .fa-chevron-left {
-    left: 20px;
+  left: 20px;
 }
 .home__carousel .circle {
   /* position: absolute; */
@@ -210,6 +211,9 @@ body {
 }
 .latest_movies-top a:hover {
   background-color: rgba(40, 181, 245, 0.7);
+}
+.home__navigation-end .fa-bars {
+  display: none;
 }
 .latest_movies-cards {
   width: 100%;
@@ -299,13 +303,13 @@ body {
   font-size: 14px;
 }
 .navbar-scrolled {
-  background-color: rgb(10,13,20);
+  background-color: rgb(10, 13, 20);
   transition: background-color 0.3s ease;
   position: fixed;
   transform: translateY(-5px);
   top: 0;
   z-index: 10000;
-  box-shadow: 0px 2px 2px 2px rgb(10,13,20);
+  box-shadow: 0px 2px 2px 2px rgb(10, 13, 20);
 }
 .home__navigation-wrapper {
   transition: 0.5s all ease;

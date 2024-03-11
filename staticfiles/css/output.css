@@ -1409,6 +1409,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     padding: 0px 15px;
   }
 
+  .home__navigation-end .fa-bars {
+    display: block;
+  }
+
   .home__navigation-center {
     display: none !important;
   }
@@ -1731,6 +1735,10 @@ body {
   background-color: rgba(40, 181, 245, 0.7);
 }
 
+.home__navigation-end .fa-bars {
+  display: none;
+}
+
 .latest_movies-cards {
   width: 100%;
   flex-wrap: wrap;
@@ -1830,13 +1838,13 @@ body {
 }
 
 .navbar-scrolled {
-  background-color: rgb(10,13,20);
+  background-color: rgb(10, 13, 20);
   transition: background-color 0.3s ease;
   position: fixed;
   transform: translateY(-5px);
   top: 0;
   z-index: 10000;
-  box-shadow: 0px 2px 2px 2px rgb(10,13,20);
+  box-shadow: 0px 2px 2px 2px rgb(10, 13, 20);
 }
 
 .home__navigation-wrapper {

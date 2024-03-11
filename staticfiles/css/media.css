@@ -2,6 +2,9 @@
   body {
     padding: 0px 15px;
   }
+  .home__navigation-end .fa-bars {
+    display: block;
+  }
   .home__navigation-center {
     display: none !important;
   }
