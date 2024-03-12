@@ -2,15 +2,18 @@
   body {
     padding: 0px 15px;
   }
+  .home__navigation {
+    padding: 20px 0px;
+  }
   .home__navigation-end .fa-bars {
-    display: block;
+    display: block !important;
   }
   .home__navigation-center {
     display: none !important;
   }
   .carousel__item {
     flex-direction: column;
-    padding: 30px 30px !important;
+    padding: 190px 30px 30px 30px !important;
   }
   .carousel__item-left {
     width: 100% !important;
@@ -40,6 +43,12 @@
   }
   .carousel__item-right a {
     font-size: 18px !important;
+  }
+  .carousel__item-left .last_p {
+    max-width: 250px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .carousel__item-right i {
     font-size: 30px !important;
