@@ -19,10 +19,15 @@
     width: 100% !important;
   }
   .carousel__item-left h1 {
-    font-size: 25px !important;
+    font-size: 35px !important;
   }
   .carousel__item-left .carousel__item-left-p {
-    font-size: 18px !important;
+    font-size: 15px !important;
+  }
+  .carousel__item-left-p span {
+    display: block !important;
+    width: 68px;
+    text-align: center !important;
   }
   .carousel__item-left > div a {
     height: 50px;
@@ -31,10 +36,10 @@
     justify-content: center;
   }
   .home__carousel .fa-chevron-left {
-    bottom: 0px;
+    bottom: 10px;
   }
   .home__carousel .fa-chevron-right {
-    bottom: 0px;
+    bottom: 10px;
   }
   .carousel__item-right {
     position: relative;
@@ -51,6 +56,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     height: auto !important;
+    font-size: 15px !important;
   }
   .carousel__item-right i {
     font-size: 30px !important;
@@ -60,6 +66,8 @@
   }
   .a_wrapper a {
     margin: 0 !important;
+    padding: 14px 30px !important;
+    height: 40px !important;
   }
   .a_wrapper a:last-child {
     margin-left: 10px !important;
@@ -77,7 +85,213 @@
     margin: 0 !important;
   }
   .latest_movies-cards-inner {
-    height: 200px !important;
+    height: 250px !important;
+  }
+  .text_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100% !important;
+    height: 24px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 900px) {
+  body {
+    padding: 0px 15px;
+  }
+  .home__navigation {
+    padding: 20px 0px;
+  }
+  .home__navigation-end .fa-bars {
+    display: block !important;
+  }
+  .home__navigation-center {
+    display: none !important;
+  }
+  .carousel__item {
+    flex-direction: row;
+    padding: 190px 30px 30px 30px !important;
+  }
+  .carousel__item-left {
+    width: 100% !important;
+  }
+  .carousel__item-left h1 {
+    font-size: 35px !important;
+  }
+  .carousel__item-left .carousel__item-left-p {
+    font-size: 15px !important;
+  }
+  .carousel__item-left-p span {
+    display: block !important;
+    width: 68px;
+    text-align: center !important;
+  }
+  .carousel__item-left > div a {
+    height: 50px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .home__carousel .fa-chevron-left {
+    bottom: 10px;
+  }
+  .home__carousel .fa-chevron-right {
+    bottom: 10px;
+  }
+  .carousel__item-right {
+    position: absolute;
+    bottom: 100px;
+    right: 10px;
+  }
+  .carousel__item-right a {
+    font-size: 18px !important;
+  }
+  .carousel__item-left .last_p {
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.7;
+    font-size: 17px !important;
+    transition-delay: 0.3s;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height:60px;
+  }
+  .carousel__item-right i {
+    font-size: 30px !important;
+  }
+  .latest_movies-cards-top-inner {
+    width: 48% !important;
+  }
+  .a_wrapper a {
+    margin: 0 !important;
+    padding: 14px 30px !important;
+    height: 40px !important;
+  }
+  .a_wrapper a:last-child {
+    margin-left: 10px !important;
+    display: inline-block;
+  }
+  .latest_movies-cards {
+    gap: 0 !important;
+    justify-content: space-between !important;
+  }
+  .latest_movies-cards > div p {
+    text-align: left !important;
+  }
+  .latest_movies-cards span {
+    display: block !important;
+    margin: 0 !important;
+  }
+  .latest_movies-cards-inner {
+    height: 300px !important;
+  }
+  .text_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100% !important;
+    height: 24px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+  body {
+    padding: 0px 15px;
+  }
+  .home__navigation {
+    padding: 20px 0px;
+  }
+  .home__navigation-end .fa-bars {
+    display: block !important;
+  }
+  .home__navigation-center {
+    display: none !important;
+  }
+  .carousel__item {
+    flex-direction: row;
+    padding: 0px 30px 30px 30px !important;
+  }
+  .carousel__item-left {
+    width: 100% !important;
+  }
+  .carousel__item-left h1 {
+    font-size: 35px !important;
+  }
+  .carousel__item-left .carousel__item-left-p {
+    font-size: 15px !important;
+  }
+  .carousel__item-left-p span {
+    display: block !important;
+    width: 68px;
+    text-align: center !important;
+  }
+  .carousel__item-left > div a {
+    height: 50px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .home__carousel .fa-chevron-left {
+    bottom: 10px;
+  }
+  .home__carousel .fa-chevron-right {
+    bottom: 10px;
+  }
+  .carousel__item-right {
+    position: absolute;
+    bottom: 100px;
+    right: 10px;
+  }
+  .carousel__item-right a {
+    font-size: 18px !important;
+  }
+  .carousel__item-left .last_p {
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.7;
+    font-size: 17px !important;
+    transition-delay: 0.3s;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height:60px;
+  }
+  .carousel__item-right i {
+    font-size: 30px !important;
+  }
+  .latest_movies-cards-top-inner {
+    width: 48% !important;
+  }
+  .a_wrapper a {
+    margin: 0 !important;
+    padding: 14px 30px !important;
+    height: 40px !important;
+  }
+  .a_wrapper a:last-child {
+    margin-left: 10px !important;
+    display: inline-block;
+  }
+  .latest_movies-cards {
+    gap: 0 !important;
+    justify-content: space-between !important;
+  }
+  .latest_movies-cards > div p {
+    text-align: left !important;
+  }
+  .latest_movies-cards span {
+    display: block !important;
+    margin: 0 !important;
+  }
+  .latest_movies-cards-inner {
+    height: 300px !important;
   }
   .text_title {
     overflow: hidden;
