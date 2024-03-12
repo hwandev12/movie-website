@@ -79,4 +79,11 @@
   .latest_movies-cards-inner {
     height: 200px !important;
   }
+  .text_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100% !important;
+    height: 24px;
+  }
 }

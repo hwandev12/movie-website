@@ -1,21 +1,22 @@
 {% load static %}
 <div class="home__carousel container">
     <i class="fa-solid fa-chevron-left"></i>
-    <div class="carousel__item" style="background-image: url({% static 'images/movie.jpg' %});">
+    {% for movie in movies %}
+    <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
         <div class="carousel__item-left">
-            <h1 class="active">Harry potter 
-                <span>hogwarts</span>
-                legacy</h1>
+            <h1 class="active">{{ movie.title | safe }}</h1>
             <p class="carousel__item-left-p active">
                 <span>
                     <i class="fa-regular fa-star"></i>
-                    9.5
+                    {{ movie.rating }}
                 </span>
-                IMDB 2023 3h 15min Fantasy, Crime
+                IMDB {{ movie.release_date|date:"Y" }} 
+                {{ movie.get_formatted_duration }}
+                {% for gen in movie.genre.all %}
+                {{ gen.get_formatted_title }}
+                {% endfor %}
             </p>
-            <p class="last_p active">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, accusantium sequi atque
-                possimus ipsa
-                laborum velit at odit?</p>
+            <p class="last_p active">{{ movie.description }}</p>
             <div class="a_wrapper active" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
                 <a href="#">
                     <i class="fa-solid fa-play mr-1"></i>
@@ -32,6 +33,7 @@
             </a>
         </div>
     </div>
+    {% endfor %}
 
     <i class="fa-solid fa-chevron-right"></i>
     <div class="circle_container">
