@@ -49,6 +49,7 @@ class Movie(models.Model):
     poster = models.ImageField(
         upload_to='movie_posters/', null=True, blank=True)
     card_poster = models.ImageField(upload_to="card_poster/", null=True, blank=True)
+    main = models.BooleanField(default=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
     
 

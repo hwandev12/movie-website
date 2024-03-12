@@ -5,7 +5,7 @@
         <a href="#">view all</a>
     </div>
     <div class="latest_movies-cards">
-        {% for movie in movies %}
+        {% for movie in latest_movies %}
         <div style="width: 18.5%; position: relative; margin-bottom: 30px;" class="latest_movies-cards-top-inner">
             <div class="latest_movies-cards-inner">
                 <div class="latest_movies-cards--box" style="background-image: url({{ movie.card_poster.url }});">

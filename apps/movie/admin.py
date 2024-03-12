@@ -6,7 +6,7 @@ class CustomMovieModelAdmin(admin.ModelAdmin):
     # Define fields you want to customize
     fieldsets = (
         ('', {
-            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'poster', 'card_poster')
+            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'main', 'poster', 'card_poster')
         }),
     )
 
@@ -32,6 +32,8 @@ class CustomMovieModelAdmin(admin.ModelAdmin):
             field.label = "Katta banner uchun rasm"
         if db_field.name == "card_poster":
             field.label = "Kichik kino card uchun rasm"
+        if db_field.name == "main":
+            field.label = "Asosiy qilinsinmi?"
         return field
 
 

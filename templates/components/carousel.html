@@ -1,7 +1,6 @@
 {% load static %}
 <div class="home__carousel container">
     <i class="fa-solid fa-chevron-left"></i>
-    {% for movie in movies %}
     <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
         <div class="carousel__item-left">
             <h1 class="active">{{ movie.title | safe }}</h1>
@@ -33,7 +32,41 @@
             </a>
         </div>
     </div>
+    {% if movies %}
+    {% for movie in movies %}
+    <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
+        <div class="carousel__item-left">
+            <h1 class="">{{ movie.title | safe }}</h1>
+            <p class="carousel__item-left-p">
+                <span>
+                    <i class="fa-regular fa-star"></i>
+                    {{ movie.rating }}
+                </span>
+                IMDB {{ movie.release_date|date:"Y" }} 
+                {{ movie.get_formatted_duration }}
+                {% for gen in movie.genre.all %}
+                {{ gen.get_formatted_title }}
+                {% endfor %}
+            </p>
+            <p class="last_p">{{ movie.description }}</p>
+            <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
+                <a href="#">
+                    <i class="fa-solid fa-play mr-1"></i>
+                    Ko'rish</a>
+                <a href="#">
+                    <i class="fa-brands fa-telegram mr-1"></i>
+                    Telegram</a>
+            </div>
+        </div>
+        <div class="carousel__item-right">
+            <a href="#">
+                <i class="fa-solid fa-photo-film"></i>
+                watch trailer
+            </a>
+        </div>
+    </div>
     {% endfor %}
+    {% endif %}
 
     <i class="fa-solid fa-chevron-right"></i>
     <div class="circle_container">
