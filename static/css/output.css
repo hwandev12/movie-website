@@ -948,6 +948,12 @@ input[type="range"]:active::-webkit-slider-thumb {
   overflow: visible;
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .whitespace-normal {
   white-space: normal;
 }
@@ -1466,8 +1472,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   .carousel__item-left .last_p {
     max-width: 250px !important;
     overflow: hidden;
+    display: inline-block !important;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: auto !important;
   }
 
   .carousel__item-right i {
@@ -1606,6 +1614,13 @@ body {
   line-height: 1.7;
   font-size: 19px;
   transition-delay: 0.3s;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:60px;
 }
 
 .carousel__item-left > div {

@@ -47,8 +47,10 @@
   .carousel__item-left .last_p {
     max-width: 250px !important;
     overflow: hidden;
+    display: inline-block !important;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: auto !important;
   }
   .carousel__item-right i {
     font-size: 30px !important;

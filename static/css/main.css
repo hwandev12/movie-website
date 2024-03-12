@@ -92,6 +92,14 @@ body {
   line-height: 1.7;
   font-size: 19px;
   transition-delay: 0.3s;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:60px;
+;
 }
 .carousel__item-left > div {
   display: flex;

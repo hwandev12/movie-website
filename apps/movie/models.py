@@ -1,10 +1,27 @@
 from django.db import models
 from django_countries.fields import CountryField
 
+class QualityChoices(models.Model):
+    
+    name = models.CharField(max_length=100)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Quality Choice"
+        verbose_name_plural = "Quality Choices"
+
+    def __str__(self):
+        return "%s format" % self.name
+
+        
 class GenreChoices(models.Model):
     name = models.CharField(max_length=100)
     time_created = models.DateTimeField(auto_now_add=True)
     # time_created agar kerak bo'lsa `holatiga`
+
+    class Meta:
+        verbose_name = "Quality Choice"
+        verbose_name_plural = "Quality Choices"
     
     def __str__(self):
         return "`%s` -- janr" % self.name
@@ -19,6 +36,7 @@ class Movie(models.Model):
     countries = CountryField(multiple=True)
     duration_time = models.TimeField()
     rating = models.FloatField()
+    quality = models.ManyToManyField(QualityChoices)
     poster = models.ImageField(upload_to='movie_posters/', null=True, blank=True)
 
     def __str__(self):
