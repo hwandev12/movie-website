@@ -15,7 +15,7 @@
                 </a>
                 {% if not category.sub_category.all %}
                 {% else %}
-                <div class="dropdown__janr">
+                <div class="dropdown__janr" data-dropdown="1">
                     <ul>
                         {% for subcategory in category.sub_category.all %}
                         <li>
