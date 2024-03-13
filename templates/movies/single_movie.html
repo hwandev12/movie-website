@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Movie Single {% endblock %}
+
+{% block content %}
+<div class="single__movie">
+    <div class="single__movie-video_player container">
+        <video controls id="videoSingle">
+            <source src="{% static 'images/video.mp4' %}" type="video/mp4">
+        </video>
+        <i class="fa-solid fa-circle-play custom-play"></i>
+    </div>
+</div>
+{% endblock %}

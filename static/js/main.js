@@ -8,9 +8,11 @@ window.addEventListener("scroll", function () {
 });
 
 var descriptionElement = document.querySelector(".last_p");
-var description = descriptionElement.innerHTML;
-var truncatedDescription = truncate(description, 14);
-descriptionElement.innerHTML = truncatedDescription;
+if(descriptionElement) {
+  var description = descriptionElement.innerHTML;
+  var truncatedDescription = truncate(description, 14);
+  descriptionElement.innerHTML = truncatedDescription;
+}
 
 function truncate(text, limit) {
   var words = text.split(" ");

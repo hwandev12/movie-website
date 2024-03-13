@@ -1793,6 +1793,123 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 }
 
+.single__movie {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.single__movie-video_player {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  margin: 40px 0px;
+  position: relative;
+}
+
+.single__movie-video_player video {
+  width: 50%;
+  height: 400px;
+  position: relative;
+}
+
+.custom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  z-index: 10000;
+  width: 100%;
+}
+
+.custom-controls button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.custom-controls button:hover {
+  color: #ffd700;
+}
+
+.custom-controls input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 100px;
+  height: 4px;
+  background: #777;
+  outline: none;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.progress-bar {
+  width: 100% !important;
+}
+
+.progress-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #fff;
+}
+
+.custom-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffd700;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-controls input[type="range"]:focus {
+  outline: none;
+}
+
+.fullscreen-icon {
+  font-size: 24px;
+}
+
+.single__movie-video_player .custom-play {
+  font-size: 40px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #74c0fc;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: 0.5s all ease;
+}
+
+.single__movie-video_player .custom-play:hover {
+  box-shadow: 5px 5px 1px rgba(116, 192, 252,0.6),
+                -5px -5px 1px rgba(116, 192, 252,0.6),
+                5px -5px 1px rgba(116, 192, 252,0.6),
+                -5px 5px 1px rgba(116, 192, 252,0.6);
+}
+
 body {
   font-family: "Ubuntu", sans-serif;
 }
