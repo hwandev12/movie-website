@@ -1,6 +1,7 @@
 // Get the video element
 var video = document.getElementById("videoSingle");
 var customPlay = document.querySelector(".custom-play");
+var previewVideo = document.querySelector("#previewVideo");
 
 // Create custom controls
 var controls = document.createElement("div");
@@ -12,6 +13,9 @@ playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
 playPauseButton.addEventListener("click", function () {
   if (video.paused) {
     video.play();
+    video.style.display = 'block'
+    previewVideo.style.display = 'none'
+    customPlay.style.display = "none";
     playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
   } else {
     video.pause();
@@ -19,10 +23,32 @@ playPauseButton.addEventListener("click", function () {
     playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
   }
 });
+video.addEventListener("click", function () {
+  if (video.paused) {
+    video.play();
+    video.style.display = 'block'
+    previewVideo.style.display = 'none'
+    customPlay.style.display = "none";
+    playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
+  } else {
+    video.pause();
+    customPlay.style.display = "flex";
+    playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
+  }
+});
+previewVideo.addEventListener("click", function () {
+  video.style.display = 'block'
+  previewVideo.style.display = 'none'
+  video.play();
+  customPlay.style.display = "none";
+  playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
+});
 customPlay.addEventListener("click", function () {
   customPlay.style.display = "none";
   if (video.paused) {
     video.play();
+    video.style.display = 'block'
+    previewVideo.style.display = 'none'
     playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
   } else {
     video.pause();

@@ -13,9 +13,17 @@
   position: relative;
 }
 .single__movie-video_player video {
-  width: 50%;
-  height: 400px;
+  width: 60%;
+  height: 450px;
   position: relative;
+  cursor: pointer;
+  display: none;
+}
+#previewVideo {
+  width: 60%;
+  height: 450px;
+  position: relative;
+  cursor: pointer;
 }
 .custom-controls {
   display: flex;
@@ -25,7 +33,7 @@
   padding: 10px;
   border-radius: 10px;
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   z-index: 10000;
   width: 100%;
 }
