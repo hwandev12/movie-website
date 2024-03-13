@@ -4,7 +4,6 @@
 @import "./media.css";
 
 body {
-  background-color: #06090f;
   font-family: "Ubuntu", sans-serif;
 }
 .container {
@@ -203,16 +202,13 @@ body {
   margin: 50px 0px 20px 0px;
 }
 .latest_movies-top h3 {
-  color: #fff;
   text-transform: capitalize;
   font-size: 26px;
 }
 .latest_movies a {
   padding: 6px 14px;
   background-color: #28b5f5;
-  color: #fff;
   text-transform: uppercase;
-  color: #fff;
   border-radius: 15px;
   letter-spacing: 1.3px;
   transition: 0.5s all ease;
@@ -281,7 +277,6 @@ body {
   opacity: 1;
 }
 .latest_movies-cards > div h4 {
-  color: #fff;
   font-size: 18px;
   margin: 6px 0px 3px 0px;
   letter-spacing: 1.2px;
@@ -292,7 +287,6 @@ body {
   /* height: 30px; */
 }
 .latest_movies-cards > div p {
-  color: #fff;
   font-weight: 600;
 }
 .latest_movies-cards span {

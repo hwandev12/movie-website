@@ -1,8 +1,8 @@
 {% load static %}
 <div class="latest_movies container">
     <div class="latest_movies-top">
-        <h3>latest movies</h3>
-        <a href="#">view all</a>
+        <h3 class="text-slate-950 dark:text-zinc-50">latest movies</h3>
+        <a href="#" class="text-zinc-50">view all</a>
     </div>
     <div class="latest_movies-cards">
         {% for movie in latest_movies %}
@@ -17,14 +17,14 @@
                 </a>
 
             </div>
-            <h4 class="text_title truncate">{{ movie.title | safe }}</h4>
-            <p>{{ movie.get_formatted_duration }} <span>
+            <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ movie.title | safe }}</h4>
+            <p class="text-slate-950 dark:text-zinc-50">{{ movie.get_formatted_duration }} <span>
                     {% for gen in movie.genre.all %}
                     {{ gen.name }}
                     {% endfor %}
                 </span></p>
             {% for gen in movie.quality.all %}
-                <span class="hd_movie-badge">{{ gen.name }}</span>
+                <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
             {% endfor %}
         </div>
         {% endfor %}

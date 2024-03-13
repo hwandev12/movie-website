@@ -1255,6 +1255,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   color: rgb(227 235 247 / var(--tw-text-opacity));
 }
 
+.text-slate-950 {
+  --tw-text-opacity: 1;
+  color: rgb(2 6 23 / var(--tw-text-opacity));
+}
+
 .text-stone-50 {
   --tw-text-opacity: 1;
   color: rgb(250 250 249 / var(--tw-text-opacity));
@@ -1278,6 +1283,11 @@ input[type="range"]:active::-webkit-slider-thumb {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-zinc-50 {
+  --tw-text-opacity: 1;
+  color: rgb(250 250 250 / var(--tw-text-opacity));
 }
 
 .no-underline {
@@ -1784,7 +1794,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 body {
-  background-color: #06090f;
   font-family: "Ubuntu", sans-serif;
 }
 
@@ -2011,7 +2020,6 @@ body {
 }
 
 .latest_movies-top h3 {
-  color: #fff;
   text-transform: capitalize;
   font-size: 26px;
 }
@@ -2020,7 +2028,6 @@ body {
   padding: 6px 14px;
   background-color: #28b5f5;
   text-transform: uppercase;
-  color: #fff;
   border-radius: 15px;
   letter-spacing: 1.3px;
   transition: 0.5s all ease;
@@ -2099,7 +2106,6 @@ body {
 }
 
 .latest_movies-cards > div h4 {
-  color: #fff;
   font-size: 18px;
   margin: 6px 0px 3px 0px;
   letter-spacing: 1.2px;
@@ -2111,7 +2117,6 @@ body {
 }
 
 .latest_movies-cards > div p {
-  color: #fff;
   font-weight: 600;
 }
 
@@ -2301,23 +2306,46 @@ body {
   }
 }
 
-:is(.dark .dark\:border-neutral-400) {
+.dark\:inline-block:where(.dark, .dark *) {
+  display: inline-block;
+}
+
+.dark\:hidden:where(.dark, .dark *) {
+  display: none;
+}
+
+.dark\:border-neutral-400:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(163 163 163 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:border-white\/10) {
+.dark\:border-white\/10:where(.dark, .dark *) {
   border-color: rgb(255 255 255 / 0.1);
 }
 
-:is(.dark .dark\:bg-surface-dark) {
+.dark\:bg-gray-950:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 7 18 / var(--tw-bg-opacity));
+}
+
+.dark\:bg-surface-dark:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(66 66 66 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:text-white) {
+.dark\:text-stone-50:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(250 250 249 / var(--tw-text-opacity));
+}
+
+.dark\:text-white:where(.dark, .dark *) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark\:text-zinc-50:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(250 250 250 / var(--tw-text-opacity));
 }
 
 .\[\&\>svg\]\:h-5>svg {

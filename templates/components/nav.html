@@ -1,6 +1,6 @@
 <div class="home__navigation-wrapper">
     <div class="home__navigation container">
-        <a href="#" class="home__nav-logo ">
+        <a href="#" class="home__nav-logo text-slate-950 dark:text-zinc-50">
             <i class="fa-regular fa-circle-play"></i>
             Perona<span>TV</span>
         </a>
@@ -10,7 +10,7 @@
             </li>
             {% for category in categories %}
             <li class="nav__janr">
-                <a href="#">{{ category.name }}
+                <a href="#" class="text-slate-950 dark:text-zinc-50">{{ category.name }}
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
                 {% if not category.sub_category.all %}
@@ -19,7 +19,7 @@
                     <ul>
                         {% for subcategory in category.sub_category.all %}
                         <li>
-                            <a href="#">{{ subcategory.name }}</a>
+                            <a href="#" class="text-slate-950 dark:text-zinc-50">{{ subcategory.name }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -29,9 +29,10 @@
             {% endfor %}
         </ul>
         <div class="home__navigation-end flex justify-center items-center">
-            <i class="fa-solid fa-search text-stone-50 mr-6 text-xl cursor-pointer"></i>
-            <i class="fa-solid fa-sun text-stone-50 text-xl cursor-pointer"></i>
-            <i class="fa-solid fa-bars text-stone-50 ml-6 text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-search text-slate-950 dark:text-stone-50 mr-6 text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-sun text-stone-50 text-xl cursor-pointer hidden dark:inline-block"></i>
+            <i class="fa-solid fa-moon text-slate-950 text-xl cursor-pointer inline-block dark:hidden"></i>
+            <i class="fa-solid fa-bars text-slate-950 dark:text-stone-50 ml-6 text-xl cursor-pointer"></i>
         </div>
     </div>
 </div>

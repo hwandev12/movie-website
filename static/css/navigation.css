@@ -11,21 +11,18 @@
 }
 .home__nav-logo {
     text-decoration: none;
-    color: #fff;
     font-size: 25px;
     font-weight: 700;
 }.home__nav-logo span {
     color: #28B5F5;
     font-weight: 800;
 }.home__nav-logo:hover {
-    color: #fff;
 }.home__navigation-center > li {
     margin-right: 40px;
     list-style: none;
     position: relative;
 }.home__navigation-center li a {
     text-decoration: none;
-    color: #fff;
     display: inline-block;
     font-weight: 600;
     letter-spacing: 0.1px;
@@ -36,7 +33,6 @@
 }.home__navigation-center li:last-child {
     margin-right: 0;
 }.home__navigation-center > li i {
-    color: #fff;
     font-size: 11px;
 }.home__navigation-center > li:first-child a {
     color: #28B5F5;
@@ -49,7 +45,6 @@
     display: none;
     position: absolute;
     z-index: 3;
-    color: #fff;
     width: 400px;
     height: auto;
     max-height: 35vh;

@@ -8,17 +8,26 @@ window.addEventListener("scroll", function () {
 });
 
 var descriptionElement = document.querySelector(".last_p");
-console.log(descriptionElement);
 var description = descriptionElement.innerHTML;
 var truncatedDescription = truncate(description, 14);
 descriptionElement.innerHTML = truncatedDescription;
 
 function truncate(text, limit) {
   var words = text.split(" ");
-  console.log(words);
   if (words.length > limit) {
     return words.slice(0, limit).join(" ") + "...";
   } else {
     return text;
   }
 }
+
+let html = document.querySelector("html");
+let lightButton = document.querySelector(".home__navigation .fa-sun");
+let nightButton = document.querySelector(".home__navigation .fa-moon");
+
+lightButton.addEventListener("click", () => {
+  html.classList.remove("dark");
+});
+nightButton.addEventListener("click", () => {
+  html.classList.add("dark");
+});
