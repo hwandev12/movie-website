@@ -3,13 +3,101 @@
 {% block title %}Movie Single {% endblock %}
 
 {% block content %}
-<div class="single__movie">
+<div class="single__movie dark:bg-gray-950">
+
+    <!-- VIDEO PLAYER -->
     <div class="single__movie-video_player container">
-        <img src="{% static 'images/1.jpg' %}" alt="" id="previewVideo">
+        <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
+        <!-- models orqali yaratiladi -->
+        <img src="{{ movie.poster.url }}" alt="" id="previewVideo">
         <video controls id="videoSingle">
             <source src="{% static 'images/video.mp4' %}" type="video/mp4">
         </video>
         <i class="fa-solid fa-circle-play custom-play"></i>
     </div>
+    <!-- VIDEO PLAYER -->
+
+    <!-- VIDEO DETAILS -->
+    <div class="single__movie-details dark:bg-gray-900 bg-slate-200 container">
+        <div class="single__movie-detail-center">
+            <div class="single__movie-detail-center-card" style="background-image: url({{ movie.card_poster.url }});">
+            </div>
+            <div class="single__movie-detail-center-content border-slate-400 dark:border-slate-800">
+                <h4 class="text-slate-950 dark:text-zinc-50">{{ movie.title }}
+                    <span><i class="fa-solid fa-play"></i> Trailer</span>
+                </h4>
+                <p class="text-slate-600 dark:text-slate-400">{{ movie.description }}</p>
+                <div class="single__movie-detail-center-content-row">
+                    <div class="single__movie-detail-center-content-row-col">
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Janr: </strong>
+                            {% for gen in movie.genre.all %}
+                            <a href="#" class="text-cyan-500">{{ gen.name }}
+                                {% if not forloop.last %},{% endif %}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Rejissor: </strong>
+                            <a href="#" class="text-cyan-500">{{ movie.director }}</a>
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Actors: </strong>
+                            <a href="#" class="text-cyan-500">{{ movie.actors }}</a>
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
+                            {% for con in movie.countries %}
+                            <a href="#" class="text-cyan-500">{{ con.code }}
+                                {% if not forloop.last %},{% endif %}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="single__movie-detail-center-content-row-col">
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Vaqti: </strong>
+                            <a href="#" class="text-cyan-500">
+                                {{ movie.get_formatted_duration }}
+                            </a>
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Sifati: </strong>
+                            {% for qu in movie.quality.all %}
+                            <a href="#"
+                                style="color: #fff; background-color: #29B6F6; border-radius: 5px; padding: 0px 5px;">
+                                {{ qu.name }}</a>
+                            {% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Actors: </strong>
+                            <a href="#" class="text-cyan-500">{{ movie.actors }}</a>
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Chiqish Sanasi: </strong>
+                            <a href="#" class="text-cyan-500">{{ movie.release_date|date:"Y" }} </a>
+                        </div>
+                        <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Rating: </strong>
+                            <a href="#"
+                                style="color: #fff; background-color: #29B6F6; border-radius: 5px; padding: 0px 5px;">
+                                {{ movie.rating }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single__movie-detail-center-download">
+                <h3 class="text-slate-950 dark:text-zinc-50">Yuklamoq: </h3>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-16 rounded-full w-full cursor-not-allowed">
+                    Hozircha mavjud emas
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- VIDEO DETAILS -->
+
+
 </div>
 {% endblock %}

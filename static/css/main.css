@@ -317,8 +317,21 @@ body {
   transform: translateY(-5px);
   top: 0;
   padding-right: 34px;
-  z-index: 10000;
-  box-shadow: 0px 2px 2px 2px rgb(10, 13, 20);
+  z-index: 1000000;
+  color: #fff !important;
+}
+.navbar-scrolled-light {
+  background-color: rgb(255, 255, 255) !important;
+}
+.navbar-scrolled-light-scroll {
+  background-color: rgb(255, 255, 255) !important;
+  transition: background-color 0.3s ease;
+  position: fixed;
+  transform: translateY(-5px);
+  top: 0;
+  padding-right: 34px;
+  z-index: 1000000;
+  color: #fff !important;
 }
 .home__navigation-wrapper {
   transition: 0.5s all ease;
