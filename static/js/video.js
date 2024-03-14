@@ -1,20 +1,33 @@
 // Get the video element
 var video = document.getElementById("videoSingle");
 var customPlay = document.querySelector(".custom-play");
-var previewVideo = document.querySelector("#previewVideo");
+var videoPlayerWrapper = document.querySelector(".single__movie-video_player");
 
 // Create custom controls
 var controls = document.createElement("div");
 controls.className = "custom-controls";
 
+video.addEventListener("playing", () => {
+  videoPlayerWrapper.addEventListener("mouseenter", () => {
+    controls.classList.remove("cs");
+  });
+  videoPlayerWrapper.addEventListener("mouseleave", () => {
+    controls.classList.add("cs");
+  });
+});
+
+setInterval(() => {
+  if (video.paused) {
+    controls.classList.remove("cs");
+  }
+},1000);
 // Add play/pause button
 var playPauseButton = document.createElement("button");
 playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
 playPauseButton.addEventListener("click", function () {
   if (video.paused) {
     video.play();
-    video.style.display = 'block'
-    previewVideo.style.display = 'none'
+    video.style.visibility = "visible";
     customPlay.style.display = "none";
     playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
   } else {
@@ -23,32 +36,27 @@ playPauseButton.addEventListener("click", function () {
     playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
   }
 });
+
 video.addEventListener("click", function () {
-  if (video.paused) {
-    video.play();
-    video.style.display = 'block'
-    previewVideo.style.display = 'none'
-    customPlay.style.display = "none";
-    playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
-  } else {
-    video.pause();
-    customPlay.style.display = "flex";
-    playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
+  if (!document.fullscreenElement) {
+    if (video.paused) {
+      video.play();
+      video.style.visibility = "visible";
+      customPlay.style.display = "none";
+      playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
+    } else {
+      video.pause();
+      customPlay.style.display = "flex";
+      playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
+    }
   }
 });
-previewVideo.addEventListener("click", function () {
-  video.style.display = 'block'
-  previewVideo.style.display = 'none'
-  video.play();
-  customPlay.style.display = "none";
-  playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
-});
+
 customPlay.addEventListener("click", function () {
   customPlay.style.display = "none";
   if (video.paused) {
     video.play();
-    video.style.display = 'block'
-    previewVideo.style.display = 'none'
+    video.style.visibility = "visible";
     playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
   } else {
     video.pause();
@@ -96,15 +104,19 @@ var fullscreenButton = document.createElement("button");
 fullscreenButton.innerHTML = "<i class='fa fa-expand'></i>";
 fullscreenButton.addEventListener("click", function () {
   if (video.requestFullscreen) {
+    video.style.visibility = "visible";
     video.requestFullscreen();
   } else if (video.mozRequestFullScreen) {
     /* Firefox */
+    video.style.visibility = "visible";
     video.mozRequestFullScreen();
   } else if (video.webkitRequestFullscreen) {
     /* Chrome, Safari and Opera */
+    video.style.visibility = "visible";
     video.webkitRequestFullscreen();
   } else if (video.msRequestFullscreen) {
     /* IE/Edge */
+    video.style.visibility = "visible";
     video.msRequestFullscreen();
   }
 });

@@ -2076,14 +2076,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   height: 450px;
   position: relative;
   cursor: pointer;
-  display: none;
-}
-
-#previewVideo {
-  width: 60%;
-  height: 450px;
-  position: relative;
-  cursor: pointer;
+  visibility: visible;
 }
 
 .single__movie-details {
@@ -2093,6 +2086,8 @@ input[type="range"]:active::-webkit-slider-thumb {
   /* margin-top: 20px; */
   padding: 30px;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1000000;
 }
 
 .single__movie-detail-center {
@@ -2218,6 +2213,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   bottom: 0px;
   z-index: 100;
   width: 100%;
+  transition: 0.3s all ease;
 }
 
 .custom-controls button {
@@ -2293,12 +2289,20 @@ input[type="range"]:active::-webkit-slider-thumb {
   transform: translate(-50%, -50%);
   cursor: pointer;
   transition: 0.5s all ease;
+  z-index: 100;
 }
 
 .single__movie-video_player .custom-play:hover {
   box-shadow: 5px 5px 1px rgba(116, 192, 252, 0.6),
     -5px -5px 1px rgba(116, 192, 252, 0.6),
     5px -5px 1px rgba(116, 192, 252, 0.6), -5px 5px 1px rgba(116, 192, 252, 0.6);
+}
+
+.cs {
+  z-index: -1;
+  transform: translateY(50px);
+  position: absolute;
+  transition: 0.3s all ease;
 }
 
 body {
@@ -2651,12 +2655,10 @@ body {
 }
 
 .navbar-scrolled {
-  background-color: rgb(10, 13, 20);
-  transition: background-color 0.3s ease;
+  padding: 0px 18px;
   position: fixed;
-  transform: translateY(-5px);
-  top: 0;
-  padding-right: 34px;
+  top: -5px;
+  left: 0;
   z-index: 1000000;
   color: #fff !important;
 }
@@ -2665,19 +2667,8 @@ body {
   background-color: rgb(255, 255, 255) !important;
 }
 
-.navbar-scrolled-light-scroll {
-  background-color: rgb(255, 255, 255) !important;
-  transition: background-color 0.3s ease;
-  position: fixed;
-  transform: translateY(-5px);
-  top: 0;
-  padding-right: 34px;
-  z-index: 1000000;
-  color: #fff !important;
-}
-
 .home__navigation-wrapper {
-  transition: 0.5s all ease;
+  background-color: rgb(10, 13, 20);
   margin-left: auto;
   margin-right: auto;
   width: 100%;

@@ -3,15 +3,9 @@ var navbar = document.querySelector(".home__navigation-wrapper");
 
 window.addEventListener("scroll", function () {
   if (window.scrollY > 100) {
-    if (html.classList.contains("dark")) {
-      navbar.classList.add("navbar-scrolled");
-    } else {
-      navbar.classList.add("navbar-scrolled-light-scroll");
-    }
+    navbar.classList.add("navbar-scrolled");
   } else {
-    navbar.classList.remove("navbar-scrolled") ^
-      navbar.classList.remove("navbar-scrolled-light");
-    navbar.classList.remove("navbar-scrolled-light-scroll");
+    navbar.classList.remove("navbar-scrolled");
   }
 });
 
@@ -40,7 +34,5 @@ lightButton.addEventListener("click", () => {
 });
 nightButton.addEventListener("click", () => {
   html.classList.add("dark");
-  navbar.classList.add("navbar-scrolled");
   navbar.classList.remove("navbar-scrolled-light");
-  navbar.classList.remove("navbar-scrolled-light-scroll");
 });
