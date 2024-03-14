@@ -24,7 +24,9 @@ ALLOWED_HOSTS = ["*"]
 
 LOCAL_APPS = [
     "apps.entry.apps.EntryConfig",
-    "apps.movie.apps.MovieConfig"
+    "apps.movie.apps.MovieConfig",
+    "apps.series.apps.SeriesConfig"
+
 ]
 
 INSTALLED_APPS = [
@@ -139,5 +141,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
