@@ -26,12 +26,14 @@ class GenreChoices(models.Model):
 
     def __str__(self):
         return "`%s` -- janr" % self.name
-    
+
     def get_formatted_title(self):
         words = self.name.split()  # Split the title into words
-        formatted_title = ", ".join(words[:-1])  # Join words with comma, except for the last one
+        # Join words with comma, except for the last one
+        formatted_title = ", ".join(words[:-1])
         if words:
-            formatted_title += " " + words[-1]  # Add the last word without a comma
+            # Add the last word without a comma
+            formatted_title += " " + words[-1]
         return formatted_title
 
 
@@ -48,10 +50,10 @@ class Movie(models.Model):
     quality = models.ManyToManyField(QualityChoices)
     poster = models.ImageField(
         upload_to='movie_posters/', null=True, blank=True)
-    card_poster = models.ImageField(upload_to="card_poster/", null=True, blank=True)
+    card_poster = models.ImageField(
+        upload_to="card_poster/", null=True, blank=True)
     main = models.BooleanField(default=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
-    
 
     def __str__(self):
         return "%s -- %s" % (self.title, self.release_date)
@@ -60,9 +62,9 @@ class Movie(models.Model):
         hours = self.duration_time.hour
         minutes = self.duration_time.minute
         return f"{hours}h {minutes}min"
-    
+
     def make_capitalize(self):
         return self.title.capitalize()
-    
+
     def get_title_for_movie_cards(self):
         return self.title.split(maxsplit=2)[0:2]

@@ -11,3 +11,4 @@ module.exports = {
   plugins: [require("tw-elements/plugin.cjs")],
   darkMode: "selector"
 };
+

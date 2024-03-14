@@ -24,7 +24,10 @@
             </div>
             <div class="single__movie-detail-center-content border-slate-400 dark:border-slate-800">
                 <h4 class="text-slate-950 dark:text-zinc-50">{{ movie.title }}
-                    <span><i class="fa-solid fa-play"></i> Trailer</span>
+                    <span data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
+                        data-twe-ripple-color="light">
+                        <i class="fa-solid fa-play"></i> Trailer
+                    </span>
                 </h4>
                 <p class="text-slate-600 dark:text-slate-400">{{ movie.description }}</p>
                 <div class="single__movie-detail-center-content-row">
@@ -90,14 +93,14 @@
             </div>
             <div class="single__movie-detail-center-download">
                 <h3 class="text-slate-950 dark:text-zinc-50">Yuklamoq: </h3>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-16 rounded-full w-full cursor-not-allowed">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-16 rounded-full w-full cursor-not-allowed">
                     Hozircha mavjud emas
                 </button>
             </div>
         </div>
+        {% include 'movies/trailer.html' %}
     </div>
     <!-- VIDEO DETAILS -->
-
-
 </div>
 {% endblock %}
