@@ -1,6 +1,7 @@
 {% load static %}
 <div class="home__carousel container">
     <i class="fa-solid fa-chevron-left"></i>
+    {% if movie %}
     <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
         <div class="carousel__item-left">
             <h1 class="active">{{ movie.title | safe }}</h1>
@@ -9,7 +10,7 @@
                     <i class="fa-regular fa-star"></i>
                     {{ movie.rating }}
                 </span>
-                IMDB {{ movie.release_date|date:"Y" }} 
+                IMDB {{ movie.release_date|date:"Y" }}
                 {{ movie.get_formatted_duration }}
                 {% for gen in movie.genre.all %}
                 {{ gen.get_formatted_title }}
@@ -26,12 +27,14 @@
             </div>
         </div>
         <div class="carousel__item-right activeC">
-            <a href="#">
+            <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
+                data-twe-ripple-color="light">
                 <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
                 watch trailer
             </a>
         </div>
     </div>
+    {% endif %}
     {% if movies %}
     {% for movie in movies %}
     <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
@@ -42,7 +45,7 @@
                     <i class="fa-regular fa-star"></i>
                     {{ movie.rating }}
                 </span>
-                IMDB {{ movie.release_date|date:"Y" }} 
+                IMDB {{ movie.release_date|date:"Y" }}
                 {{ movie.get_formatted_duration }}
                 {% for gen in movie.genre.all %}
                 {{ gen.get_formatted_title }}
@@ -73,3 +76,4 @@
         <span class="circle" data-index="1"></span>
     </div>
 </div>
+{% include 'movies/trailer.html' %}

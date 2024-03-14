@@ -40,6 +40,17 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/video.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/tw-elements.umd.min.js' %}"></script>
+    <script>
+        function stopVideo() {
+            var iframe = document.getElementById("youtubeTrailer");
+            var iframeSrc = iframe.src;
+
+            // Replace the src attribute with the same src to stop the video
+            iframe.src = iframeSrc;
+            console.log(iframe);
+        }
+
+    </script>
 </body>
 
 </html>

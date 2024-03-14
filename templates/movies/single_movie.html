@@ -33,25 +33,29 @@
                 <div class="single__movie-detail-center-content-row">
                     <div class="single__movie-detail-center-content-row-col">
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Janr: </strong>
                             {% for gen in movie.genre.all %}
-                            <a href="#" class="text-cyan-500">{{ gen.name }}
+                            <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Janr: </strong>
+                                {{ gen.name }}
                                 {% if not forloop.last %},{% endif %}
                             </a>
                             {% endfor %}
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Rejissor: </strong>
-                            <a href="#" class="text-cyan-500">{{ movie.director }}</a>
+                            <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Rejissor: </strong>
+                                {{ movie.director }}</a>
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Actors: </strong>
-                            <a href="#" class="text-cyan-500">{{ movie.actors }}</a>
+                            <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Actors: </strong>
+                                {{ movie.actors }}</a>
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
                             {% for con in movie.countries %}
-                            <a href="#" class="text-cyan-500">{{ con.code }}
+                            <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
+                                {{ con.code }}
                                 {% if not forloop.last %},{% endif %}
                             </a>
                             {% endfor %}
@@ -59,8 +63,8 @@
                     </div>
                     <div class="single__movie-detail-center-content-row-col">
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Vaqti: </strong>
                             <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Vaqti: </strong>
                                 {{ movie.get_formatted_duration }}
                             </a>
                         </div>
@@ -74,12 +78,9 @@
                             {% endfor %}
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Actors: </strong>
-                            <a href="#" class="text-cyan-500">{{ movie.actors }}</a>
-                        </div>
-                        <div class="single__movie-detail-center-content-row-col-item">
-                            <strong class="text-slate-950 dark:text-zinc-50">Chiqish Sanasi: </strong>
-                            <a href="#" class="text-cyan-500">{{ movie.release_date|date:"Y" }} </a>
+                            <a href="#" class="text-cyan-500">
+                                <strong class="text-slate-950 dark:text-zinc-50">Chiqish Sanasi: </strong>
+                                {{ movie.release_date|date:"Y" }} </a>
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
                             <strong class="text-slate-950 dark:text-zinc-50">Rating: </strong>

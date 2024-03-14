@@ -113,9 +113,13 @@
   font-weight: 500;
   margin-right: 5px !important;
   font-size: 15px;
+  display: inline-block;
+  -webkit-text-size-adjust: 100%;
+  align-self: flex-start;
 }
 .single__movie-detail-center-content-row-col-item a {
   display: inline-block;
+  text-align: left;
   margin-right: 5px;
   font-size: 15px;
 }
@@ -210,8 +214,7 @@
   transition: 0.5s all ease;
 }
 .single__movie-video_player .custom-play:hover {
-    box-shadow: 5px 5px 1px rgba(116, 192, 252,0.6),
-                -5px -5px 1px rgba(116, 192, 252,0.6),
-                5px -5px 1px rgba(116, 192, 252,0.6),
-                -5px 5px 1px rgba(116, 192, 252,0.6);
+  box-shadow: 5px 5px 1px rgba(116, 192, 252, 0.6),
+    -5px -5px 1px rgba(116, 192, 252, 0.6),
+    5px -5px 1px rgba(116, 192, 252, 0.6), -5px 5px 1px rgba(116, 192, 252, 0.6);
 }
