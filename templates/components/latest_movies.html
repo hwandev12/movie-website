@@ -1,4 +1,5 @@
 {% load static %}
+<!-- MOVIES -->
 <div class="latest_movies container">
     <div class="latest_movies-top">
         <h3 class="text-slate-950 dark:text-zinc-50">latest movies</h3>
@@ -30,3 +31,44 @@
         {% endfor %}
     </div>
 </div>
+<!-- MOVIES -->
+<style>
+    .text_title span {
+        color: #fff;
+        font-weight: 400;
+        margin-left: 0;
+    }
+</style>
+<!-- SERIES -->
+<div class="latest_movies container">
+    <div class="latest_movies-top">
+        <h3 class="text-slate-950 dark:text-zinc-50">latest series</h3>
+        <a href="#" class="text-zinc-50">view all</a>
+    </div>
+    <div class="latest_movies-cards">
+        {% for serie in latest_series %}
+        <div style="width: 18.5%; position: relative; margin-bottom: 30px;" class="latest_movies-cards-top-inner">
+            <div class="latest_movies-cards-inner">
+                <div class="latest_movies-cards--box" style="background-image: url({{ serie.card.url }});">
+                </div>
+                <a href="/" style="background-color: transparent;">
+                    <div class="latest_movies-cards--box-inner">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                </a>
+
+            </div>
+            <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ serie.title | safe }}</h4>
+            <p class="text-slate-950 dark:text-zinc-50" style="margin: 0;"><span style="margin-left: 0;">
+                    {% for gen in serie.genre.all %}
+                    {{ gen.name }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </span></p>
+            {% for gen in serie.quality.all %}
+                <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- SERIES -->

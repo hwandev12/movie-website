@@ -13,7 +13,7 @@
                 IMDB {{ movie.release_date|date:"Y" }}
                 {{ movie.get_formatted_duration }}
                 {% for gen in movie.genre.all %}
-                {{ gen.get_formatted_title }}
+                {{ gen.name }}{% if not forloop.last %},{% endif %}
                 {% endfor %}
             </p>
             <p class="last_p active">{{ movie.description }}</p>
@@ -48,7 +48,7 @@
                 IMDB {{ movie.release_date|date:"Y" }}
                 {{ movie.get_formatted_duration }}
                 {% for gen in movie.genre.all %}
-                {{ gen.get_formatted_title }}
+                {{ gen.name }}{% if not forloop.last %},{% endif %}
                 {% endfor %}
             </p>
             <p class="last_p">{{ movie.description }}</p>
@@ -63,7 +63,43 @@
         </div>
         <div class="carousel__item-right">
             <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
-            data-twe-ripple-color="light">
+                data-twe-ripple-color="light">
+                <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
+                watch trailer
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if series %}
+    {% for serie in series %}
+    <div class="carousel__item" style="background-image: url({{ serie.poster.url }});">
+        <div class="carousel__item-left">
+            <h1 class="">{{ serie.title | safe }}</h1>
+            <p class="carousel__item-left-p">
+                <span>
+                    <i class="fa-regular fa-star"></i>
+                    {{ serie.rating }}
+                </span>
+                IMDB {{ serie.release_date|date:"Y" }}
+                {% for gen in serie.genre.all %}
+                {{ gen.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </p>
+            <p class="last_p">{{ serie.description }}</p>
+            <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
+                <a href="#">
+                    <i class="fa-solid fa-play mr-1"></i>
+                    Ko'rish</a>
+                <a href="#">
+                    <i class="fa-brands fa-telegram mr-1"></i>
+                    Telegram</a>
+            </div>
+        </div>
+        <div class="carousel__item-right">
+            <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
+                data-twe-ripple-color="light">
                 <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
                 watch trailer
             </a>

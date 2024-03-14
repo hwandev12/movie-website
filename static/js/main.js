@@ -28,11 +28,29 @@ function truncate(text, limit) {
 let lightButton = document.querySelector(".home__navigation .fa-sun");
 let nightButton = document.querySelector(".home__navigation .fa-moon");
 
-lightButton.addEventListener("click", () => {
+function switchToLightMode() {
   html.classList.remove("dark");
   navbar.classList.add("navbar-scrolled-light");
-});
-nightButton.addEventListener("click", () => {
+  // Store the user's preference for light mode in localStorage
+  localStorage.setItem("theme", "light");
+}
+
+// Function to handle switching to dark mode
+function switchToDarkMode() {
   html.classList.add("dark");
   navbar.classList.remove("navbar-scrolled-light");
-});
+  // Store the user's preference for dark mode in localStorage
+  localStorage.setItem("theme", "dark");
+}
+
+lightButton.addEventListener("click", switchToLightMode);
+nightButton.addEventListener("click", switchToDarkMode);
+
+const storedTheme = localStorage.getItem("theme");
+
+// Apply the stored theme preference when the page loads
+if (storedTheme === 'light') {
+  switchToLightMode();
+} else {
+  switchToDarkMode(); // Default to dark mode if no preference is stored
+}

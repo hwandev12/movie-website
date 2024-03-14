@@ -15,11 +15,20 @@ class Series(models.Model):
     quality = models.ManyToManyField(QualityChoices)
     poster = models.ImageField(
         upload_to='series_posters/', null=True, blank=True)
+    card = models.ImageField(
+        upload_to='series_cards/', null=True, blank=True
+    )
     main = models.BooleanField(default=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    def make_capitalize(self):
+        return self.title.capitalize()
+
+    def get_title_for_movie_cards(self):
+        return self.title.split(maxsplit=2)[0:2]
 
 
 class Episode(models.Model):
