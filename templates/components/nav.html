@@ -1,16 +1,16 @@
 <div class="home__navigation-wrapper">
     <div class="home__navigation container">
-        <a href="#" class="home__nav-logo text-slate-950 dark:text-zinc-50">
+        <a href="{% url 'entry:home' %}" class="home__nav-logo text-slate-950 dark:text-zinc-50">
             <i class="fa-regular fa-circle-play"></i>
             Perona<span>TV</span>
         </a>
         <ul class="home__navigation-center flex just-content-center align-items-center m-0 p-0">
             <li>
-                <a href="#">Bosh Sahifa</a>
+                <a href="{% url 'entry:home' %}">Bosh Sahifa</a>
             </li>
             {% for category in categories %}
             <li class="nav__janr">
-                <a href="#" class="text-slate-950 dark:text-zinc-50">{{ category.name }}
+                <a class="text-slate-950 dark:text-zinc-50 cursor-pointer">{{ category.name }}
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
                 {% if not category.sub_category.all %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from django.core.validators import URLValidator
 
 
 class QualityChoices(models.Model):
@@ -36,6 +37,19 @@ class GenreChoices(models.Model):
             formatted_title += " " + words[-1]
         return formatted_title
 
+class Trailer(models.Model):
+    
+    title = models.CharField(max_length=100)
+    url = models.URLField(URLValidator(schemes="https"))
+    movie = models.OneToOneField("Movie", on_delete=models.SET_NULL, null=True)
+    time_created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Trailer"
+        verbose_name_plural = "Trailers"
+    
+    def __str__(self):
+        return "%s" % self.title
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)

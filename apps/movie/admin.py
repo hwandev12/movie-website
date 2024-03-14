@@ -1,8 +1,27 @@
+from typing import Any
 from django.contrib import admin
+from django.db.models.fields import Field
+from django.http import HttpRequest
 from . import models
 
+class TrailerInline(admin.TabularInline):
+    model = models.Trailer
+    fieldsets = (
+        ("",{
+            'fields': ("title", "url")  
+        }),
+    )
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        field = super().formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'title':
+            field.label = "Trailer uchun nom"
+        if db_field.name == "url":
+            field.label = "Trailer Manzil(Youtube link)"
+        return field
 
 class CustomMovieModelAdmin(admin.ModelAdmin):
+    inlines = (TrailerInline, )
     # Define fields you want to customize
     fieldsets = (
         ('', {
