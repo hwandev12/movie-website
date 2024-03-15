@@ -1,6 +1,21 @@
 from django.db import models
 from apps.movie.models import GenreChoices, QualityChoices
 from django_countries.fields import CountryField
+from django.core.validators import URLValidator
+
+
+class SeriesTrailer(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.URLField(URLValidator(schemes="https"))
+    movie = models.OneToOneField("Series", on_delete=models.SET_NULL, null=True)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Serial Trailer"
+        verbose_name_plural = "Serial Trailers"
+
+    def __str__(self):
+        return "%s" % self.title
 
 
 class Series(models.Model):
@@ -19,6 +34,7 @@ class Series(models.Model):
         upload_to='series_cards/', null=True, blank=True
     )
     main = models.BooleanField(default=True, null=True)
+    is_movie = models.BooleanField(default=False, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

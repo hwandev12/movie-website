@@ -1,7 +1,8 @@
 {% load static %}
 <div class="home__carousel container">
     <i class="fa-solid fa-chevron-left"></i>
-    {% if movie %}
+    {% if movie_first %}
+    {% for movie, is_movie in movie_first %}
     <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
         <div class="carousel__item-left">
             <h1 class="active">{{ movie.title | safe }}</h1>
@@ -26,34 +27,46 @@
                     Telegram</a>
             </div>
         </div>
-        <div class="carousel__item-right activeC">
+        {% if is_movie %}
+        <div class="carousel__item-right activeC" data-show-id="{{ movie.id }}" data-ismovie-id="movie">
             <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
                 data-twe-ripple-color="light">
                 <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
                 watch trailer
             </a>
         </div>
+        {% else %}
+        <div class="carousel__item-right activeC" data-show-id="{{ movie.id }}" data-ismovie-id="serie">
+            <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
+                data-twe-ripple-color="light">
+                <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
+                watch trailer
+            </a>
+        </div>
+        {% endif %}
     </div>
+    {% endfor %}
     {% endif %}
-    {% if movies %}
-    {% for movie in movies %}
-    <div class="carousel__item" style="background-image: url({{ movie.poster.url }});">
+    
+    {% for con in latest_shows %}
+    {% if con.type == 'movie' %}
+    <div class="carousel__item" style="background-image: url({{ con.content.poster.url }});">
         <div class="carousel__item-left">
-            <h1 class="">{{ movie.title | safe }}</h1>
+            <h1 class="">{{ con.content.title | safe }}</h1>
             <p class="carousel__item-left-p">
                 <span>
                     <i class="fa-regular fa-star"></i>
-                    {{ movie.rating }}
+                    {{ con.content.rating }}
                 </span>
-                IMDB {{ movie.release_date|date:"Y" }}
-                {{ movie.get_formatted_duration }}
-                {% for gen in movie.genre.all %}
+                IMDB {{ con.content.release_date|date:"Y" }}
+                {{ con.content.get_formatted_duration }}
+                {% for gen in con.content.genre.all %}
                 {{ gen.name }}{% if not forloop.last %},{% endif %}
                 {% endfor %}
             </p>
-            <p class="last_p">{{ movie.description }}</p>
+            <p class="last_p">{{ con.content.description }}</p>
             <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                <a href="{% url 'movie:single' movie.id %}">
+                <a href="{% url 'movie:single' con.content.id %}">
                     <i class="fa-solid fa-play mr-1"></i>
                     Ko'rish</a>
                 <a href="#">
@@ -61,7 +74,7 @@
                     Telegram</a>
             </div>
         </div>
-        <div class="carousel__item-right">
+        <div class="carousel__item-right" data-show-id="{{ con.content.id }}" data-ismovie-id="movie">
             <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
                 data-twe-ripple-color="light">
                 <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
@@ -69,25 +82,21 @@
             </a>
         </div>
     </div>
-    {% endfor %}
-    {% endif %}
-
-    {% if series %}
-    {% for serie in series %}
-    <div class="carousel__item" style="background-image: url({{ serie.poster.url }});">
+    {% else %}
+    <div class="carousel__item" style="background-image: url({{ con.content.poster.url }});">
         <div class="carousel__item-left">
-            <h1 class="">{{ serie.title | safe }}</h1>
+            <h1 class="">{{ con.content.title | safe }}</h1>
             <p class="carousel__item-left-p">
                 <span>
                     <i class="fa-regular fa-star"></i>
-                    {{ serie.rating }}
+                    {{ con.content.rating }}
                 </span>
-                IMDB {{ serie.release_date|date:"Y" }}
-                {% for gen in serie.genre.all %}
+                IMDB {{ con.content.release_date|date:"Y" }}
+                {% for gen in con.content.genre.all %}
                 {{ gen.name }}{% if not forloop.last %},{% endif %}
                 {% endfor %}
             </p>
-            <p class="last_p">{{ serie.description }}</p>
+            <p class="last_p">{{ con.content.description }}</p>
             <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
                 <a href="#">
                     <i class="fa-solid fa-play mr-1"></i>
@@ -97,7 +106,7 @@
                     Telegram</a>
             </div>
         </div>
-        <div class="carousel__item-right">
+        <div class="carousel__item-right" data-show-id="{{ movie.id }}" data-ismovie-id="serie">
             <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
                 data-twe-ripple-color="light">
                 <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
@@ -105,8 +114,9 @@
             </a>
         </div>
     </div>
-    {% endfor %}
     {% endif %}
+    {% endfor %}
+    
 
     <i class="fa-solid fa-chevron-right"></i>
     <div class="circle_container">

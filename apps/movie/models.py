@@ -45,8 +45,8 @@ class Trailer(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        verbose_name = "Trailer"
-        verbose_name_plural = "Trailers"
+        verbose_name = "Kino Trailer"
+        verbose_name_plural = "Kino Trailers"
     
     def __str__(self):
         return "%s" % self.title
@@ -67,6 +67,7 @@ class Movie(models.Model):
     card_poster = models.ImageField(
         upload_to="card_poster/", null=True, blank=True)
     main = models.BooleanField(default=True, null=True)
+    is_movie = models.BooleanField(default=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -4,5 +4,6 @@ from . import views
 app_name='movie'
 
 urlpatterns = [
-    path("single/<int:movieID>/", views.movie_single, name='single')
+    path("single/<int:movieID>/", views.movie_single, name='single'),
+    path("ajax-single-movie-get/<int:ID>/", views.get_single_video, name='single_video_ajax')
 ]
