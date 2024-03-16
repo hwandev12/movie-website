@@ -339,7 +339,6 @@ body {
   z-index: 100000;
   background-color: rgba(1, 1, 1, 0.9);
 }
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 50px;
   aspect-ratio: 1;

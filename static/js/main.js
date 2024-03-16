@@ -1,7 +1,6 @@
 let html = document.querySelector("html");
 var navbar = document.querySelector(".home__navigation-wrapper");
 
-script.js
 window.addEventListener('load', function () {
   // Hide the loader
   document.querySelector('.loader_wrapper').style.display = 'none';
