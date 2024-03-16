@@ -123,24 +123,23 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 MEDIA_LOCATION = 'files/media'
-# STATIC_LOCATION = 'files/static'
+STATIC_LOCATION = 'files/static'
 AWS_LOCATION = 'files'
 
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, STATIC_LOCATION)
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, STATIC_LOCATION)
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
