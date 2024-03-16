@@ -7,7 +7,8 @@ from django.core.validators import URLValidator
 class SeriesTrailer(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField(URLValidator(schemes="https"))
-    movie = models.OneToOneField("Series", on_delete=models.SET_NULL, null=True)
+    movie = models.OneToOneField(
+        "Series", on_delete=models.SET_NULL, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -56,7 +57,15 @@ class Episode(models.Model):
         Series, on_delete=models.CASCADE, related_name='episodes')
     season_number = models.IntegerField()
     episode_number = models.IntegerField()
+    card = models.ImageField(
+        upload_to='episodes_cards/', null=True, blank=True
+    )
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def get_formatted_duration(self):
+        hours = self.duration_time.hour
+        minutes = self.duration_time.minute
+        return f"{hours}h {minutes}min"
 
     def __str__(self):
         return f"{self.series.title} - Season {self.season_number}, Episode {self.episode_number}: {self.title}"

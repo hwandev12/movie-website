@@ -141,6 +141,22 @@
     padding: 0 !important;
     margin-top: 15px;
   }
+  .latest_series-cards {
+    flex-direction: column;
+  }
+  .latest_series-cards-top-inner {
+    width: 100% !important;
+  }
+  .latest_series-cards--box-inner {
+    opacity: 1 !important;
+    z-index: 100 !important;
+  }
+  .latest_series-cards--box-inner i {
+    font-size: 50px;
+  }
+  .serie_click-play {
+    display: block !important;
+  }
 }
 
 @media (min-width: 700px) and (max-width: 900px) {
@@ -294,6 +310,19 @@
     position: absolute;
     display: none;
   }
+  .latest_series-cards-top-inner {
+    width: 48% !important;
+  }
+  .latest_series-cards--box-inner {
+    opacity: 1 !important;
+    z-index: 100 !important;
+  }
+  .latest_series-cards--box-inner i {
+    font-size: 50px;
+  }
+  .serie_click-play {
+    display: block !important;
+  }
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
@@ -443,5 +472,18 @@
   .single__movie-detail-center-download {
     padding: 0 !important;
     margin-top: 15px;
+  }
+  .latest_series-cards-top-inner {
+    width: 48% !important;
+  }
+  .latest_series-cards--box-inner {
+    opacity: 1 !important;
+    z-index: 100 !important;
+  }
+  .latest_series-cards--box-inner i {
+    font-size: 50px;
+  }
+  .serie_click-play {
+    display: block !important;
   }
 }
