@@ -330,6 +330,8 @@ body {
 .loader_wrapper {
   width: 100%;
   height: 100vh;
+  left: 0;
+  top: 0;
   position: absolute;
   display: flex;
   justify-content: center;
