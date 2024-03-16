@@ -13,13 +13,16 @@
   }
   .carousel__item {
     flex-direction: column;
-    padding: 190px 30px 30px 30px !important;
+    padding: 100px 30px 30px 30px !important;
   }
   .carousel__item-left {
     width: 100% !important;
   }
+  .click_play {
+    display: none !important;
+  }
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
   .carousel__item-left .carousel__item-left-p {
     font-size: 15px !important;
@@ -147,6 +150,9 @@
   .home__navigation {
     padding: 20px 0px;
   }
+  .click_play {
+    display: none !important;
+  }
   .home__navigation-end .fa-bars {
     display: block !important;
   }
@@ -155,13 +161,13 @@
   }
   .carousel__item {
     flex-direction: row;
-    padding: 190px 30px 30px 30px !important;
+    padding: 100px 30px 30px 30px !important;
   }
   .carousel__item-left {
     width: 100% !important;
   }
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
   .carousel__item-left .carousel__item-left-p {
     font-size: 15px !important;
@@ -303,6 +309,9 @@
   .home__navigation-center {
     display: none !important;
   }
+  .click_play {
+    display: none !important;
+  }
   .carousel__item {
     flex-direction: row;
     padding: 0px 30px 30px 30px !important;
@@ -311,7 +320,7 @@
     width: 100% !important;
   }
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
   .carousel__item-left .carousel__item-left-p {
     font-size: 15px !important;

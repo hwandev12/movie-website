@@ -1536,15 +1536,19 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .carousel__item {
     flex-direction: column;
-    padding: 190px 30px 30px 30px !important;
+    padding: 100px 30px 30px 30px !important;
   }
 
   .carousel__item-left {
     width: 100% !important;
   }
 
+  .click_play {
+    display: none !important;
+  }
+
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
 
   .carousel__item-left .carousel__item-left-p {
@@ -1701,6 +1705,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     padding: 20px 0px;
   }
 
+  .click_play {
+    display: none !important;
+  }
+
   .home__navigation-end .fa-bars {
     display: block !important;
   }
@@ -1711,7 +1719,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .carousel__item {
     flex-direction: row;
-    padding: 190px 30px 30px 30px !important;
+    padding: 100px 30px 30px 30px !important;
   }
 
   .carousel__item-left {
@@ -1719,7 +1727,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
 
   .carousel__item-left .carousel__item-left-p {
@@ -1892,6 +1900,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     display: none !important;
   }
 
+  .click_play {
+    display: none !important;
+  }
+
   .carousel__item {
     flex-direction: row;
     padding: 0px 30px 30px 30px !important;
@@ -1902,7 +1914,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 
   .carousel__item-left h1 {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
 
   .carousel__item-left .carousel__item-left-p {
@@ -2112,15 +2124,15 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 .single__movie-detail-center-content h4 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 
-.single__movie-detail-center-content h4 span {
+.single__movie-detail-center-content h4 .trailer_span {
   display: inline-block;
   background-color: #74c0fc;
   color: #fff;
@@ -2136,11 +2148,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   padding: 1px 0px;
 }
 
-.single__movie-detail-center-content h4 span:hover {
+.single__movie-detail-center-content h4 .trailer_span:hover {
   background-color: brown;
 }
 
-.single__movie-detail-center-content h4 span i {
+.single__movie-detail-center-content h4 .trailer_span i {
   font-size: 13px;
 }
 
@@ -2560,7 +2572,7 @@ body {
   display: flex;
   justify-content: left;
   align-items: flex-start;
-  margin: 0px 0px 100px 0px;
+  margin: 0px 0px 0px 0px;
   gap: 23px;
 }
 

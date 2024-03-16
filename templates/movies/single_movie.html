@@ -22,9 +22,7 @@
             <div class="single__movie-detail-center-card" style="background-image: url({{ movie.card_poster.url }});">
             </div>
             <div class="single__movie-detail-center-content border-slate-400 dark:border-slate-800">
-                <h4 class="text-slate-950 dark:text-zinc-50">{{ movie.title }}
-                    <span data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
-                        data-twe-ripple-color="light">
+                <h4 class="text-slate-950 dark:text-zinc-50"><span>{{ movie.title | safe }}</span><span data-twe-toggle="modal" data-twe-target="#trailerModalMovie" data-twe-ripple-init data-twe-ripple-color="light" class="trailer_span">
                         <i class="fa-solid fa-play"></i> Trailer
                     </span>
                 </h4>
@@ -32,9 +30,9 @@
                 <div class="single__movie-detail-center-content-row">
                     <div class="single__movie-detail-center-content-row-col">
                         <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Janr: </strong>
                             {% for gen in movie.genre.all %}
                             <a href="#" class="text-cyan-500">
-                                <strong class="text-slate-950 dark:text-zinc-50">Janr: </strong>
                                 {{ gen.name }}
                                 {% if not forloop.last %},{% endif %}
                             </a>
@@ -51,9 +49,9 @@
                                 {{ movie.actors }}</a>
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
+                            <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
                             {% for con in movie.countries %}
                             <a href="#" class="text-cyan-500">
-                                <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
                                 {{ con.code }}
                                 {% if not forloop.last %},{% endif %}
                             </a>
@@ -99,7 +97,7 @@
                 </button>
             </div>
         </div>
-        {% include 'movies/trailer.html' %}
+        {% include 'movies/movie_trailer.html' %}
     </div>
     <!-- VIDEO DETAILS -->
 </div>

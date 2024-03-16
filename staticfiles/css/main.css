@@ -2,9 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./media.css";
+@import "./single_movie.css";
 
 body {
-  background-color: #06090f;
   font-family: "Ubuntu", sans-serif;
 }
 .container {
@@ -92,6 +92,14 @@ body {
   line-height: 1.7;
   font-size: 19px;
   transition-delay: 0.3s;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:60px;
+;
 }
 .carousel__item-left > div {
   display: flex;
@@ -195,16 +203,13 @@ body {
   margin: 50px 0px 20px 0px;
 }
 .latest_movies-top h3 {
-  color: #fff;
   text-transform: capitalize;
   font-size: 26px;
 }
 .latest_movies a {
   padding: 6px 14px;
   background-color: #28b5f5;
-  color: #fff;
   text-transform: uppercase;
-  color: #fff;
   border-radius: 15px;
   letter-spacing: 1.3px;
   transition: 0.5s all ease;
@@ -273,13 +278,16 @@ body {
   opacity: 1;
 }
 .latest_movies-cards > div h4 {
-  color: #fff;
-  font-size: 21px;
+  font-size: 18px;
   margin: 6px 0px 3px 0px;
   letter-spacing: 1.2px;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  max-width: 100%;
+  /* height: 30px; */
 }
 .latest_movies-cards > div p {
-  color: #fff;
   font-weight: 600;
 }
 .latest_movies-cards span {
@@ -303,16 +311,19 @@ body {
   font-size: 14px;
 }
 .navbar-scrolled {
-  background-color: rgb(10, 13, 20);
-  transition: background-color 0.3s ease;
+  padding: 0px 18px;
   position: fixed;
-  transform: translateY(-5px);
-  top: 0;
-  z-index: 10000;
-  box-shadow: 0px 2px 2px 2px rgb(10, 13, 20);
+  top: -5px;
+  left: 0;
+  z-index: 1000000;
+  color: #fff !important;
 }
+.navbar-scrolled-light {
+  background-color: rgb(255, 255, 255) !important;
+}
+
 .home__navigation-wrapper {
-  transition: 0.5s all ease;
+  background-color: rgb(10, 13, 20);
   margin-left: auto;
   margin-right: auto;
   width: 100%;

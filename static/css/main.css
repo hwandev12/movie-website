@@ -227,7 +227,7 @@ body {
   display: flex;
   justify-content: left;
   align-items: flex-start;
-  margin: 0px 0px 100px 0px;
+  margin: 0px 0px 0px 0px;
   gap: 23px;
 }
 .latest_movies-cards-inner {

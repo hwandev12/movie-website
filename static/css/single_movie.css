@@ -49,14 +49,14 @@
   padding-right: 20px;
 }
 .single__movie-detail-center-content h4 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
-.single__movie-detail-center-content h4 span {
+.single__movie-detail-center-content h4 .trailer_span {
   display: inline-block;
   background-color: #74c0fc;
   color: #fff;
@@ -71,10 +71,10 @@
   cursor: pointer;
   padding: 1px 0px;
 }
-.single__movie-detail-center-content h4 span:hover {
+.single__movie-detail-center-content h4 .trailer_span:hover {
   background-color: brown;
 }
-.single__movie-detail-center-content h4 span i {
+.single__movie-detail-center-content h4 .trailer_span i {
   font-size: 13px;
 }
 .single__movie-detail-center-content p {
