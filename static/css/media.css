@@ -53,11 +53,7 @@
     font-size: 18px !important;
   }
   .carousel__item-left .last_p {
-    max-width: 250px !important;
-    overflow: hidden;
-    display: inline-block !important;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    max-width: 300px !important;
     height: auto !important;
     font-size: 15px !important;
   }

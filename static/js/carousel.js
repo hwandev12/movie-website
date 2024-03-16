@@ -100,7 +100,7 @@ const changeImage = () => {
   updateCircles();
 };
 
-// let animationCarousel = setInterval(() => {
-//   counterCarousel += 1;
-//   changeImage();
-// }, 5000);
+let animationCarousel = setInterval(() => {
+  counterCarousel += 1;
+  changeImage();
+}, 5000);
