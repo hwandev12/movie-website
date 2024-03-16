@@ -1,6 +1,15 @@
 let html = document.querySelector("html");
 var navbar = document.querySelector(".home__navigation-wrapper");
 
+// script.js
+window.addEventListener('load', function () {
+  // Hide the loader
+  document.querySelector('.loader_wrapper').style.display = 'none';
+  // Show the website content
+  document.getElementById('main__website').style.display = 'block';
+});
+
+
 window.addEventListener("scroll", function () {
   if (window.scrollY > 100) {
     navbar.classList.add("navbar-scrolled");

@@ -13,7 +13,7 @@
   }
   .carousel__item {
     flex-direction: column;
-    padding: 100px 30px 30px 30px !important;
+    padding: 100px 30px 30px 10px !important;
   }
   .carousel__item-left {
     width: 100% !important;
@@ -177,7 +177,7 @@
   }
   .carousel__item {
     flex-direction: row;
-    padding: 100px 30px 30px 30px !important;
+    padding: 100px 30px 30px 10px !important;
   }
   .carousel__item-left {
     width: 100% !important;
@@ -343,7 +343,7 @@
   }
   .carousel__item {
     flex-direction: row;
-    padding: 0px 30px 30px 30px !important;
+    padding: 0px 30px 30px 10px !important;
   }
   .carousel__item-left {
     width: 100% !important;

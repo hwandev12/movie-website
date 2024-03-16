@@ -31,7 +31,8 @@
 </head>
 
 <body class="dark:bg-gray-950">
-    <div>
+    {% include 'components/loader.html' %}
+    <div id="main__website">
         {% include 'components/nav.html' %}
         {% block content %}
         {% endblock %}
