@@ -11,14 +11,15 @@ let counterCarousel = 0;
 
 var circleContainer = document.querySelectorAll(".circle");
 var circleContainerWrapper = document.querySelector(".circle_container");
-// Create circle elements dynamically
-function createCircles() {
-  circleContainerWrapper.innerHTML = ""; // Clear existing circles
-  for (var i = 0; i < carouselItem.length; i++) {
-    var circle = document.createElement("span");
-    circle.classList.add("circle");
-    circle.dataset.index = i;
-    circleContainerWrapper.appendChild(circle);
+if (circleContainer) {
+  function createCircles() {
+    circleContainerWrapper.innerHTML = ""; // Clear existing circles
+    for (var i = 0; i < carouselItem.length; i++) {
+      var circle = document.createElement("span");
+      circle.classList.add("circle");
+      circle.dataset.index = i;
+      circleContainerWrapper.appendChild(circle);
+    }
   }
 }
 
@@ -39,30 +40,32 @@ function updateCircles() {
 // Initial update of circles
 updateCircles();
 
-circleContainerWrapper.addEventListener("click", (event) => {
-  if (event.target.classList.contains("circle")) {
-    counterCarousel = parseInt(event.target.dataset.index);
-    changeImage();
-  }
-});
+if (circleContainerWrapper) {
+  circleContainerWrapper.addEventListener("click", (event) => {
+    if (event.target.classList.contains("circle")) {
+      counterCarousel = parseInt(event.target.dataset.index);
+      changeImage();
+    }
+  });
+}
 
 leftSliderButton.addEventListener("click", () => {
   counterCarousel -= 1;
-  clearInterval(animationCarousel)
-  animationCarousel = setInterval(nextImage, 5000)
+  clearInterval(animationCarousel);
+  animationCarousel = setInterval(nextImage, 5000);
   changeImage();
 });
 
 rightSliderButton.addEventListener("click", () => {
   counterCarousel += 1;
-  clearInterval(animationCarousel)
-  animationCarousel = setInterval(nextImage, 5000)
+  clearInterval(animationCarousel);
+  animationCarousel = setInterval(nextImage, 5000);
   changeImage();
 });
 
 function nextImage() {
-  counterCarousel += 1
-  changeImage()
+  counterCarousel += 1;
+  changeImage();
 }
 
 const changeImage = () => {
@@ -98,6 +101,6 @@ const changeImage = () => {
 };
 
 let animationCarousel = setInterval(() => {
-  counterCarousel += 1
+  counterCarousel += 1;
   changeImage();
 }, 5000);
