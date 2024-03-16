@@ -227,7 +227,7 @@ body {
   display: flex;
   justify-content: left;
   align-items: flex-start;
-  margin: 0px 0px 100px 0px;
+  margin: 0px 0px 0px 0px;
   gap: 23px;
 }
 .latest_movies-cards-inner {
@@ -315,7 +315,7 @@ body {
   position: fixed;
   top: -5px;
   left: 0;
-  z-index: 1000000;
+  z-index: 10000000000000000;
   color: #fff !important;
 }
 .navbar-scrolled-light {

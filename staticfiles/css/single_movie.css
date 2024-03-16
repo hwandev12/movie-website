@@ -49,11 +49,11 @@
   padding-right: 20px;
 }
 .single__movie-detail-center-content h4 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 .single__movie-detail-center-content h4 .trailer_span {
@@ -70,9 +70,6 @@
   transition: 0.2s all ease;
   cursor: pointer;
   padding: 1px 0px;
-}
-.single__movie-detail-center-content h4 span {
-  margin-right: 3px;
 }
 .single__movie-detail-center-content h4 .trailer_span:hover {
   background-color: brown;

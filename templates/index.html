@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 {% load static %}
-
+{% load compress %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +21,18 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/single_serie.css' %}">
+    {% endcompress %}
+    {% compress js %}
+    <script type="text/javascript" src="{% static 'js/tw-elements.umd.min.js' %}"></script>
+    {% endcompress %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="{% static 'js/tw-elements.umd.min.js' %}"></script>
 </head>
 
 <body class="dark:bg-gray-950">
@@ -38,6 +43,7 @@
         {% include 'components/footer.html' %}
     </div>
 
+    {% compress js %}
     <script src="{% static 'js/navigation.js' %}"></script>
     <script src="{% static 'js/carousel.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
@@ -53,8 +59,8 @@
             iframe.src = iframeSrc;
             console.log(iframe);
         }
-
-    </script>
+        </script>
+    {% endcompress %}
 </body>
 
 </html>
