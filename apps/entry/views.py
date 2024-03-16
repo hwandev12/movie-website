@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import JsonResponse
-
+from django.conf import settings
 
 
 
@@ -69,6 +69,7 @@ class HomePageView(generic.ListView):
         context['latest_movies'] = self.get_latest_movies()
         context['latest_series'] = self.get_latest_series()
         context['latest_shows'] = self.get_shows_for_main()
+        context['DEBUG'] = settings.DEBUG
         return context
     
     
