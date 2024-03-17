@@ -1,5 +1,6 @@
 let html = document.querySelector("html");
 var navbar = document.querySelector(".home__navigation-wrapper");
+let episodeSwitcher = document.querySelectorAll(".serie__episodes-top a")
 
 window.addEventListener('load', function () {
   // Hide the loader
@@ -69,3 +70,15 @@ if (storedTheme === 'light') {
 } else {
   switchToDarkMode(); // Default to dark mode if no preference is stored
 }
+
+const handleClick = (event) => {
+  episodeSwitcher.forEach(item => {
+    item.classList.remove("bg-primary")
+  })
+  event.target.classList.add("bg-primary")
+}
+
+// to add class to buttons
+episodeSwitcher.forEach((item, index) => {
+  item.addEventListener("click", handleClick)
+})

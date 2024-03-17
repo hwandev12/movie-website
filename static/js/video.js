@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var video = document.getElementById("videoSingle");
   var customPlay = document.querySelector(".custom-play");
 
-  video.addEventListener("play", function () {
+  video.addEventListener("playing", function () {
     customPlay.style.display = "none";
   });
   video.addEventListener("pause", function () {

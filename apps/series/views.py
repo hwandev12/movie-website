@@ -33,12 +33,19 @@ class SerieDetailView(generic.DetailView):
             request_episode = int(request_episode)
             episodes = serie_models.Episode.objects.all().filter(
                 series=serie, season_number=request_episode)
-        context['season_number'] = tuple(set(season_number))
+        context['season_number'] = tuple(set(season_number))[1:]
         context['request_episode'] = request_episode
         context['categories'] = entry_models.Category.objects.all()
         context['episodes'] = episodes
         context['first_episode'] = first_episode
-        print(first_episode.video)
+        is_main_tag_home = False
+        serie_id = str(serie.id)
+        full_path = self.request.get_full_path()
+        if full_path == f'/series/single-movie/{serie_id}/':
+            is_main_tag_home = True
+        context['is_main_tag_home'] = is_main_tag_home
+        context['full_path'] = full_path
+        context['serie_id'] = serie_id
         return context
 
 
