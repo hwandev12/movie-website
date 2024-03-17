@@ -21,6 +21,7 @@ class SeriesTrailerInline(admin.TabularInline):
 
 class SeriesModelAdmin(admin.ModelAdmin):
     inlines = (SeriesTrailerInline, )
+    prepopulated_fields = {"slug": ("title",)}
 
 
 admin.site.register(models.Series, SeriesModelAdmin)

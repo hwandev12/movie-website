@@ -110,7 +110,7 @@
     <!-- EPISODES -->
     <div class="serie__episodes container">
         <div class="serie__episodes-top flex justify-left align-center">
-            <a href="{% url 'serie:serie_detail' serie.id %}" data-serie-id="{{ serie.id }}"
+            <a href="{% url 'serie:serie_detail' serie.slug %}" data-serie-id="{{ serie.id }}"
                 class="inline-block rounded-lg border-2 border-primary {% if is_main_tag_home %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
                 style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
                 Season 1

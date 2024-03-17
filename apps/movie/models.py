@@ -1,6 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from django.core.validators import URLValidator
+from django.utils.text import slugify
 
 
 class QualityChoices(models.Model):
@@ -66,9 +67,16 @@ class Movie(models.Model):
         upload_to='movie_posters/', null=True, blank=True)
     card_poster = models.ImageField(
         upload_to="card_poster/", null=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     main = models.BooleanField(default=True, null=True)
     is_movie = models.BooleanField(default=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
+    
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "%s -- %s" % (self.title, self.release_date)

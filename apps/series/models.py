@@ -2,6 +2,7 @@ from django.db import models
 from apps.movie.models import GenreChoices, QualityChoices
 from django_countries.fields import CountryField
 from django.core.validators import URLValidator
+from django.utils.text import slugify
 
 
 class SeriesTrailer(models.Model):
@@ -34,9 +35,15 @@ class Series(models.Model):
     card = models.ImageField(
         upload_to='series_cards/', null=True, blank=True
     )
+    slug = models.SlugField(unique=True, blank=True)
     main = models.BooleanField(default=True, null=True)
     is_movie = models.BooleanField(default=False, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

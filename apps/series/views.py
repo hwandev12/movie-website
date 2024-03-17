@@ -8,7 +8,7 @@ class SerieDetailView(generic.DetailView):
     model = serie_models.Series
     template_name = 'series/serie_detail.html'
     context_object_name = 'serie'
-    pk_url_kwarg = 'serieID'
+    slug_url_kwarg= 'slug'
 
     def get_context_data(self, **kwargs):
         """
@@ -16,7 +16,7 @@ class SerieDetailView(generic.DetailView):
         fasllarni tanlay oladigon bo'lishi kerak
         """
         context = super().get_context_data(**kwargs)
-        serie = self.model.objects.get(id=self.kwargs.get("serieID", ""))
+        serie = self.model.objects.get(slug=self.kwargs.get("slug", ""))
         season_number = []
         episodes = serie_models.Episode.objects.all().filter(series=serie)
         first_episode = serie_models.Episode.objects.filter(
@@ -41,13 +41,17 @@ class SerieDetailView(generic.DetailView):
         is_main_tag_home = False
         serie_id = str(serie.id)
         full_path = self.request.get_full_path()
-        if full_path == f'/series/single-movie/{serie_id}/':
+        if full_path == f'/series/single-movie/{self.kwargs.get("slug", "")}/':
             is_main_tag_home = True
         context['is_main_tag_home'] = is_main_tag_home
         context['full_path'] = full_path
         context['serie_id'] = serie_id
         return context
 
+class EpisodeWatch(generic.DetailView):
+    model = serie_models.Episode
+    template_name = 'series/watch.html'
+    context_object_name = 'episode'
 
 # make name like function
 serie_detail_view = SerieDetailView.as_view()

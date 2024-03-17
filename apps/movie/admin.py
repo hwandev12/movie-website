@@ -22,10 +22,11 @@ class TrailerInline(admin.TabularInline):
 
 class CustomMovieModelAdmin(admin.ModelAdmin):
     inlines = (TrailerInline, )
+    prepopulated_fields = {"slug": ('title',)}
     # Define fields you want to customize
     fieldsets = (
         ('', {
-            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'main', 'is_movie', 'poster', 'card_poster')
+            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'main', 'is_movie', 'poster', 'card_poster', 'slug')
         }),
     )
 

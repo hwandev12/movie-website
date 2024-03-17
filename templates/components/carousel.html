@@ -20,11 +20,11 @@
             <p class="last_p active">{{ movie.description }}</p>
             <div class="a_wrapper active" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
                 {% if is_movie %}
-                <a href="{% url 'movie:single' movie.id %}">
+                <a href="{% url 'movie:single' movie.slug %}">
                     <i class="fa-solid fa-play mr-1"></i>
                     Ko'rish</a>
                 {% else %}
-                <a href="{% url 'serie:serie_detail' movie.id %}">
+                <a href="{% url 'serie:serie_detail' movie.slug %}">
                     <i class="fa-solid fa-play mr-1"></i>
                     Ko'rish</a>
                 {% endif %}
@@ -72,7 +72,7 @@
             </p>
             <p class="last_p">{{ con.content.description }}</p>
             <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                <a href="{% url 'movie:single' con.content.id %}">
+                <a href="{% url 'movie:single' con.content.slug %}">
                     <i class="fa-solid fa-play mr-1"></i>
                     Ko'rish</a>
                 <a href="#">
@@ -104,7 +104,7 @@
             </p>
             <p class="last_p">{{ con.content.description }}</p>
             <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                <a href="{% url 'serie:serie_detail' con.content.id %}">
+                <a href="{% url 'serie:serie_detail' con.content.slug %}">
                     <i class="fa-solid fa-play mr-1"></i>
                     Ko'rish</a>
                 <a href="#">
