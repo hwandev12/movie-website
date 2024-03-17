@@ -19,11 +19,13 @@ class SerieDetailView(generic.DetailView):
         serie = self.model.objects.get(id=self.kwargs.get("serieID", ""))
         season_number = []
         episodes = serie_models.Episode.objects.all().filter(series=serie)
+        first_episode = serie_models.Episode.objects.filter(
+            series=serie).first()
 
         for e in episodes:
             v_list = e.season_number
             season_number.append(v_list)
-            
+
         request_episode = self.request.GET.get("season-number-got")
         if not request_episode:
             episodes = serie_models.Episode.objects.all().filter(series=serie, season_number=1)
@@ -31,11 +33,12 @@ class SerieDetailView(generic.DetailView):
             request_episode = int(request_episode)
             episodes = serie_models.Episode.objects.all().filter(
                 series=serie, season_number=request_episode)
-        print(self.request.get_full_path())
         context['season_number'] = tuple(set(season_number))
         context['request_episode'] = request_episode
         context['categories'] = entry_models.Category.objects.all()
         context['episodes'] = episodes
+        context['first_episode'] = first_episode
+        print(first_episode.video)
         return context
 
 

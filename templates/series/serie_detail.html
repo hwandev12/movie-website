@@ -9,7 +9,9 @@
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
         <video controls id="videoSingle">
-            <source src="{% static 'images/video.mp4' %}" type="video/mp4">
+            {% if first_episode.video %}
+            <source src="{{ first_episode.video.url }}" type="video/mp4">
+            {% endif %}
         </video>
         <i class="fa-solid fa-circle-play custom-play"></i>
     </div>
@@ -110,7 +112,8 @@
         <div class="serie__episodes-top flex justify-left align-center">
             {% for number in season_number %}
             <a href="?season-number-got={{number}}"
-                class="inline-block rounded-lg border-2 border-primary {% if request_episode == number %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong" style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
+                class="inline-block rounded-lg border-2 border-primary {% if request_episode == number %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
+                style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
                 Season {{ number }}
             </a>
             {% endfor %}
