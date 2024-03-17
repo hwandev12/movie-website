@@ -102,18 +102,18 @@
     </div>
     <!-- VIDEO DETAILS -->
 
-
+    <h3 class="text-gray-50 text-3xl tracking-wider hidden">Qismlar
+        <i class="fa-solid fa-arrow-right text-2xl"></i>
+    </h3>
     <!-- EPISODES -->
     <div class="serie__episodes container">
         <div class="serie__episodes-top flex justify-left align-center">
-            <a href="?season-number-got=1"
-                class="inline-block rounded-lg bg-primary px-6 mr-2 pb-2 pt-2.5 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-                Season 1
+            {% for number in season_number %}
+            <a href="?season-number-got={{number}}"
+                class="inline-block rounded-lg border-2 border-primary {% if request_episode == number %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong" style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
+                Season {{ number }}
             </a>
-            <a href="?season-number-got=2"
-                class="inline-block rounded-lg border-2 border-primary px-6 mr-2 pb-2 pt-2 text-xs font-medium capitalize leading-normal shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong text-black dark:text-white">
-                Season 2
-            </a>
+            {% endfor %}
         </div>
         <div class="latest_movies latest_serie-single container">
             <div class="latest_movies-cards latest_series-cards">

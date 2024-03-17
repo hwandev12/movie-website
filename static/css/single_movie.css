@@ -56,6 +56,10 @@
   align-items: flex-start;
   margin-bottom: 20px;
 }
+.single__movie-detail-center-content h4 span:first-child {
+  display: inline-block;
+  margin-right: 5px;
+}
 .single__movie-detail-center-content h4 .trailer_span {
   display: inline-block;
   background-color: #74c0fc;

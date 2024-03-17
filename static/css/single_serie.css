@@ -21,3 +21,9 @@
 .latest_series-cards--box-inner i {
     font-size: 50px;
 }
+.serie__episodes-top h3 i {
+    transition: 0.4s all ease;
+}
+.serie__episodes-top h3:hover i {
+    transform: translateX(5px);
+}
