@@ -162,6 +162,14 @@ body {
   transition: 0.3s transform ease;
   z-index: 9000;
 }
+.swiper-button-prev::before {
+  position: absolute;
+  right: 6px;
+}
+.swiper-button-prev::after {
+  left: 3px;
+  position: absolute;
+}
 .home__carousel .fa-chevron-right:hover {
   transform: translateX(10px);
 }
