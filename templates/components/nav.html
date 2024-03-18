@@ -4,6 +4,7 @@
             <i class="fa-regular fa-circle-play"></i>
             Perona<span>TV</span>
         </a>
+        <!-- PC MENU -->
         <ul class="home__navigation-center flex just-content-center align-items-center m-0 p-0">
             <li>
                 <a href="{% url 'entry:home' %}">Bosh Sahifa</a>
@@ -28,11 +29,40 @@
             </li>
             {% endfor %}
         </ul>
+        <!-- PC MENU -->
         <div class="home__navigation-end flex justify-center items-center">
             <i class="fa-solid fa-search text-slate-950 dark:text-stone-50 mr-6 text-xl cursor-pointer"></i>
             <i class="fa-solid fa-sun text-stone-50 text-xl cursor-pointer hidden dark:inline-block"></i>
             <i class="fa-solid fa-moon text-slate-950 text-xl cursor-pointer inline-block dark:hidden"></i>
-            <i class="fa-solid fa-bars text-slate-950 dark:text-stone-50 ml-6 text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-bars text-slate-950 dark:text-stone-50 ml-6 text-xl cursor-pointer"
+                onclick="toggleMenu()"></i>
         </div>
+        <!-- PHONE MENU -->
+        <ul
+            class="home__navigation-phone flex flex-col just-content-center align-items-center bg-white dark:bg-gray-950 dark:border-slate-800 ">
+            <li>
+                <a href="{% url 'entry:home' %}" class="text-slate-950 dark:text-zinc-50">Bosh Sahifa</a>
+            </li>
+            {% for category in categories %}
+            <li class="nav__janr home__phone-janr">
+                <a class="text-slate-950 dark:text-zinc-50 cursor-pointer">{{ category.name }}
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                {% if not category.sub_category.all %}
+                {% else %}
+                <div class="" style="display: none;" data-dropdown="1">
+                    <ul>
+                        {% for subcategory in category.sub_category.all %}
+                        <li>
+                            <a href="#" class="text-slate-950 dark:text-zinc-50">{{ subcategory.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <!-- PHONE MENU -->
     </div>
 </div>

@@ -1579,6 +1579,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .home__navigation-center {
     display: none !important;
+    position: absolute;
+    top: 78px;
+    left: 0;
+    width: 100%;
   }
 
   .carousel__item {
@@ -1757,6 +1761,34 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .serie_click-play {
     display: block !important;
+  }
+
+  .home__phone-janr a {
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  .home__navigation-phone {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px 15px;
+    border-radius: 15px;
+  }
+
+  .home__navigation-phone li {
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .home__navigation-phone li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .home__navigation-phone li a {
+    padding: 0 !important;
+    font-size: 15px !important;
   }
 }
 
@@ -2770,7 +2802,7 @@ body {
 }
 
 .navbar-scrolled {
-  padding: 0px 18px;
+  /* padding: 0px 18px; */
   position: fixed;
   top: -5px;
   left: 0;

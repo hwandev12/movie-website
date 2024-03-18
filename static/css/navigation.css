@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 .home__nav-logo {
     text-decoration: none;
@@ -16,11 +17,11 @@
 }.home__nav-logo span {
     color: #28B5F5;
     font-weight: 800;
-}.home__navigation-center > li {
+}.home__navigation-center, .home__navigation-phone > li {
     margin-right: 40px;
     list-style: none;
     position: relative;
-}.home__navigation-center li a {
+}.home__navigation-center, .home__navigation-phone li a {
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
@@ -65,4 +66,18 @@
     display: block !important;
 }.nav__janr > a {
     padding: 26px 0px !important;
+}.home__navigation-phone {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* padding: 20px; */
+    height: 230px;
+    transition: 0.3s height ease;
+    z-index: 500;
+}.home__navigation-phone.active {
+    transform: translateY(0);
+    height: 230px;
 }

@@ -310,7 +310,7 @@ body {
   font-size: 14px;
 }
 .navbar-scrolled {
-  padding: 0px 18px;
+  /* padding: 0px 18px; */
   position: fixed;
   top: -5px;
   left: 0;
