@@ -310,7 +310,7 @@ body {
   font-size: 14px;
 }
 .navbar-scrolled {
-  /* padding: 0px 18px; */
+  padding: 0px 18px;
   position: fixed;
   top: -5px;
   left: 0;
@@ -366,4 +366,9 @@ body {
 }
 #main__website {
   display: none;
+}
+.swiper-pagination-bullet {
+  background: #28b5f5 !important;
+  width: 15px;
+  height: 15px;
 }

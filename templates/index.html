@@ -30,6 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
@@ -55,15 +56,30 @@
     <script src="{% static 'js/video.js' %}"></script>
     <script src="{% static 'js/get_single_video.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/tw-elements.umd.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         function stopVideo() {
             var iframe = document.getElementById("youtubeTrailer");
             var iframeSrc = iframe.src;
-
-            // Replace the src attribute with the same src to stop the video
             iframe.src = iframeSrc;
-            console.log(iframe);
         }
+        var swiper = new Swiper(".home__carousel", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
 </body>
 

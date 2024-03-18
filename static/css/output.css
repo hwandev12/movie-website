@@ -1199,10 +1199,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-clip: padding-box;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .p-3 {
   padding: 0.75rem;
 }
@@ -1623,6 +1619,18 @@ input[type="range"]:active::-webkit-slider-thumb {
     bottom: 10px;
   }
 
+  .home__carousel .swiper-button-next {
+    position: absolute;
+    bottom: 10px !important;
+    top:95%;
+  }
+
+  .home__carousel .swiper-button-prev {
+    position: absolute;
+    bottom: 10px !important;
+    top:95%;
+  }
+
   .home__carousel .fa-chevron-right {
     bottom: 10px;
   }
@@ -1994,6 +2002,34 @@ input[type="range"]:active::-webkit-slider-thumb {
   .serie_click-play {
     display: block !important;
   }
+
+  .home__phone-janr a {
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  .home__navigation-phone {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px 15px;
+    border-radius: 15px;
+  }
+
+  .home__navigation-phone li {
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .home__navigation-phone li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .home__navigation-phone li a {
+    padding: 0 !important;
+    font-size: 15px !important;
+  }
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
@@ -2194,6 +2230,34 @@ input[type="range"]:active::-webkit-slider-thumb {
 
   .serie_click-play {
     display: block !important;
+  }
+
+  .home__phone-janr a {
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  .home__navigation-phone {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px 15px;
+    border-radius: 15px;
+  }
+
+  .home__navigation-phone li {
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .home__navigation-phone li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .home__navigation-phone li a {
+    padding: 0 !important;
+    font-size: 15px !important;
   }
 }
 
@@ -2802,7 +2866,7 @@ body {
 }
 
 .navbar-scrolled {
-  /* padding: 0px 18px; */
+  padding: 0px 18px;
   position: fixed;
   top: -5px;
   left: 0;
@@ -2867,6 +2931,12 @@ body {
 
 #main__website {
   display: none;
+}
+
+.swiper-pagination-bullet {
+  background: #28b5f5 !important;
+  width: 15px;
+  height: 15px;
 }
 
 .empty\:hidden:empty {

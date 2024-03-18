@@ -8,7 +8,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 }
 .home__nav-logo {
     text-decoration: none;
@@ -17,11 +16,11 @@
 }.home__nav-logo span {
     color: #28B5F5;
     font-weight: 800;
-}.home__navigation-center, .home__navigation-phone > li {
+}.home__navigation-center > li {
     margin-right: 40px;
     list-style: none;
     position: relative;
-}.home__navigation-center, .home__navigation-phone li a {
+}.home__navigation-center > li a{
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
@@ -74,7 +73,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     /* padding: 20px; */
-    height: 230px;
+    height: 0;
     transition: 0.3s height ease;
     z-index: 500;
 }.home__navigation-phone.active {
