@@ -1591,7 +1591,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
 
   .carousel__item-left h1 {
@@ -1770,7 +1770,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
 
   .home__navigation-end .fa-bars {
@@ -1982,7 +1982,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   }
 
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
 
   .carousel__item {

@@ -19,7 +19,7 @@
     width: 100% !important;
   }
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
   .carousel__item-left h1 {
     font-size: 30px !important;
@@ -163,7 +163,7 @@
     padding: 20px 0px;
   }
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
   .home__navigation-end .fa-bars {
     display: block !important;
@@ -335,7 +335,7 @@
     display: none !important;
   }
   .click_play {
-    display: none !important;
+    opacity: 0 !important;
   }
   .carousel__item {
     flex-direction: row;
