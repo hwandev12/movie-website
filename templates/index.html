@@ -61,10 +61,21 @@
     <script type="text/javascript" src="{% static 'js/tw-elements.umd.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        var iframe = document.getElementById("youtubeTrailer");
+        var iframeSerie = document.getElementById("youtubeTrailerSerie");
         function stopVideo() {
-            var iframe = document.getElementById("youtubeTrailer");
             var iframeSrc = iframe.src;
             iframe.src = iframeSrc;
+        }
+        function stopVideoSerie() {
+            var iframeSrcSerie = iframeSerie.src;
+            iframeSerie.src = iframeSerie;
+        }
+        window.onclick = (e) => {
+            if (e.target != iframe) {
+                var iframeSrc = iframe.src;
+                iframe.src = iframeSrc;
+            }
         }
         var swiper = new Swiper(".home__carousel", {
             loop: true,

@@ -1,7 +1,8 @@
 <!--Vertically centered modal-->
 <div data-twe-modal-init
     class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-transparent"
-    id="trailerModalSerie" tabindex="-1" >
+    id="trailerModalSerieCarousel" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+    data-twe-backdrop="static" data-twe-keyboard="false">
     <div data-twe-modal-dialog-ref
         class="pointer-events-none relative bg-transparent flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[800px]">
         <div
@@ -10,7 +11,7 @@
                 <!-- Close button -->
                 <button type="button"
                     class="box-content rounded-none border-none text-white hover:text-neutral-800 hover:no-underline focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-                    data-twe-modal-dismiss aria-label="Close" onclick="stopVideo()">
+                    data-twe-modal-dismiss aria-label="Close" onclick="stopVideoSerie()">
                     <span class="[&>svg]:h-6 [&>svg]:w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor">
@@ -22,9 +23,10 @@
 
             <!-- Modal body -->
             <div class="relative p-4">
-                <iframe style="width: 100%; height: 440px;" src="{{ serie.seriestrailer.url }}" id="youtubeTrailer"
+                <iframe style="width: 100%; height: 440px;" src="{{ con.content.seriestrailer.url }}" id="youtubeTrailerSerie"
                     title="{{ serie.seriestrailer.title }}" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
             </div>
         </div>
     </div>

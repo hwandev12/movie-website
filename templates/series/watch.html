@@ -123,24 +123,27 @@
         </div>
         <div class="latest_movies latest_serie-single container">
             <div class="latest_movies-cards latest_series-cards">
-                {% for episode in episodes %}
-                <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
-                    class="latest_movies-cards-top-inner latest_series-cards-top-inner">
-                    <div class="latest_movies-cards-inner latest_series-cards-inner">
-                        <div class="latest_movies-cards--box latest_series-cards--box"
-                            style="background-image: url({{ episode.card.url }});">
-                        </div>
-                        <a href="{% url 'serie:episode' serie.slug episode.id %}" style="background-color: transparent;" class="click_play serie_click-play">
-                            <div class="latest_movies-cards--box-inner latest_series-cards--box-inner">
-                                <i class="fa-solid fa-circle-play"></i>
+                <div>
+                    {% for episode in episodes %}
+                    <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
+                        class="latest_movies-cards-top-inner latest_series-cards-top-inner">
+                        <div class="latest_movies-cards-inner latest_series-cards-inner">
+                            <div class="latest_movies-cards--box latest_series-cards--box"
+                                style="background-image: url({{ episode.card.url }});">
                             </div>
-                        </a>
+                            <a href="{% url 'serie:episode' serie.slug episode.id %}"
+                                style="background-color: transparent;" class="click_play serie_click-play">
+                                <div class="latest_movies-cards--box-inner latest_series-cards--box-inner">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </a>
 
+                        </div>
+                        <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ episode.title | safe }}</h4>
+                        <p class="text-slate-950 dark:text-zinc-50">{{ episode.get_formatted_duration }} <span></p>
                     </div>
-                    <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ episode.title | safe }}</h4>
-                    <p class="text-slate-950 dark:text-zinc-50">{{ episode.get_formatted_duration }} <span></p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>

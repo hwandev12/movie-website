@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # Application definition
@@ -26,7 +26,6 @@ LOCAL_APPS = [
     "apps.entry.apps.EntryConfig",
     "apps.movie.apps.MovieConfig",
     "apps.series.apps.SeriesConfig"
-
 ]
 
 INSTALLED_APPS = [
@@ -40,9 +39,11 @@ INSTALLED_APPS = [
     'django_countries',
     'storages',
     'compressor',
+    "debug_toolbar",
 ] + LOCAL_APPS
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -109,6 +110,19 @@ LANGUAGE_CODE = 'uz-UZ'
 TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 USE_TZ = True
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# CACHE
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+        "TIMEOUT": 100
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)

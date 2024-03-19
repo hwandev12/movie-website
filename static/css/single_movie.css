@@ -86,7 +86,7 @@
   height: 84%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-color: orange;
   border-radius: 20px;
 }
@@ -188,14 +188,6 @@
 }
 #controls {
   height: 80px;
-  z-index: 2147483647;
-  -webkit-backface-visibility: hidden;
-  overflow: visible;
-  direction: ltr !important;
-  touch-action: manipulation;
-  transform-origin: center center;
-  webkit-tap-highlight-color: transparent;
-  text-indent: 0 !important;
 }
 
 .activeSingle  {

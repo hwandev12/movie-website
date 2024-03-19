@@ -8,8 +8,10 @@ urlpatterns = [
     path("", include("apps.entry.urls")),
     path("movies/", include("apps.movie.urls")),
     path("series/", include("apps.series.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
+

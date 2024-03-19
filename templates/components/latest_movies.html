@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!-- MOVIES -->
 <div class="latest_movies container">
     <div class="latest_movies-top">
@@ -7,6 +8,7 @@
     </div>
     <div class="swiper latest_movies-cards latest_movies-swiper">
         <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
+        {% cache 100 latest_movies_keys %}
         <div class="swiper-wrapper">
             {% for movie in latest_movies %}
             <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
@@ -34,6 +36,7 @@
             </div>
             {% endfor %}
         </div>
+        {% endcache %}
         <i class="fa-solid fa-chevron-left swiper-button-next"></i>
     </div>
 </div>
@@ -51,10 +54,11 @@
         <h3 class="text-slate-950 dark:text-zinc-50">latest series</h3>
         <a href="#" class="text-zinc-50">view all</a>
     </div>
-    <div class="latest_movies-cards">
-        <div>
+    <div class="latest_movies-cards swiper">
+        {% cache 100 latest_series_keys %}
+        <div class="swiper-wrapper">
             {% for serie in latest_series %}
-            <div style="width: 18.5%; position: relative; margin-bottom: 30px;" class="latest_movies-cards-top-inner">
+            <div style="width: 18.5%; position: relative; margin-bottom: 30px;" class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
                     <div class="latest_movies-cards--box" style="background-image: url({{ serie.card.url }});">
                     </div>
@@ -78,6 +82,7 @@
             </div>
             {% endfor %}
         </div>
+        {% endcache %}
     </div>
 </div>
 <!-- SERIES -->

@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load cache %}
 {% block title %}Movie Single {% endblock %}
 
 {% block content %}
@@ -137,8 +138,8 @@
                 </button>
             </div>
         </div>
-        {% include 'movies/movie_trailer.html' %}
     </div>
+    {% include 'movies/movie_trailer.html' %}
     <!-- VIDEO DETAILS -->
 </div>
 {% endblock %}

@@ -5,6 +5,7 @@ $(document).ready(function () {
       let id = e.getAttribute("data-show-id")
       let isMovie = e.getAttribute("data-ismovie-id")
       let trailerVideoHTML = document.getElementById("youtubeTrailer")
+      let trailerVideoHTMLSerie = document.getElementById("youtubeTrailerSerie")
 
       // Ajax Call
       $.ajax({
@@ -17,8 +18,7 @@ $(document).ready(function () {
             trailerVideoHTML.src = trailer[0].fields.url
           }else {
             let trailer = JSON.parse(res.serie_trailer)
-            trailerVideoHTML.src = trailer[0].fields.url
-            console.log(trailerVideoHTML.src);
+            trailerVideoHTMLSerie.src = trailer[0].fields.url
           }
         },
         error: (xhr, status, error) => {
