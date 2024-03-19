@@ -6,6 +6,7 @@
         <a href="{% url 'movie:movies_list' %}" class="text-zinc-50">view all</a>
     </div>
     <div class="swiper latest_movies-cards latest_movies-swiper">
+        <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
         <div class="swiper-wrapper">
             {% for movie in latest_movies %}
             <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
@@ -33,6 +34,7 @@
             </div>
             {% endfor %}
         </div>
+        <i class="fa-solid fa-chevron-left swiper-button-next"></i>
     </div>
 </div>
 <!-- MOVIES -->

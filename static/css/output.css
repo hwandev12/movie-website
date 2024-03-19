@@ -1838,6 +1838,7 @@ input[type="range"]:active::-webkit-slider-thumb {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
+    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2108,6 +2109,7 @@ input[type="range"]:active::-webkit-slider-thumb {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
+    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2381,6 +2383,7 @@ input[type="range"]:active::-webkit-slider-thumb {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
+    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2791,7 +2794,7 @@ body {
   border-radius: 13px;
   background-color: orange;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-color: #555;
   background-blend-mode: multiply;
@@ -3056,7 +3059,7 @@ body {
   background-color: orange;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   cursor: pointer;
   background-color: #666;
   background-blend-mode: multiply;

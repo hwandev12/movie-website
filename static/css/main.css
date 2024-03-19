@@ -41,7 +41,7 @@ body {
   border-radius: 13px;
   background-color: orange;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-color: #555;
   background-blend-mode: multiply;
@@ -271,7 +271,7 @@ body {
   background-color: orange;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   cursor: pointer;
   background-color: #666;
   background-blend-mode: multiply;
