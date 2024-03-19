@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const progessBar = document.querySelector("#progress-bar");
   const controls = document.querySelector("#controls");
   const customPlay = document.querySelector(".custom-play");
+  const volumeChangeDown = document.querySelector("#volumeRange");
 
   let mouseIsDown = false;
   function seekingFn(e) {
@@ -89,6 +90,13 @@ document.addEventListener("DOMContentLoaded", function () {
   progessBar.addEventListener("mouseup", () => (mouseIsDown = false));
   progessBar.addEventListener("click", seekingFn);
   progessBar.addEventListener("mousemove", (e) => mouseIsDown && seekingFn);
+
+  volumeChangeDown.addEventListener("input", () => {
+    video.volume = volumeRange.value;
+    video.muted = false;
+  });
+
+  video.volume = volumeChangeDown.value;
 
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {

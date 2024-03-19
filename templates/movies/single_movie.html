@@ -37,11 +37,12 @@
                     </button>
                 </div>
     
-                <div>
+                <div class="flex align-center justify-between">
                     <!-- VOLUME BUTTON -->
                     <button id="volume" class="transition-all duration-100 ease-linear hover:scale-125">
                         <i class="material-icons text-white text-3xl">volume_up</i>
                     </button>
+                    <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="1" class="volume-range">
                     <button id="fullscreen" class="transition-all duration-100 ease-linear hover:scale-125">
                         <i class="material-icons text-white text-3xl">fullscreen</i>
                     </button>
