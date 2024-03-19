@@ -44,6 +44,10 @@
   color: #28b5f5;
   padding: 26px 0px;
 }
+.home__navigation-center > li:nth-child(2) a {
+  color: #28b5f5;
+  padding: 26px 0px;
+}
 .home__navigation-center > li i {
   margin-left: 5px;
 }

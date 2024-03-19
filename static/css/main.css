@@ -43,7 +43,7 @@ body {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  background-color: #555;
+  background-color: #777;
   background-blend-mode: multiply;
   display: flex;
   justify-content: space-between;
@@ -273,7 +273,7 @@ body {
   background-size: cover;
   background-position: center top;
   cursor: pointer;
-  background-color: #666;
+  background-color: #9999;
   background-blend-mode: multiply;
   transition: 0.5s all ease;
   position: relative;

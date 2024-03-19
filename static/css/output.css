@@ -1904,7 +1904,6 @@ video::-webkit-media-controls-enclosure {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2175,7 +2174,6 @@ video::-webkit-media-controls-enclosure {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2449,7 +2447,6 @@ video::-webkit-media-controls-enclosure {
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
 
   .single__movie-video_player .custom-play:hover {
@@ -2748,7 +2745,6 @@ video::-webkit-media-controls-enclosure {
 
 #controls {
   height: 80px;
-  opacity: 1;
   z-index: 2147483647;
   -webkit-backface-visibility: hidden;
   overflow: visible;
@@ -2757,10 +2753,6 @@ video::-webkit-media-controls-enclosure {
   transform-origin: center center;
   webkit-tap-highlight-color: transparent;
   text-indent: 0 !important;
-}
-
-.single__movie-video_player:hover .custom_c {
-  opacity: 1 !important;
 }
 
 .activeSingle  {
@@ -2821,7 +2813,7 @@ body {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  background-color: #555;
+  background-color: #777;
   background-blend-mode: multiply;
   display: flex;
   justify-content: space-between;
@@ -3086,7 +3078,7 @@ body {
   background-size: cover;
   background-position: center top;
   cursor: pointer;
-  background-color: #666;
+  background-color: #9999;
   background-blend-mode: multiply;
   transition: 0.5s all ease;
   position: relative;

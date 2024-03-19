@@ -121,7 +121,6 @@
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
   .single__movie-video_player .custom-play:hover {
     box-shadow: none !important;
@@ -340,7 +339,6 @@
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
   .single__movie-video_player .custom-play:hover {
     box-shadow: none !important;
@@ -563,7 +561,6 @@
     font-size: 25px !important;
     width: 60px !important;
     height: 60px !important;
-    display: none !important;
   }
   .single__movie-video_player .custom-play:hover {
     box-shadow: none !important;

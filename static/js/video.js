@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelector(".single__movie-video_player")
         .classList.add("activeSingle");
 
+      document.body.style.overflow = "hidden";
       video.classList.add("activeVideo");
     } else {
       document
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .querySelector(".single__movie-video_player")
         .classList.remove("activeSingle");
+      document.body.style.overflow = "scroll";
 
       video.classList.remove("activeVideo");
     }

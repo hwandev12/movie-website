@@ -10,7 +10,7 @@
                     <input type="text"
                         style="height: 45px; border-width:1px; border-radius: 10px; transition: 0.5s all ease; width: 100%;"
                         class="dark:border-slate-700 border-lime-950 dark:bg-slate-800 bg-white px-3 py-[0.32rem] leading-[1.6] focus:outline-none focus:ring focus:border-blue-500 transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-gray dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                        placeholder="Kino nomini yozing" name="search__movie" />
+                        placeholder="Qidiring" name="search__movie" />
                     <i class="fa-solid fa-search"></i>
                 </div>
                 <div class="movies__list-select-1">
@@ -42,7 +42,7 @@
         </form>
     </div>
     <div class="latest_movies movies__list-wrapper container" style="margin-top: 80px;">
-        <div class="latest_movies-cards">
+        <div class="latest_movies-cards movies__list-cards">
             <div>
                 {% for movie in page_obj %}
                 <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
@@ -57,7 +57,6 @@
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
                         </a>
-
                     </div>
                     <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ movie.title | safe }}</h4>
                     <p class="text-slate-950 dark:text-zinc-50">{{ movie.get_formatted_duration }} <span>
@@ -124,7 +123,6 @@
             </a>
             {% endif %}
         </div>
-
     </div>
 </div>
 {% endblock %}

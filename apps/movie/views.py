@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import JsonResponse
 from django.core import serializers
+from django.db.models import Q
 
 from . import models
 from apps.entry import models as entry_models
@@ -50,6 +51,22 @@ class MoviesListPage(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        filter_quality = self.request.GET.get("filter__movie-quality")
+        search__movie = self.request.GET.get("search__movie")
+
+        if filter_quality and search__movie:
+            queryset = queryset.filter(
+                Q(quality__name__icontains=filter_quality) |
+                Q(title__icontains=search__movie) |
+                Q(actors__icontains=search__movie)
+            )
+        if filter_quality:
+            queryset = queryset.filter(quality__name__icontains=filter_quality)
+        if search__movie:
+            queryset = queryset.filter(
+                Q(title__icontains=search__movie) |
+                Q(actors__icontains=search__movie)
+            )
         return queryset.order_by("-time_created")
 
     def get_context_data(self, **kwargs):

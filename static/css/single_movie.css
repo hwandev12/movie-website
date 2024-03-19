@@ -188,7 +188,6 @@
 }
 #controls {
   height: 80px;
-  opacity: 1;
   z-index: 2147483647;
   -webkit-backface-visibility: hidden;
   overflow: visible;
@@ -198,9 +197,7 @@
   webkit-tap-highlight-color: transparent;
   text-indent: 0 !important;
 }
-.single__movie-video_player:hover .custom_c {
-  opacity: 1 !important;
-}
+
 .activeSingle  {
   position: absolute;
   top: 0;

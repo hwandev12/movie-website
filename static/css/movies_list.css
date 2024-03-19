@@ -65,3 +65,6 @@
     color: #28b5f5;
     font-size: 14px;
 }
+.movies__list-cards > div {
+  flex-wrap: wrap !important;
+}
