@@ -16,20 +16,6 @@ class HomePageView(generic.ListView):
     context_object_name = "categories"
     template_name = "home.html"
     
-    def get_first_movie_main(self):
-        movie = movie_models.Movie.objects.filter(main=True).order_by("-time_created").first()
-        serie = series_models.Series.objects.filter(main=True).order_by("-time_created").first()
-        
-        if movie is not None and serie is not None:
-            
-            return sorted([movie, serie], key=lambda x: x.time_created, reverse=True)
-        elif movie is not None:
-            return [movie]
-        elif serie is not None:
-            return [serie]
-        else:
-            return []
-    
     def get_latest_movies(self):
         """
         Eng oxirgi qo'shilgan 10ta kinoni olib beradi
@@ -45,8 +31,8 @@ class HomePageView(generic.ListView):
         return series
     
     def get_shows_for_main(self):
-        latest_movies = list(movie_models.Movie.objects.all().filter(main=True).order_by("-time_created")[1:])
-        latest_series = list(series_models.Series.objects.all().filter(main=True).order_by("-time_created")[1:])
+        latest_movies = list(movie_models.Movie.objects.all().filter(main=True).order_by("-time_created"))
+        latest_series = list(series_models.Series.objects.all().filter(main=True).order_by("-time_created"))
         
         latest_content = [{'content': movie, 'type': 'movie'} for movie in latest_movies]
         latest_content.extend([{'content': series, 'type': 'series'} for series in latest_series])
@@ -58,14 +44,6 @@ class HomePageView(generic.ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        is_movie_section = []
-        movie_first = self.get_first_movie_main()
-        for m in movie_first:
-            if m.is_movie:
-                is_movie_section.append(True)
-            else:
-                is_movie_section.append(False)
-        context['movie_first'] = zip(self.get_first_movie_main(), is_movie_section)
         context['latest_movies'] = self.get_latest_movies()
         context['latest_series'] = self.get_latest_series()
         context['latest_shows'] = self.get_shows_for_main()

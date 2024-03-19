@@ -213,6 +213,9 @@ body {
   text-transform: capitalize;
   font-size: 26px;
 }
+.latest_movies {
+  margin-top: 30px;
+}
 .latest_movies a {
   padding: 6px 14px;
   background-color: #28b5f5;
@@ -227,15 +230,14 @@ body {
 .home__navigation-end .fa-bars {
   display: none;
 }
-.latest_movies-cards {
+.latest_movies-cards > div {
   width: 100%;
-  flex-wrap: wrap;
   height: auto;
   display: flex;
   justify-content: left;
   align-items: flex-start;
   margin: 0px 0px 0px 0px;
-  gap: 23px;
+  gap: 20px;
 }
 .latest_movies-cards-inner {
   width: 100%;
@@ -357,7 +359,7 @@ body {
   animation: l15 1s infinite linear;
 }
 .loader::before,
-.loader::after {    
+.loader::after {
   content: "";
   grid-area: 1/1;
   margin: 2px;
@@ -369,8 +371,10 @@ body {
   margin: 8px;
   animation-duration: 3s;
 }
-@keyframes l15{ 
-  100%{transform: rotate(1turn)}
+@keyframes l15 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
 #main__website {
   display: none;

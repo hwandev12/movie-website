@@ -3,10 +3,8 @@
   height: auto;
   position: relative;
   border-top: 3px solid rgba(50, 205, 50, 0.8);
-  background-color: #000;
 }
 .movies__list-top-wrapper {
-    background-color: #030712;
     width: 100%;
     height: auto;
 }

@@ -11,35 +11,12 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('movie', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='GenreChoices',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('time_created', models.DateTimeField(auto_now_add=True)),
-            ],
-            options={
-                'verbose_name': 'Genre Choice',
-                'verbose_name_plural': 'Genre Choices',
-            },
-        ),
-        migrations.CreateModel(
-            name='QualityChoices',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('time_created', models.DateTimeField(auto_now_add=True)),
-            ],
-            options={
-                'verbose_name': 'Quality Choice',
-                'verbose_name_plural': 'Quality Choices',
-            },
-        ),
-        migrations.CreateModel(
-            name='Movie',
+            name='Series',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
@@ -48,30 +25,45 @@ class Migration(migrations.Migration):
                 ('director', models.CharField(max_length=255)),
                 ('actors', models.CharField(max_length=255)),
                 ('countries', django_countries.fields.CountryField(max_length=746, multiple=True)),
-                ('duration_time', models.TimeField()),
                 ('rating', models.FloatField()),
-                ('poster', models.ImageField(blank=True, null=True, upload_to='movie_posters/')),
-                ('card_poster', models.ImageField(blank=True, null=True, upload_to='card_poster/')),
-                ('slug', models.SlugField(blank=True, null=True, unique=True)),
+                ('poster', models.ImageField(blank=True, null=True, upload_to='series_posters/')),
+                ('card', models.ImageField(blank=True, null=True, upload_to='series_cards/')),
+                ('slug', models.SlugField(blank=True, unique=True)),
                 ('main', models.BooleanField(default=True, null=True)),
-                ('is_movie', models.BooleanField(default=True, null=True)),
+                ('is_movie', models.BooleanField(default=False, null=True)),
                 ('time_created', models.DateTimeField(auto_now_add=True)),
                 ('genre', models.ManyToManyField(to='movie.genrechoices')),
                 ('quality', models.ManyToManyField(to='movie.qualitychoices')),
             ],
         ),
         migrations.CreateModel(
-            name='Trailer',
+            name='Episode',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=255)),
+                ('description', models.TextField()),
+                ('release_date', models.DateField()),
+                ('duration_time', models.TimeField()),
+                ('season_number', models.IntegerField()),
+                ('episode_number', models.IntegerField()),
+                ('card', models.ImageField(blank=True, null=True, upload_to='episodes_cards/')),
+                ('video', models.FileField(null=True, upload_to='series/videos/')),
+                ('time_created', models.DateTimeField(auto_now_add=True)),
+                ('series', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='episodes', to='series.series')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='SeriesTrailer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
                 ('url', models.URLField(verbose_name=django.core.validators.URLValidator(schemes='https'))),
                 ('time_created', models.DateTimeField(auto_now_add=True)),
-                ('movie', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='movie.movie')),
+                ('movie', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='series.series')),
             ],
             options={
-                'verbose_name': 'Kino Trailer',
-                'verbose_name_plural': 'Kino Trailers',
+                'verbose_name': 'Serial Trailer',
+                'verbose_name_plural': 'Serial Trailers',
             },
         ),
     ]

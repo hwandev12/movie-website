@@ -2,66 +2,12 @@
 <div class="swiper home__carousel container">
     <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
     <div class="swiper-wrapper">
-        {% if movie_first %}
-        {% for movie, is_movie in movie_first %}
-        <div class="carousel__item swiper-slide" style="background-image: url({{ movie.poster.url }});">
-            <div class="carousel__item-left">
-                <h1 class="active">{{ movie.title | safe }}</h1>
-                <p class="carousel__item-left-p active">
-                    <span>
-                        <i class="fa-regular fa-star"></i>
-                        {{ movie.rating }}
-                    </span>
-                    IMDB {{ movie.release_date|date:"Y" }}
-                    {{ movie.get_formatted_duration }}
-                    {% for gen in movie.genre.all %}
-                    {{ gen.name }}{% if not forloop.last %},{% endif %}
-                    {% endfor %}
-                </p>
-                <p class="last_p active">{{ movie.description }}</p>
-                <div class="a_wrapper active"
-                    style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                    {% if is_movie %}
-                    <a href="{% url 'movie:single' movie.slug %}">
-                        <i class="fa-solid fa-play mr-1"></i>
-                        Ko'rish</a>
-                    {% else %}
-                    <a href="{% url 'serie:serie_detail' movie.slug %}">
-                        <i class="fa-solid fa-play mr-1"></i>
-                        Ko'rish</a>
-                    {% endif %}
-                    <a href="#">
-                        <i class="fa-brands fa-telegram mr-1"></i>
-                        Telegram</a>
-                </div>
-            </div>
-            {% if is_movie %}
-            <div class="carousel__item-right activeC" data-show-id="{{ movie.id }}" data-ismovie-id="movie">
-                <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
-                    data-twe-ripple-color="light">
-                    <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
-                    watch trailer
-                </a>
-            </div>
-            {% else %}
-            <div class="carousel__item-right activeC" data-show-id="{{ movie.id }}" data-ismovie-id="serie">
-                <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
-                    data-twe-ripple-color="light">
-                    <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
-                    watch trailer
-                </a>
-            </div>
-            {% endif %}
-        </div>
-        {% endfor %}
-        {% endif %}
-
         {% for con in latest_shows %}
         {% if con.type == 'movie' %}
         <div class="carousel__item swiper-slide" style="background-image: url({{ con.content.poster.url }});">
-            <div class="carousel__item-left">
-                <h1 class="">{{ con.content.title | safe }}</h1>
-                <p class="carousel__item-left-p">
+            <div class="carousel__item-left active">
+                <h1 class="active">{{ con.content.title | safe }}</h1>
+                <p class="carousel__item-left-p active">
                     <span>
                         <i class="fa-regular fa-star"></i>
                         {{ con.content.rating }}
@@ -72,8 +18,8 @@
                     {{ gen.name }}{% if not forloop.last %},{% endif %}
                     {% endfor %}
                 </p>
-                <p class="last_p">{{ con.content.description }}</p>
-                <div class="a_wrapper" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
+                <p class="last_p active">{{ con.content.description }}</p>
+                <div class="a_wrapper active" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
                     <a href="{% url 'movie:single' con.content.slug %}">
                         <i class="fa-solid fa-play mr-1"></i>
                         Ko'rish</a>

@@ -47,7 +47,7 @@ class MoviesListPage(generic.ListView):
     model = movie_models.Movie
     context_object_name = 'movies'
     template_name = 'movies/movies_list.html'
-    
+
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.order_by("-time_created")
@@ -56,7 +56,6 @@ class MoviesListPage(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["categories"] = entry_models.Category.objects.all()
         return context
-    
 
 
 # make classes to function names
