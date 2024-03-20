@@ -95,8 +95,26 @@
             },
         });
         var swiper = new Swiper(".latest_movies-swiper", {
+            lazy: true,
             slidesPerView: 5,
-            freeMode: true,
+            loop: true,
+            grabCursor: true,
+            keyboard: {
+                enabled: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+        var swiper = new Swiper(".latest_series-swiper", {
+            lazy: true,
+            slidesPerView: 5,
+            loop: true,
+            grabCursor: true,
+            keyboard: {
+                enabled: true
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",

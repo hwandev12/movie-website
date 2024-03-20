@@ -288,6 +288,7 @@ body {
   background-blend-mode: multiply;
   transition: 0.5s all ease;
   position: relative;
+  object-fit: cover;
 }
 .latest_movies-cards-top-inner:hover .latest_movies-cards--box {
   transform: scale(1.1);
@@ -409,4 +410,9 @@ body {
   cursor: pointer;
   transition: 0.3s transform ease;
   z-index: 9000;
+}
+.latest_movies-cards--box-inner i {
+  font-size: 40px !important;
+  width: 80px !important;
+  height: 80px !important;
 }

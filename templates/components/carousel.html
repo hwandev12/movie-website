@@ -2,7 +2,6 @@
 {% load cache %}
 <div class="swiper home__carousel container">
     <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
-    {% cache 100 carousel_content_key %}
     <div class="swiper-wrapper">
         {% for con in latest_shows %}
         {% if con.type == 'movie' %}
@@ -73,7 +72,6 @@
         {% endif %}
         {% endfor %}
     </div>
-    {% endcache %}
     <i class="fa-solid fa-chevron-right swiper-button-next"></i>
     <!-- <div class="circle_container">
         <span class="circle" data-index="1"></span>

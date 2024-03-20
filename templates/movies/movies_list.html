@@ -44,7 +44,6 @@
     </div>
     <div class="latest_movies movies__list-wrapper container" style="margin-top: 80px;">
         <div class="latest_movies-cards movies__list-cards">
-            {% cache 100 movies_list_key %}
             <div>
                 {% for movie in page_obj %}
                 <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
@@ -72,7 +71,6 @@
                 </div>
                 {% endfor %}
             </div>
-            {% endcache %}
         </div>
         <div class="flex items-center gap-2 justify-center">
             {% if page_obj.has_previous %}

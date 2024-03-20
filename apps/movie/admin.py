@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.db.models.fields import Field
 from django.http import HttpRequest
 from . import models
+from apps.entry.views import HomePageView
 
 class TrailerInline(admin.TabularInline):
     model = models.Trailer
@@ -57,6 +58,10 @@ class CustomMovieModelAdmin(admin.ModelAdmin):
         if db_field.name == 'is_movie':
             field.label = 'Kino'
         return field
+    
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        HomePageView.invalidate_cache()
 
 
 MODELS = (

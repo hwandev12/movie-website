@@ -93,8 +93,9 @@
   overflow-x: hidden;
   /* padding: 20px; */
   height: 0;
-  transition: 0.3s height ease;
+  transition: 2s height ease;
   z-index: 500;
+  display: none;
 }
 .home__navigation-phone.active {
   transform: translateY(0);
@@ -103,4 +104,5 @@
   border-style: solid;
   padding: 5px 15px;
   border-radius: 15px;
+  display: block;
 }
