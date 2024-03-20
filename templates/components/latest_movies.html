@@ -14,15 +14,13 @@
             <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
                 class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
-                    <div class="latest_movies-cards--box" style="background-image: url({{ movie.card_poster.url }});">
-                    </div>
+                    <img loading="lazy" class="latest_movies-cards--box" src="{{ movie.card_poster.url }}" alt="">
                     <a href="{% url 'movie:single' movie.slug %}" style="background-color: transparent;"
                         class="click_play">
                         <div class="latest_movies-cards--box-inner">
                             <i class="fa-solid fa-circle-play"></i>
                         </div>
                     </a>
-
                 </div>
                 <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ movie.title | safe }}</h4>
                 <p class="text-slate-950 dark:text-zinc-50">{{ movie.get_formatted_duration }} <span>
@@ -37,7 +35,7 @@
             {% endfor %}
         </div>
         {% endcache %}
-        <i class="fa-solid fa-chevron-left swiper-button-next"></i>
+        <i class="fa-solid fa-chevron-right swiper-button-next"></i>
     </div>
 </div>
 <!-- MOVIES -->
@@ -55,10 +53,10 @@
         <a href="#" class="text-zinc-50">view all</a>
     </div>
     <div class="latest_movies-cards swiper">
-        {% cache 100 latest_series_keys %}
         <div class="swiper-wrapper">
             {% for serie in latest_series %}
-            <div style="width: 18.5%; position: relative; margin-bottom: 30px;" class="latest_movies-cards-top-inner swiper-slide">
+            <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
+                class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
                     <div class="latest_movies-cards--box" style="background-image: url({{ serie.card.url }});">
                     </div>
@@ -68,7 +66,6 @@
                             <i class="fa-solid fa-circle-play"></i>
                         </div>
                     </a>
-
                 </div>
                 <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ serie.title | safe }}</h4>
                 <p class="text-slate-950 dark:text-zinc-50" style="margin: 0;"><span style="margin-left: 0;">
@@ -82,7 +79,6 @@
             </div>
             {% endfor %}
         </div>
-        {% endcache %}
     </div>
 </div>
 <!-- SERIES -->

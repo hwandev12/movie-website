@@ -261,6 +261,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+.loading-image-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .latest_movies-cards--box-inner i {
   color: #28b5f5;
   font-size: 70px;
@@ -383,4 +394,19 @@ body {
   background: #28b5f5 !important;
   width: 15px;
   height: 15px;
+}
+.latest_movies-cards i {
+  color: #fff;
+  position: absolute;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #28b5f5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s transform ease;
+  z-index: 9000;
 }

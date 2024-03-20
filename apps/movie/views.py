@@ -4,6 +4,8 @@ from django.views import generic
 from django.http import JsonResponse
 from django.core import serializers
 from django.db.models import Q
+from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 
 from . import models
 from apps.entry import models as entry_models
@@ -53,20 +55,22 @@ class MoviesListPage(generic.ListView):
         queryset = super().get_queryset()
         filter_quality = self.request.GET.get("filter__movie-quality")
         search__movie = self.request.GET.get("search__movie")
-
-        if filter_quality and search__movie:
+        cache_key = make_template_fragment_key("movies_list_key")
+        if filter_quality or search__movie:
             queryset = queryset.filter(
                 Q(quality__name__icontains=filter_quality) |
                 Q(title__icontains=search__movie) |
                 Q(actors__icontains=search__movie)
             )
-        if filter_quality:
-            queryset = queryset.filter(quality__name__icontains=filter_quality)
-        if search__movie:
-            queryset = queryset.filter(
-                Q(title__icontains=search__movie) |
-                Q(actors__icontains=search__movie)
-            )
+            if filter_quality:
+                queryset = queryset.filter(quality__name__icontains=filter_quality)
+            if search__movie:
+                queryset = queryset.filter(
+                    Q(title__icontains=search__movie) |
+                    Q(actors__icontains=search__movie)
+                )
+            cache.delete(cache_key)
+        cache.delete(cache_key)
         return queryset.order_by("-time_created")
 
     def get_context_data(self, **kwargs):
