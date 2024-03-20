@@ -1,82 +1,86 @@
 {% load static %}
 {% load cache %}
-<div class="swiper home__carousel container">
-    <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
-    <div class="swiper-wrapper">
-        {% for con in latest_shows %}
-        {% if con.type == 'movie' %}
-        <div class="carousel__item swiper-slide" style="background-image: url({{ con.content.poster.url }});">
-            <div class="carousel__item-left active">
-                <h1 class="active">{{ con.content.title | safe }}</h1>
-                <p class="carousel__item-left-p active">
-                    <span>
-                        <i class="fa-regular fa-star"></i>
-                        {{ con.content.rating }}
-                    </span>
-                    IMDB {{ con.content.release_date|date:"Y" }}
-                    {{ con.content.get_formatted_duration }}
-                    {% for gen in con.content.genre.all %}
-                    {{ gen.name }}{% if not forloop.last %},{% endif %}
-                    {% endfor %}
-                </p>
-                <p class="last_p active">{{ con.content.description }}</p>
-                <div class="a_wrapper active" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                    <a href="{% url 'movie:single' con.content.slug %}">
-                        <i class="fa-solid fa-play mr-1"></i>
-                        Ko'rish</a>
-                    <a href="#">
-                        <i class="fa-brands fa-telegram mr-1"></i>
-                        Telegram</a>
+<div class="home__carousel-wrapper">
+    <div class="swiper home__carousel container">
+        <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
+        <div class="swiper-wrapper">
+            {% for con in latest_shows %}
+            {% if con.type == 'movie' %}
+            <div class="carousel__item swiper-slide" style="background-image: url({{ con.content.poster.url }});">
+                <div class="carousel__item-left active">
+                    <h1 class="active">{{ con.content.title | safe }}</h1>
+                    <p class="carousel__item-left-p active">
+                        <span>
+                            <i class="fa-regular fa-star"></i>
+                            {{ con.content.rating }}
+                        </span>
+                        IMDB {{ con.content.release_date|date:"Y" }}
+                        {{ con.content.get_formatted_duration }}
+                        {% for gen in con.content.genre.all %}
+                        {{ gen.name }}{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="last_p active">{{ con.content.description }}</p>
+                    <div class="a_wrapper active"
+                        style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
+                        <a href="{% url 'movie:single' con.content.slug %}">
+                            <i class="fa-solid fa-play mr-1"></i>
+                            Ko'rish</a>
+                        <a href="#">
+                            <i class="fa-brands fa-telegram mr-1"></i>
+                            Telegram</a>
+                    </div>
+                </div>
+                <div class="carousel__item-right" data-show-id="{{ con.content.id }}" data-ismovie-id="movie">
+                    <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
+                        data-twe-ripple-color="light">
+                        <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
+                        watch trailer
+                    </a>
                 </div>
             </div>
-            <div class="carousel__item-right" data-show-id="{{ con.content.id }}" data-ismovie-id="movie">
-                <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModal" data-twe-ripple-init
-                    data-twe-ripple-color="light">
-                    <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
-                    watch trailer
-                </a>
-            </div>
-        </div>
-        {% else %}
-        <div class="carousel__item swiper-slide" style="background-image: url({{ con.content.poster.url }});">
-            <div class="carousel__item-left">
-                <h1 class="active">{{ con.content.title | safe }}</h1>
-                <p class="carousel__item-left-p active">
-                    <span>
-                        <i class="fa-regular fa-star"></i>
-                        {{ con.content.rating }}
-                    </span>
-                    IMDB {{ con.content.release_date|date:"Y" }}
-                    {% for gen in con.content.genre.all %}
-                    {{ gen.name }}{% if not forloop.last %},{% endif %}
-                    {% endfor %}
-                </p>
-                <p class="last_p active">{{ con.content.description }}</p>
-                <div class="a_wrapper active" style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
-                    <a href="{% url 'serie:serie_detail' con.content.slug %}">
-                        <i class="fa-solid fa-play mr-1"></i>
-                        Ko'rish</a>
-                    <a href="#">
-                        <i class="fa-brands fa-telegram mr-1"></i>
-                        Telegram</a>
+            {% else %}
+            <div class="carousel__item swiper-slide" style="background-image: url({{ con.content.poster.url }});">
+                <div class="carousel__item-left">
+                    <h1 class="active">{{ con.content.title | safe }}</h1>
+                    <p class="carousel__item-left-p active">
+                        <span>
+                            <i class="fa-regular fa-star"></i>
+                            {{ con.content.rating }}
+                        </span>
+                        IMDB {{ con.content.release_date|date:"Y" }}
+                        {% for gen in con.content.genre.all %}
+                        {{ gen.name }}{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="last_p active">{{ con.content.description }}</p>
+                    <div class="a_wrapper active"
+                        style="opacity: 0; transform: translateY(-20px); transition: 2s all ease;">
+                        <a href="{% url 'serie:serie_detail' con.content.slug %}">
+                            <i class="fa-solid fa-play mr-1"></i>
+                            Ko'rish</a>
+                        <a href="#">
+                            <i class="fa-brands fa-telegram mr-1"></i>
+                            Telegram</a>
+                    </div>
+                </div>
+                <div class="carousel__item-right" data-show-id="{{ con.content.id }}" data-ismovie-id="serie">
+                    <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModalSerieCarousel"
+                        data-twe-ripple-init data-twe-ripple-color="light">
+                        <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
+                        watch trailer
+                    </a>
                 </div>
             </div>
-            <div class="carousel__item-right" data-show-id="{{ con.content.id }}" data-ismovie-id="serie">
-                <a href="#" data-twe-toggle="modal" data-twe-target="#trailerModalSerieCarousel" data-twe-ripple-init
-                    data-twe-ripple-color="light">
-                    <i class="fa-brands fa-youtube fa-bounce" style="color: #e01b24;"></i>
-                    watch trailer
-                </a>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
-        {% endif %}
-        {% endfor %}
+        <i class="fa-solid fa-chevron-right swiper-button-next"></i>
+        <!-- <div class="circle_container">
+            <span class="circle" data-index="1"></span>
+        </div> -->
+        <div class="swiper-pagination"></div>
     </div>
-    <i class="fa-solid fa-chevron-right swiper-button-next"></i>
-    <!-- <div class="circle_container">
-        <span class="circle" data-index="1"></span>
-    </div> -->
-    <div class="swiper-pagination"></div>
 </div>
 {% include 'movies/trailer.html' %}
 {% include 'series/serie_trailer_carousel.html' %}

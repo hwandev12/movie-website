@@ -1,12 +1,18 @@
 @media (min-width: 100px) and (max-width: 430px) {
-  body {
-    padding: 0px 15px;
-  }
   .home__navigation {
     padding: 20px 0px;
   }
   .home__navigation-end .fa-bars {
     display: block !important;
+  }
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+  .latest_movies {
+    padding: 0px 15px;
   }
   .home__navigation-center {
     display: none !important;
@@ -89,6 +95,10 @@
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
   .latest_movies-cards > div p {
     text-align: left !important;
@@ -190,6 +200,8 @@
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
   .movies__list-top-inner {
     flex-direction: column !important;
@@ -212,9 +224,6 @@
 }
 
 @media (min-width: 700px) and (max-width: 900px) {
-  body {
-    padding: 0px 15px;
-  }
   .home__navigation {
     padding: 20px 0px;
   }
@@ -222,6 +231,15 @@
     position: absolute;
     bottom: 10px !important;
     top: 95%;
+  }
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+  .latest_movies {
+    padding: 0px 15px;
   }
   .home__carousel .swiper-button-prev {
     position: absolute;
@@ -307,6 +325,10 @@
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
   .latest_movies-cards > div p {
     text-align: left !important;
@@ -412,6 +434,8 @@
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
   .movies__list-top-inner {
     flex-direction: column !important;
@@ -434,14 +458,20 @@
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
-  body {
-    padding: 0px 15px;
-  }
   .home__navigation {
     padding: 20px 0px;
   }
   .home__navigation-end .fa-bars {
     display: block !important;
+  }
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+  .latest_movies {
+    padding: 0px 15px;
   }
   .home__carousel .swiper-button-next {
     position: absolute;
@@ -529,6 +559,10 @@
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
   .latest_movies-cards > div p {
     text-align: left !important;
@@ -631,6 +665,8 @@
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
   .movies__list-top-inner {
     flex-direction: column !important;

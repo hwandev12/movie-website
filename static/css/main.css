@@ -24,6 +24,7 @@ body {
   overflow-x: hidden;
   white-space: no-wrap;
   transition: 0.4s all ease;
+  margin-top: 30px;
 }
 .carousel__item .active {
   opacity: 1 !important;
@@ -289,6 +290,7 @@ body {
   transition: 0.5s all ease;
   position: relative;
   object-fit: cover;
+  object-position: top center;
 }
 .latest_movies-cards-top-inner:hover .latest_movies-cards--box {
   transform: scale(1.1);

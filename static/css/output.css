@@ -1753,16 +1753,24 @@ video::-webkit-media-controls-enclosure {
 }
 
 @media (min-width: 100px) and (max-width: 430px) {
-  body {
-    padding: 0px 15px;
-  }
-
   .home__navigation {
     padding: 20px 0px;
   }
 
   .home__navigation-end .fa-bars {
     display: block !important;
+  }
+
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+
+  .latest_movies {
+    padding: 0px 15px;
   }
 
   .home__navigation-center {
@@ -1865,6 +1873,11 @@ video::-webkit-media-controls-enclosure {
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
 
   .latest_movies-cards > div p {
@@ -1991,6 +2004,8 @@ video::-webkit-media-controls-enclosure {
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
 
   .movies__list-top-inner {
@@ -2018,10 +2033,6 @@ video::-webkit-media-controls-enclosure {
 }
 
 @media (min-width: 700px) and (max-width: 900px) {
-  body {
-    padding: 0px 15px;
-  }
-
   .home__navigation {
     padding: 20px 0px;
   }
@@ -2030,6 +2041,18 @@ video::-webkit-media-controls-enclosure {
     position: absolute;
     bottom: 10px !important;
     top: 95%;
+  }
+
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+
+  .latest_movies {
+    padding: 0px 15px;
   }
 
   .home__carousel .swiper-button-prev {
@@ -2135,6 +2158,11 @@ video::-webkit-media-controls-enclosure {
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
 
   .latest_movies-cards > div p {
@@ -2264,6 +2292,8 @@ video::-webkit-media-controls-enclosure {
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
 
   .movies__list-top-inner {
@@ -2291,16 +2321,24 @@ video::-webkit-media-controls-enclosure {
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
-  body {
-    padding: 0px 15px;
-  }
-
   .home__navigation {
     padding: 20px 0px;
   }
 
   .home__navigation-end .fa-bars {
     display: block !important;
+  }
+
+  .home__navigation-wrapper {
+    padding: 0px 15px;
+  }
+
+  .home__carousel-wrapper {
+    padding: 0px 15px;
+  }
+
+  .latest_movies {
+    padding: 0px 15px;
   }
 
   .home__carousel .swiper-button-next {
@@ -2408,6 +2446,11 @@ video::-webkit-media-controls-enclosure {
   .latest_movies-cards {
     gap: 0 !important;
     justify-content: space-between !important;
+  }
+
+  .movies__list-cards > div {
+    justify-content: space-between !important;
+    gap: 0 !important;
   }
 
   .latest_movies-cards > div p {
@@ -2534,6 +2577,8 @@ video::-webkit-media-controls-enclosure {
     flex-direction: column;
     justify-content: end !important;
     align-items: flex-end !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
 
   .movies__list-top-inner {
@@ -2783,6 +2828,7 @@ body {
   overflow-x: hidden;
   white-space: no-wrap;
   transition: 0.4s all ease;
+  margin-top: 30px;
 }
 
 .carousel__item .active {
@@ -3088,6 +3134,8 @@ body {
   position: relative;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
 }
 
 .latest_movies-cards-top-inner:hover .latest_movies-cards--box {
