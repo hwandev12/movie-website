@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 # Application definition
@@ -25,7 +25,8 @@ ALLOWED_HOSTS = ["*"]
 LOCAL_APPS = [
     "apps.entry.apps.EntryConfig",
     "apps.movie.apps.MovieConfig",
-    "apps.series.apps.SeriesConfig"
+    "apps.series.apps.SeriesConfig",
+    "apps.cdn.apps.CdnConfig"
 ]
 
 INSTALLED_APPS = [
@@ -128,23 +129,24 @@ CACHES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-AWS_ACCESS_KEY_ID = 'DO00NVDU8AVAP3PXX4BM'
-AWS_SECRET_ACCESS_KEY = 'QwdwTqCO6ONmcw97ST3Qi/SZj54ECv1sIbh5Eqt4DOk'
-AWS_STORAGE_BUCKET_NAME = 'movie-django'
-AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
+CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
+    'ACL': 'public-read',
 }
 
-MEDIA_LOCATION = 'files/media'
-STATIC_LOCATION = 'files/static'
-AWS_LOCATION = 'files'
+MEDIA_LOCATION = 'media'
+STATIC_LOCATION = 'static'
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, STATIC_LOCATION)
-MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
+STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
+MEDIA_URL = '%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
 # STATIC_URL = '/static/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'apps.cdn.space_storages.MediaRootS3BotoStorage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

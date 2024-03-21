@@ -3,3 +3,27 @@
     height: auto;
     margin-bottom: 20px;
 }
+.latest_serie-single {
+    margin-top: 20px;
+}
+.latest_series-cards-inner {
+    height: 150px;
+}
+.latest_series-cards--box {
+    background-position: center;
+    background-color: #fff;
+    filter: blur(2px);
+}
+.latest_series-cards--box-inner {
+    opacity: 1 !important;
+    z-index: 100;
+}
+.latest_series-cards--box-inner i {
+    font-size: 50px;
+}
+.serie__episodes-top h3 i {
+    transition: 0.4s all ease;
+}
+.serie__episodes-top h3:hover i {
+    transform: translateX(5px);
+}
