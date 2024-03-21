@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -136,16 +135,14 @@ CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_DEFAULT_ACL = 'public-read'
-
-MEDIA_LOCATION = 'media'
+MEDIA_LOCATION = 'files/media'
 STATIC_LOCATION = 'static'
+AWS_LOCATION = 'files/media'
 
 STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
-MEDIA_URL = '%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
 # STATIC_URL = '/static/'
-
-DEFAULT_FILE_STORAGE = 'apps.cdn.space_storages.MediaRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
