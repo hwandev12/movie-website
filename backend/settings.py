@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # Application definition
@@ -118,53 +118,36 @@ INTERNAL_IPS = [
 # CACHE
 
 
-def get_cache():
-    import os
-    try:
-        servers = os.environ.get('MEMCACHIER_SERVERS')
-        username = os.environ.get('MEMCACHIER_USERNAME')
-        password = os.environ.get('MEMCACHIER_PASSWORD')
-        return {
-            'default': {
-                'BACKEND': 'django_bmemcached.memcached.BMemcached',
-                'TIMEOUT': None,
-                'LOCATION': servers,
-                'OPTIONS': {
-                    'username': username,
-                    'password': password,
-                }
-            }
-        }
-    except:
-        return {
-            'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-            }
-        }
-
-
-CACHES = get_cache()
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://default:28nrNybEoo9Leb2OIxRMxjh2qc19RHVd@redis-18084.c281.us-east-1-2.ec2.cloud.redislabs.com:18084/0",
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-# AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
-# CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# MEDIA_LOCATION = 'files/media'
-# STATIC_LOCATION = 'static'
-# AWS_LOCATION = 'files/media'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
+CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+MEDIA_LOCATION = 'files/media'
+STATIC_LOCATION = 'static'
+AWS_LOCATION = 'files/media'
 
-# STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
-# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
-STATIC_URL = '/static/'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
+# STATIC_URL = '/static/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
