@@ -120,7 +120,7 @@ INTERNAL_IPS = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        "LOCATION": "/var/tmp/django_cache",
+        "LOCATION": "c:/var/tmp/django_cache",
         "TIMEOUT": 500
     }
 }
@@ -136,8 +136,8 @@ AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
 CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
-    'ACL': 'public-read',
 }
+AWS_DEFAULT_ACL = 'public-read'
 
 MEDIA_LOCATION = 'media'
 STATIC_LOCATION = 'static'
@@ -147,6 +147,7 @@ MEDIA_URL = '%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
 # STATIC_URL = '/static/'
 
 DEFAULT_FILE_STORAGE = 'apps.cdn.space_storages.MediaRootS3BotoStorage'
+# STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

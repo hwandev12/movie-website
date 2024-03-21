@@ -1,0 +1,1 @@
+aws s3 sync ./staticfiles/flags s3://movie-django/static/flags --acl public-read --endpoint=https://nyc3.digitaloceanspaces.com
