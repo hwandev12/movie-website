@@ -76,7 +76,7 @@ class HomePageView(generic.ListView):
         latest_movies = cache.get(cache_key)
         if not latest_movies:
             latest_movies = HomePageView.get_latest_movies()
-            cache.set(cache_key, latest_movies, timeout=60 * 15)
+            cache.set(cache_key, latest_movies, timeout=24*60*60)
         return latest_movies
 
     @staticmethod
@@ -88,7 +88,7 @@ class HomePageView(generic.ListView):
         latest_series = cache.get(cache_key)
         if not latest_series:
             latest_series = HomePageView.get_latest_series()
-            cache.set(cache_key, latest_series, timeout=60 * 15)
+            cache.set(cache_key, latest_series, timeout=24*60*60)
         return latest_series
 
     @staticmethod
@@ -100,7 +100,7 @@ class HomePageView(generic.ListView):
         get_shows_form_main_variable = cache.get(cache_key)
         if not get_shows_form_main_variable:
             get_shows_form_main_variable = HomePageView.get_shows_for_main()
-            cache.set(cache_key, get_shows_form_main_variable, timeout=60 * 15)
+            cache.set(cache_key, get_shows_form_main_variable, timeout=24*60*60)
         return get_shows_form_main_variable
 
     @staticmethod

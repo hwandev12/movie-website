@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # Application definition
@@ -120,8 +120,8 @@ INTERNAL_IPS = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        "LOCATION": "c:/var/tmp/django_cache",
-        "TIMEOUT": 500
+        "LOCATION": "/var/tmp/django_cache",
+        "TIMEOUT": 24 * 60 * 60
     }
 }
 
