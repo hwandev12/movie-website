@@ -31,9 +31,6 @@
   font-size: 17px;
   transition: 0.2s all ease;
 }
-.home__navigation-center > li > a:hover {
-  color: #28b5f5;
-}
 .home__navigation-center li:last-child {
   margin-right: 0;
 }
@@ -41,7 +38,6 @@
   font-size: 11px;
 }
 .home__navigation-center > li > a {
-  color: #28b5f5;
   padding: 26px 0px;
 }
 .home__navigation-center > li i {

@@ -286,6 +286,7 @@ body {
   background-position: center top;
   cursor: pointer;
   background-color: #9999;
+  filter: brightness(50%);
   background-blend-mode: multiply;
   transition: 0.5s all ease;
   position: relative;
@@ -332,6 +333,72 @@ body {
   right: 10px;
   top: 10px;
   font-size: 14px;
+}
+@keyframes sequential-color {
+  0%,
+  5% {
+    color: #ff0000;
+  }
+  5%,
+  10% {
+    color: #d3b0f8;
+  }
+  15%,
+  20% {
+    color: #da5257;
+  }
+  25%,
+  29% {
+    color: #0bf7ec;
+  }
+  30%,
+  45% {
+    color: #00ff00;
+  }
+  50%,
+  55% {
+    color: rgb(0, 67, 149);
+  }
+  60%,
+  75% {
+    color: #28b5f5;
+  }
+  80%,
+  85% {
+    color: #cb78b8;
+  }
+  90%,
+  100% {
+    color: #ff00ff;
+  }
+}
+
+.glow {
+  font-size: 18px;
+  color: transparent;
+  text-align: center;
+  padding: 10px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  background-color: rgba(251, 216, 216, 0.09);
+}
+
+.glow .new {
+  display: inline-block;
+  animation: sequential-color 4s infinite;
+  margin-left: 2px;
+}
+.glow .new:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.glow .new:nth-child(2) {
+  animation-delay: 1s;
+}
+.glow .new:nth-child(3) {
+  animation-delay: 1.5s;
 }
 .navbar-scrolled {
   padding: 0px 18px;
@@ -417,4 +484,7 @@ body {
   font-size: 40px !important;
   width: 80px !important;
   height: 80px !important;
+}
+.latest_series-swiper {
+  margin-bottom: 20px;
 }

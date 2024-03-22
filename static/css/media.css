@@ -1,4 +1,4 @@
-@media (min-width: 100px) and (max-width: 430px) {
+@media (min-width: 100px) and (max-width: 500px) {
   .home__navigation {
     padding: 20px 0px;
   }
@@ -108,7 +108,7 @@
     margin: 0 !important;
   }
   .latest_movies-cards-inner {
-    height: 250px !important;
+    height: 300px !important;
   }
   .text_title {
     overflow: hidden;
@@ -231,7 +231,7 @@
   }
 }
 
-@media (min-width: 700px) and (max-width: 900px) {
+@media (min-width: 700px) and (max-width: 1100px) {
   .home__navigation {
     padding: 20px 0px;
   }
@@ -322,7 +322,7 @@
     font-size: 30px !important;
   }
   .latest_movies-cards-top-inner {
-    width: 28% !important;
+    width: 31% !important;
   }
   .a_wrapper a {
     margin: 0 !important;
@@ -338,8 +338,8 @@
     justify-content: space-between !important;
   }
   .movies__list-cards > div {
-    justify-content: space-between !important;
-    gap: 0 !important;
+    justify-content: left !important;
+    gap: 15px !important;
   }
   .latest_movies-cards > div p {
     text-align: left !important;
@@ -485,7 +485,7 @@
     padding: 0px 15px;
   }
   .latest_movies {
-    padding: 0px 15px;
+    padding: 0px 10px;
   }
   .home__carousel .swiper-button-next {
     position: absolute;
@@ -559,7 +559,7 @@
     font-size: 30px !important;
   }
   .latest_movies-cards-top-inner {
-    width: 35% !important;
+    width: 48% !important;
   }
   .a_wrapper a {
     margin: 0 !important;
@@ -586,7 +586,7 @@
     margin: 0 !important;
   }
   .latest_movies-cards-inner {
-    height: 300px !important;
+    height: 380px !important;
   }
   .text_title {
     overflow: hidden;

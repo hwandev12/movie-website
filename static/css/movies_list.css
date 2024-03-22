@@ -68,3 +68,6 @@
 .movies__list-cards > div {
   flex-wrap: wrap !important;
 }
+.movies__list .latest_movies-cards--box {
+  filter: brightness(100%);
+}

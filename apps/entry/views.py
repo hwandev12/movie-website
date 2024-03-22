@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.utils import timezone
+from datetime import timedelta
 from django.core.cache import cache
 
 
@@ -25,18 +27,35 @@ class HomePageView(generic.ListView):
         """
         Get the latest 10 movies.
         """
-        movies = movie_models.Movie.objects.all().order_by(
-            "-time_created")[:10]
-        return movies
+        two_days_filter_get_variable = timezone.now() - timedelta(days=2)
+        new_movies_uploaded = movie_models.Movie.objects.all().filter(
+            time_created__gte=two_days_filter_get_variable)
+        if new_movies_uploaded.exists():
+            new_movie_ids = new_movies_uploaded.values_list("id", flat=True)
+            latest_movies = movie_models.Movie.objects.exclude(
+                id__in=new_movie_ids).order_by("-time_created")[:10]
+        else:
+            latest_movies = movie_models.Movie.objects.all().order_by(
+                "-time_created")[:10]
+
+        return latest_movies, new_movies_uploaded
 
     @staticmethod
     def get_latest_series():
         """
         Get the latest 10 series.
         """
-        series = series_models.Series.objects.all().order_by(
-            "-time_created")[:10]
-        return series
+        two_days_filter_get_variable = timezone.now() - timedelta(days=2)
+        new_series_uploaded = series_models.Series.objects.filter(
+            time_created__gte=two_days_filter_get_variable)
+        if new_series_uploaded.exists():
+            new_series_ids = new_series_uploaded.values_list("id", flat=True)
+            new_series = series_models.Series.objects.exclude(
+                id__in=new_series_ids).order_by("-time_created")[:10]
+        else:
+            new_series = series_models.Series.objects.all().order_by(
+                "-time_created")[:10]
+        return new_series, new_series_uploaded
 
     @staticmethod
     def get_shows_for_main():
@@ -61,8 +80,10 @@ class HomePageView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_movies'] = self.get_latest_movies_cached()
-        context['latest_series'] = self.get_latest_series_cached()
+        context['latest_movies'] = self.get_latest_movies_cached()[0]
+        context['latest_movies_2_days'] = self.get_latest_movies_cached()[1]
+        context['latest_series'] = self.get_latest_series_cached()[0]
+        context['latest_series_2_days'] = self.get_latest_series_cached()[1]
         context['latest_shows'] = self.get_shows_for_main_cached()
         context['DEBUG'] = settings.DEBUG
         return context
@@ -100,7 +121,8 @@ class HomePageView(generic.ListView):
         get_shows_form_main_variable = cache.get(cache_key)
         if not get_shows_form_main_variable:
             get_shows_form_main_variable = HomePageView.get_shows_for_main()
-            cache.set(cache_key, get_shows_form_main_variable, timeout=24*60*60)
+            cache.set(cache_key, get_shows_form_main_variable,
+                      timeout=24*60*60)
         return get_shows_form_main_variable
 
     @staticmethod
@@ -109,7 +131,8 @@ class HomePageView(generic.ListView):
         method to invalidate cache when post or something happend
         could be called in everywhere
         """
-        cache.delete_many(['latest_movies-key', 'latest_series-key', 'get_shows-key'])
+        cache.delete_many(
+            ['latest_movies-key', 'latest_series-key', 'get_shows-key'])
 
 
 # make classes as views name

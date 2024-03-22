@@ -7,14 +7,14 @@
         <!-- PC MENU -->
         <ul class="home__navigation-center flex just-content-center align-items-center m-0">
             <li>
-                <a href="{% url 'entry:home' %}">Bosh Sahifa</a>
+                <a class="text-slate-50 dark:text-zinc-50" href="{% url 'entry:home' %}">Bosh Sahifa</a>
             </li>
             <li>
-                <a href="{% url 'movie:movies_list' %}">Tarjima Filmlar</a>
+                <a class="text-slate-50 dark:text-zinc-50" href="{% url 'movie:movies_list' %}">Tarjima Filmlar</a>
             </li>
             {% for category in categories %}
             <li class="nav__janr">
-                <a class="text-slate-950 dark:text-zinc-50 cursor-pointer">{{ category.name }}
+                <a class="text-slate-50 dark:text-zinc-50 cursor-pointer">{{ category.name }}
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
                 {% if not category.sub_category.all %}
@@ -45,14 +45,14 @@
         <ul class="home__navigation-phone flex flex-col just-content-center align-items-center bg-white dark:bg-gray-950 dark:border-slate-800 relative"
             data-twe-dropdown-ref>
             <li>
-                <a href="{% url 'entry:home' %}" class="text-slate-950 dark:text-zinc-50">Bosh Sahifa</a>
+                <a href="{% url 'entry:home' %}" class="text-slate-50 dark:text-zinc-50">Bosh Sahifa</a>
             </li>
             <li>
-                <a href="{% url 'movie:movies_list' %}" class="text-slate-950 dark:text-zinc-50">Tarjima Filmlar</a>
+                <a href="{% url 'movie:movies_list' %}" class="text-slate-50 dark:text-zinc-50">Tarjima Filmlar</a>
             </li>
             {% for category in categories %}
             <li class="nav__janr home__phone-janr relative" id="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-toggle-ref data-twe-ripple-init data-twe-ripple-color="light">
-                <a href="#" class="text-slate-950 dark:text-zinc-50 cursor-pointer">
+                <a href="#" class="text-slate-50 dark:text-zinc-50 cursor-pointer">
                     {{ category.name }}
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
