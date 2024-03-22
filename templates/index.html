@@ -71,9 +71,11 @@
             iframeSerie.src = iframeSerie;
         }
         window.onclick = (e) => {
-            if (e.target != iframe) {
-                var iframeSrc = iframe.src;
-                iframe.src = iframeSrc;
+            if(iframe) {
+                if (e.target != iframe) {
+                    var iframeSrc = iframe.src;
+                    iframe.src = iframeSrc;
+                }
             }
         }
         var swiper = new Swiper(".home__carousel", {

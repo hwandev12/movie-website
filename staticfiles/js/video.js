@@ -112,14 +112,33 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   fullScreen.addEventListener("click", () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+      }
+      screen.orientation.lock("landscape");
     } else {
+      document.exitFullscreen();
+      screen.orientation.unlock();
     }
   });
+
   document.body.addEventListener("keydown", (e) => {
     if (e.key == "f") {
-      if (!document.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          // For older versions of Safari
+          document.documentElement.webkitRequestFullscreen();
+        }
+        // Set screen orientation to landscape
+        screen.orientation.lock("landscape");
+      } else {
+        document.exitFullscreen(); // Exit fullscreen mode
+        // Unlock screen orientation
+        screen.orientation.unlock();
       }
     }
   });
@@ -137,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.body.style.overflow = "hidden";
       video.classList.add("activeVideo");
+      screen.orientation.lock("landscape")
     } else {
       document
         .querySelector(".single__movie-video_player")
@@ -147,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "scroll";
 
       video.classList.remove("activeVideo");
+      screen.orientation.unlock()
     }
   }
 });
