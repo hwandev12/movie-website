@@ -249,6 +249,9 @@ body {
   border-radius: 15px;
   position: relative;
 }
+.latest_movies-cards-top-inner span {
+  margin-left: 0 !important;
+}
 .latest_movies-cards--box-inner {
   position: absolute;
   top: 0;

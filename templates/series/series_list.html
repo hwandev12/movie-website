@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 {% load cache %}
-{% block title %}Barcha tarjima filmlar{% endblock %}
+{% block title %}Barcha tarjima seriallar{% endblock %}
 
 {% block content %}
 <div class="movies__list dark:bg-black bg-neutral-100">
@@ -45,35 +45,35 @@
     <div class="latest_movies movies__list-wrapper container">
         <div class="latest_movies-cards movies__list-cards">
             <div>
-                {% if movies %}
-                {% for movie in page_obj %}
+                {% if series %}
+                {% for serie in page_obj %}
                 <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
                     class="latest_movies-cards-top-inner">
                     <div class="latest_movies-cards-inner">
                         <div class="latest_movies-cards--box"
-                            style="background-image: url({{ movie.card_poster.url }});">
+                            style="background-image: url({{ serie.card.url }});">
                         </div>
-                        <a href="{% url 'movie:single' movie.slug %}" style="background-color: transparent;"
+                        <a href="{% url 'serie:serie_detail' serie.slug %}" style="background-color: transparent;"
                             class="click_play">
                             <div class="latest_movies-cards--box-inner">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
                         </a>
                     </div>
-                    <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ movie.title | safe }}</h4>
-                    <p class="text-slate-950 dark:text-zinc-50">{{ movie.get_formatted_duration }} <span>
-                            {% for gen in movie.genre.all %}
+                    <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ serie.title | safe }}</h4>
+                    <p class="text-slate-950 dark:text-zinc-50">{{ serie.get_formatted_duration }} <span>
+                            {% for gen in serie.genre.all %}
                             {{ gen.name }}
                             {% endfor %}
                         </span></p>
-                    {% for gen in movie.quality.all %}
+                    {% for gen in serie.quality.all %}
                     <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
                     {% endfor %}
                 </div>
                 {% endfor %}
                 {% else %}
                 <div class="text-center w-full px-6 py-6">
-                    <h1 class="dark:text-sky-300 text-slate-950 text-center text-2xl uppercase">Kino Topilmadi</h1>
+                    <h1 class="dark:text-sky-300 text-slate-950 text-center text-2xl uppercase">Serial Topilmadi</h1>
                 </div>
                 {% endif %}
             </div>

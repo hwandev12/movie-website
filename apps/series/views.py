@@ -1,7 +1,10 @@
 from typing import Any
-from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views import generic
+from django.core.cache.utils import make_template_fragment_key
+from django.core.cache import cache
+from django.db.models import Q
+
 from . import models as serie_models
 from apps.entry import models as entry_models
 
@@ -97,8 +100,43 @@ class EpisodeWatch(generic.DetailView):
         context['full_path'] = full_path
         context['serie_id'] = serie_id
         return context
+    
+class SeriesListPage(generic.ListView):
+    paginate_by = 10
+    model = serie_models.Series
+    context_object_name = 'series'
+    template_name = 'series/series_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_quality = self.request.GET.get("filter__movie-quality")
+        search__movie = self.request.GET.get("search__movie")
+        cache_key = make_template_fragment_key("series_list_key")
+        if filter_quality or search__movie:
+            queryset = queryset.filter(
+                Q(quality__name__icontains=filter_quality) |
+                Q(title__icontains=search__movie) |
+                Q(actors__icontains=search__movie)
+            )
+            if filter_quality:
+                queryset = queryset.filter(quality__name__icontains=filter_quality)
+            if search__movie:
+                queryset = queryset.filter(
+                    Q(title__icontains=search__movie) |
+                    Q(actors__icontains=search__movie)
+                )
+            cache.delete(cache_key)
+        cache.delete(cache_key)
+        return queryset.order_by("-time_created")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = entry_models.Category.objects.all()
+        return context
 
 
 # make name like function
 serie_detail_view = SerieDetailView.as_view()
 episode_watch = EpisodeWatch.as_view()
+series_list_view = SeriesListPage.as_view()
+

@@ -112,15 +112,36 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   fullScreen.addEventListener("click", () => {
     if (!document.fullscreenElement) {
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen();
+      } else if (docEl.mozRequestFullScreen) {
+        /* Firefox */
+        docEl.mozRequestFullScreen();
+      } else if (docEl.webkitRequestFullscreen) {
+        /* Safari */
+        docEl.webkitRequestFullscreen();
       }
-      screen.orientation.lock("landscape");
+      // Lock screen orientation to landscape
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock("landscape").catch((error) => {
+          console.error("Failed to lock screen orientation:", error);
+        });
+      }
     } else {
-      document.exitFullscreen();
-      screen.orientation.unlock();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        /* Firefox */
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        /* Safari */
+        document.webkitExitFullscreen();
+      }
+      // Unlock screen orientation
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
     }
   });
 
@@ -156,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.body.style.overflow = "hidden";
       video.classList.add("activeVideo");
-      screen.orientation.lock("landscape")
+      screen.orientation.lock("landscape");
     } else {
       document
         .querySelector(".single__movie-video_player")
@@ -167,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "scroll";
 
       video.classList.remove("activeVideo");
-      screen.orientation.unlock()
+      screen.orientation.unlock();
     }
   }
 });

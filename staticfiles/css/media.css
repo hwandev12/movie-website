@@ -183,8 +183,6 @@
     width: 100%;
     justify-content: space-between !important;
   }
-  .home__navigation-phone {
-  }
   .home__navigation-phone li {
     margin-right: 0 !important;
     margin-bottom: 20px;
@@ -228,6 +226,13 @@
     overflow-y: scroll;
     border-radius: 0;
     padding: 10px 14px;
+  }
+  .glow {
+    display: flex;
+    padding: 5px 10px !important;
+  }
+  .volume-range {
+    display: none;
   }
 }
 
@@ -466,6 +471,14 @@
   .movies__list-top button {
     margin-top: 15px;
   }
+  .glow {
+    display: flex;
+    padding: 5px 10px !important;
+    left: 10px !important;
+  }
+  .volume-range {
+    display: none;
+  }
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
@@ -699,5 +712,13 @@
   }
   .movies__list-top button {
     margin-top: 15px;
+  }
+  .glow {
+    display: flex;
+    padding: 5px 10px !important;
+    left: 10px !important;
+  }
+  .volume-range {
+    display: none;
   }
 }

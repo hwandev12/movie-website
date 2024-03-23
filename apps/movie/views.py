@@ -78,7 +78,6 @@ class MoviesListPage(generic.ListView):
         context["categories"] = entry_models.Category.objects.all()
         return context
 
-
 # make classes to function names
 movie_single = MovieSingle.as_view()
 movies_list_view = MoviesListPage.as_view()
