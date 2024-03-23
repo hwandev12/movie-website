@@ -8,6 +8,8 @@ from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.utils import timezone
 from datetime import timedelta
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
 
 
 from . import models
@@ -51,20 +53,19 @@ def get_single_video(request, ID):
 class MoviesListPage(generic.ListView):
     paginate_by = 10
     model = movie_models.Movie
-    context_object_name = 'movies'
     template_name = 'movies/movies_list.html'
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        calculate_2_day = timezone.now() - timedelta(days=2)
-        calculate_movie_object = queryset.filter(
-            time_created__gte=calculate_2_day)
+        # calculate_2_day = timezone.now() - timedelta(days=2)
+        # calculate_movie_object = queryset.filter(
+        #     time_created__gte=calculate_2_day)
 
-        if calculate_movie_object.exists():
-            calculated_movie_ids = calculate_movie_object.values_list(
-                "id", flat=True)
-            queryset = queryset.exclude(id__in=calculated_movie_ids)
+        # if calculate_movie_object.exists():
+        #     calculated_movie_ids = calculate_movie_object.values_list(
+        #         "id", flat=True)
+        #     queryset = queryset.exclude(id__in=calculated_movie_ids)
 
         filter_quality = self.request.GET.get("filter__movie-quality")
         search__movie = self.request.GET.get("search__movie")
@@ -84,39 +85,41 @@ class MoviesListPage(generic.ListView):
                     Q(actors__icontains=search__movie)
                 )
             cache.delete(cache_key)
-        cache.delete(cache_key)
         return queryset.order_by("-time_created")
 
     def get_single_new_movie(self):
         calculate_2_day = timezone.now() - timedelta(days=2)
         calculate_movie_object = movie_models.Movie.objects.all().filter(
             time_created__gte=calculate_2_day)
-        
-        filter_quality = self.request.GET.get("filter__movie-quality")
-        search__movie = self.request.GET.get("search__movie")
-        cache_key = make_template_fragment_key("movies_list_key-new")
-        if filter_quality or search__movie:
-            calculate_movie_object = calculate_movie_object.filter(
-                Q(quality__name__icontains=filter_quality) |
-                Q(title__icontains=search__movie) |
-                Q(actors__icontains=search__movie)
-            )
-            if filter_quality:
-                calculate_movie_object = calculate_movie_object.filter(
-                    quality__name__icontains=filter_quality)
-            if search__movie:
-                calculate_movie_object = calculate_movie_object.filter(
-                    Q(title__icontains=search__movie) |
-                    Q(actors__icontains=search__movie)
-                )
-            cache.delete(cache_key)
-        cache.delete(cache_key)
-        return calculate_movie_object
+        calculate_movie_object_ids = calculate_movie_object.values_list(
+            "id", flat=True)
+        is_new_movie = []
+        all_movies = self.get_queryset().all()
+        for movies_id in all_movies.values_list("id", flat=True):
+            for news_id in calculate_movie_object_ids:
+                if movies_id == news_id:
+                    is_new_movie.append(True)
+                else:
+                    is_new_movie.append(False)
+        return is_new_movie
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = entry_models.Category.objects.all()
-        context["new_movies"] = self.get_single_new_movie()
+        is_movie = self.get_single_new_movie()
+        movies_queryset = self.get_queryset()
+        combined_movies = [{"movie": movie, "is_new": is_new} for movie, is_new in zip(movies_queryset, is_movie)]
+        paginator = Paginator(combined_movies, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            movies = paginator.page(page)
+        except PageNotAnInteger:
+            movies = paginator.page(1)
+        except EmptyPage:
+            movies = paginator.page(paginator.num_pages)
+
+        context['movies'] = movies
+        print(movies)
         return context
 
 
