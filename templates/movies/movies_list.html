@@ -45,7 +45,7 @@
     <div class="latest_movies movies__list-wrapper container">
         <div class="latest_movies-cards movies__list-cards">
             <div>
-                {% if movies %}
+                {% if page_obj %}
                 {% for movie in new_movies %}
                 <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
                     class="latest_movies-cards-top-inner">
