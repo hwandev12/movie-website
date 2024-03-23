@@ -91,8 +91,8 @@
             </div>
         </div>
         <div class="flex items-center gap-2 justify-center">
-            {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}"
+            {% if series.has_previous %}
+            <a href="?page={{ series.previous_page_number }}"
                 class="flex items-center gap-1 px-6 py-3 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-full select-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" aria-hidden="true" class="w-4 h-4">
@@ -111,9 +111,9 @@
             {% endif %}
 
             <div class="flex items-center gap-2">
-                {% for num in page_obj.paginator.page_range %}
+                {% for num in series.paginator.page_range %}
                 <button
-                    class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-white transition-all hover:bg-gray-900/10 active:bg-gray-900/20 {% if num == page_obj.number %}bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none{% endif %}"
+                    class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-white transition-all hover:bg-gray-900/10 active:bg-gray-900/20 {% if num == series.number %}bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none{% endif %}"
                     type="button">
                     <a href="?page={{ num }}">
                         <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -124,8 +124,8 @@
                 {% endfor %}
             </div>
 
-            {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"
+            {% if series.has_next %}
+            <a href="?page={{ series.next_page_number }}"
                 class="flex items-center gap- px-6 py-3 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-full select-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" aria-hidden="true" class="w-4 h-4">
