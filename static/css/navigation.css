@@ -104,3 +104,9 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.filter-white{
+  filter: invert(100%) sepia(21%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+.filter-black {
+  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}

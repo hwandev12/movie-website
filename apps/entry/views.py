@@ -34,7 +34,6 @@ class HomePageView(generic.ListView):
             time_created__gte=two_days_filter_get_variable)
         new_movies_uploaded_ids = new_movies_uploaded.values_list(
             "id", flat=True)
-        is_new_movie = []
         is_new_movie = [
             True if movies_id in new_movies_uploaded_ids else False for movies_id in latest_movies.values_list("id", flat=True)]
         return zip(latest_movies, is_new_movie)
@@ -44,17 +43,12 @@ class HomePageView(generic.ListView):
         """
         Get the latest 10 series.
         """
+        latest_series = series_models.Series.objects.all().order_by("-time_created")[:10]
         two_days_filter_get_variable = timezone.now() - timedelta(days=2)
-        new_series_uploaded = series_models.Series.objects.filter(
-            time_created__gte=two_days_filter_get_variable)
-        if new_series_uploaded.exists():
-            new_series_ids = new_series_uploaded.values_list("id", flat=True)
-            new_series = series_models.Series.objects.exclude(
-                id__in=new_series_ids).order_by("-time_created")[:10]
-        else:
-            new_series = series_models.Series.objects.all().order_by(
-                "-time_created")[:10]
-        return new_series, new_series_uploaded
+        new_series_uploaded = series_models.Series.objects.filter(time_created__gte=two_days_filter_get_variable)
+        new_series_uploaded_ids = new_series_uploaded.values_list("id", flat=True)
+        is_new_serie = [True if series_id in new_series_uploaded_ids else False for series_id in latest_series.values_list("id", flat=True)]
+        return zip(latest_series, is_new_serie)
 
     @staticmethod
     def get_shows_for_main():
@@ -80,8 +74,7 @@ class HomePageView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_movies'] = self.get_latest_movies_cached()
-        context['latest_series'] = self.get_latest_series_cached()[0]
-        context['latest_series_2_days'] = self.get_latest_series_cached()[1]
+        context['latest_series'] = self.get_latest_series_cached()
         context['latest_shows'] = self.get_shows_for_main_cached()
         context['DEBUG'] = settings.DEBUG
         return context

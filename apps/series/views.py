@@ -4,6 +4,9 @@ from django.views import generic
 from django.core.cache.utils import make_template_fragment_key
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils import timezone
+from datetime import timedelta
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from . import models as serie_models
 from apps.entry import models as entry_models
@@ -70,7 +73,8 @@ class EpisodeWatch(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        serie = serie_models.Series.objects.get(slug=self.kwargs.get("slug", ""))
+        serie = serie_models.Series.objects.get(
+            slug=self.kwargs.get("slug", ""))
         season_number = []
         episodes = serie_models.Episode.objects.all().filter(series=serie)
 
@@ -100,7 +104,8 @@ class EpisodeWatch(generic.DetailView):
         context['full_path'] = full_path
         context['serie_id'] = serie_id
         return context
-    
+
+
 class SeriesListPage(generic.ListView):
     paginate_by = 10
     model = serie_models.Series
@@ -119,7 +124,8 @@ class SeriesListPage(generic.ListView):
                 Q(actors__icontains=search__movie)
             )
             if filter_quality:
-                queryset = queryset.filter(quality__name__icontains=filter_quality)
+                queryset = queryset.filter(
+                    quality__name__icontains=filter_quality)
             if search__movie:
                 queryset = queryset.filter(
                     Q(title__icontains=search__movie) |
@@ -129,9 +135,33 @@ class SeriesListPage(generic.ListView):
         cache.delete(cache_key)
         return queryset.order_by("-time_created")
 
+    def get_single_new_serie(self):
+        calculate_2_day = timezone.now() - timedelta(days=2)
+        calculate_serie_object = serie_models.Series.objects.all().filter(
+            time_created__gte=calculate_2_day)
+        calculate_serie_object_ids = calculate_serie_object.values_list(
+            "id", flat=True)
+        all_series = self.get_queryset().all()
+        is_new_serie = [
+            series_id in calculate_serie_object_ids for series_id in all_series.values_list("id", flat=True)]
+        return is_new_serie
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = entry_models.Category.objects.all()
+        is_serie = self.get_single_new_serie()
+        series_queryset = self.get_queryset()
+        combined_series = [{"serie": serie, "is_new": is_new} for serie, is_new in zip(series_queryset, is_serie)]
+        paginator = Paginator(combined_series, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            series = paginator.page(page)
+        except PageNotAnInteger:
+            series = paginator.page(1)
+        except EmptyPage:
+            series = paginator.page(paginator.num_pages)
+
+        context['series'] = series
         return context
 
 
@@ -139,4 +169,3 @@ class SeriesListPage(generic.ListView):
 serie_detail_view = SerieDetailView.as_view()
 episode_watch = EpisodeWatch.as_view()
 series_list_view = SeriesListPage.as_view()
-

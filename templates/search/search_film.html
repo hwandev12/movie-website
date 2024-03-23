@@ -1,0 +1,164 @@
+{% extends 'index.html' %}
+
+{% block title %}Kinolar qidirilmoqda{% endblock %}
+
+{% block content %}
+<div class="movies__list dark:bg-black bg-neutral-100">
+    <div class="movies__list-top-wrapper dark:bg-slate-900 bg-white">
+        <form method="get" class="movies__list-top container">
+            <div class="relative w-full flex justify-center items-center movies__list-top-inner">
+                <div class="movies__list-top-input w-full">
+                    <input type="text"
+                        style="height: 45px; border-width:1px; border-radius: 10px; transition: 0.5s all ease;"
+                        class="dark:border-slate-700 w-full border-lime-950 dark:bg-slate-800 bg-white px-3 py-[0.32rem] leading-[1.6] focus:outline-none focus:ring focus:border-blue-500 transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-gray dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                        placeholder="Qidiring" name="search__all_films" />
+                    <button>
+                        <i class="fa-solid fa-search fa-bounce"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="latest_movies movies__list-wrapper container">
+        <div class="latest_movies-cards movies__list-cards">
+            <div>
+                {% if results %}
+                {% for film in results %}
+                {% if film.is_movie %}
+                <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
+                    class="latest_movies-cards-top-inner">
+                    <div class="latest_movies-cards-inner">
+                        <div class="latest_movies-cards--box"
+                            style="background-image: url({{ film.card_poster.url }});">
+                        </div>
+                        <a href="{% url 'movie:single' film.slug %}" style="background-color: transparent;"
+                            class="click_play">
+                            <div class="latest_movies-cards--box-inner">
+                                <i class="fa-solid fa-circle-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ film.title | safe }}</h4>
+                    <p class="text-slate-950 dark:text-zinc-50">{{ film.get_formatted_duration }} <span>
+                            {% for gen in film.genre.all %}
+                            {{ gen.name }}
+                            {% endfor %}
+                        </span></p>
+                    {% if film.is_new %}
+                    <div class="top__absolute-bg">
+                        <h1 class="glow">
+                            <span class="new">n</span><span class="new">e</span><span class="new">w</span>
+                        </h1>
+                        {% for gen in film.quality.all %}
+                        <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="top__absolute-bg top__absolute-not-new-bg">
+                        {% for gen in film.quality.all %}
+                        <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
+                    class="latest_movies-cards-top-inner">
+                    <div class="latest_movies-cards-inner">
+                        <div class="latest_movies-cards--box"
+                            style="background-image: url({{ film.poster.url }});">
+                        </div>
+                        <a href="{% url 'serie:serie_detail' film.slug %}" style="background-color: transparent;"
+                            class="click_play">
+                            <div class="latest_movies-cards--box-inner">
+                                <i class="fa-solid fa-circle-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ film.title | safe }}</h4>
+                    <p class="text-slate-950 dark:text-zinc-50">{{ film.get_formatted_duration }} <span>
+                            {% for gen in film.genre.all %}
+                            {{ gen.name }}
+                            {% endfor %}
+                        </span></p>
+                    {% if film.is_new %}
+                    <div class="top__absolute-bg">
+                        <h1 class="glow">
+                            <span class="new">n</span><span class="new">e</span><span class="new">w</span>
+                        </h1>
+                        {% for gen in film.quality.all %}
+                        <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="top__absolute-bg top__absolute-not-new-bg">
+                        {% for gen in film.quality.all %}
+                        <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <div class="text-center w-full px-6 py-6">
+                    <h1 class="dark:text-sky-300 text-slate-950 text-center text-2xl uppercase">Film Topilmadi</h1>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex items-center gap-2 justify-center">
+            {% if results.has_previous %}
+            <a href="?page={{ results.previous_page_number }}"
+                class="flex items-center gap-1 px-6 py-3 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-full select-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+            </a>
+            {% else %}
+            <a class="flex items-center gap-1 px-6 py-3 font-sans text-xs font-bold text-center text-gray uppercase align-middle transition-all rounded-full select-none disabled"
+                disabled style="background-color: #1c6586;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" aria-hidden="true" class="w-4 h-4" disabled>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                        disabled></path>
+                </svg>
+            </a>
+            {% endif %}
+
+            <div class="flex items-center gap-2">
+                {% for num in results.paginator.page_range %}
+                <button
+                    class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-white transition-all hover:bg-gray-900/10 active:bg-gray-900/20 {% if num == results.number %}bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none{% endif %}"
+                    type="button">
+                    <a href="?page={{ num }}">
+                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">{{ num }}</span>
+                    </a>
+                </button>
+                {% endfor %}
+            </div>
+
+            {% if results.has_next %}
+            <a href="?page={{ results.next_page_number }}"
+                class="flex items-center gap- px-6 py-3 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-full select-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3">
+                    </path>
+                </svg>
+            </a>
+            {% else %}
+            <a class="flex items-center gap-1 px-6 py-3 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-full select-none"
+                style="background-color: #1c6586;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" aria-hidden="true" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3">
+                    </path>
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

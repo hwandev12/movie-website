@@ -68,10 +68,9 @@
     </div>
     <div class="latest_movies-cards swiper latest_series-swiper">
         <div class="swiper-wrapper">
-
             <!-- LATEST NEW SERIES UPLOADED 2DAYS BEFORE -->
-            {% if latest_series_2_days %}
-            {% for serie in latest_series_2_days %}
+            <!-- LATEST UPLOADED SERIES LIST OF TEN EXCLUDED FROM 2DAYS SERIES UPLOADED -->
+            {% for serie, is_new in latest_series %}
             <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
                 class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
@@ -89,44 +88,22 @@
                         {{ gen.name }}{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     </span></p>
-                {% for gen in serie.quality.all %}
-                <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
-                {% endfor %}
+                {% if is_new %}
                 <div class="top__absolute-bg">
                     <h1 class="glow">
                         <span class="new">n</span><span class="new">e</span><span class="new">w</span>
                     </h1>
-                    {% for gen in movie.quality.all %}
+                    {% for gen in serie.quality.all %}
                     <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
                     {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
-            {% endif %}
-            <!-- LATEST UPLOADED SERIES LIST OF TEN EXCLUDED FROM 2DAYS SERIES UPLOADED -->
-            {% for serie in latest_series %}
-            <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
-                class="latest_movies-cards-top-inner swiper-slide">
-                <div class="latest_movies-cards-inner">
-                    <img class="latest_movies-cards--box" loading="lazy" src="{{ serie.card.url }}" alt="No image">
-                    <a href="{% url 'serie:serie_detail' serie.slug %}" style="background-color: transparent;"
-                        class="click_play">
-                        <div class="latest_movies-cards--box-inner">
-                            <i class="fa-solid fa-circle-play"></i>
-                        </div>
-                    </a>
-                </div>
-                <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ serie.title | safe }}</h4>
-                <p class="text-slate-950 dark:text-zinc-50" style="margin: 0;"><span style="margin-left: 0;">
-                        {% for gen in serie.genre.all %}
-                        {{ gen.name }}{% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                    </span></p>
+                {% else %}
                 <div class="top__absolute-bg top__absolute-not-new-bg">
                     {% for gen in serie.quality.all %}
                     <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . import models
+from apps.entry.views import HomePageView
 
 
 class SeriesTrailerInline(admin.TabularInline):
@@ -22,6 +23,10 @@ class SeriesTrailerInline(admin.TabularInline):
 class SeriesModelAdmin(admin.ModelAdmin):
     inlines = (SeriesTrailerInline, )
     prepopulated_fields = {"slug": ("title",)}
+    
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        HomePageView.invalidate_cache()
 
 
 admin.site.register(models.Series, SeriesModelAdmin)

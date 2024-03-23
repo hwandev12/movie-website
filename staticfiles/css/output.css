@@ -1912,8 +1912,9 @@ video::-webkit-media-controls-enclosure {
 
   .a_wrapper a {
     margin: 0 !important;
-    padding: 14px 30px !important;
+    padding: 12px 26px !important;
     height: 40px !important;
+    font-size: 15px;
   }
 
   .a_wrapper a:last-child {
@@ -3344,7 +3345,7 @@ body {
 
 .glow .new {
   display: inline-block;
-  animation: sequential-color 4s infinite;
+  animation: sequential-color 4s infinite forwards;
   margin-left: 2px;
 }
 
@@ -3471,11 +3472,13 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0px 10px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .top__absolute-not-new-bg {
   justify-content: end;
   background-color: transparent;
+  box-shadow: none;
 }
 
 .glow_quality {

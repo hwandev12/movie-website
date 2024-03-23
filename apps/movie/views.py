@@ -93,7 +93,6 @@ class MoviesListPage(generic.ListView):
             time_created__gte=calculate_2_day)
         calculate_movie_object_ids = calculate_movie_object.values_list(
             "id", flat=True)
-        is_new_movie = []
         all_movies = self.get_queryset().all()
         is_new_movie = [movies_id in calculate_movie_object_ids for movies_id in all_movies.values_list("id", flat=True)]
         return is_new_movie
