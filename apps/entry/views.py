@@ -27,18 +27,17 @@ class HomePageView(generic.ListView):
         """
         Get the latest 10 movies.
         """
+        latest_movies = movie_models.Movie.objects.all().order_by(
+            "-time_created")[:10]
         two_days_filter_get_variable = timezone.now() - timedelta(days=2)
         new_movies_uploaded = movie_models.Movie.objects.all().filter(
             time_created__gte=two_days_filter_get_variable)
-        if new_movies_uploaded.exists():
-            new_movie_ids = new_movies_uploaded.values_list("id", flat=True)
-            latest_movies = movie_models.Movie.objects.exclude(
-                id__in=new_movie_ids).order_by("-time_created")[:10]
-        else:
-            latest_movies = movie_models.Movie.objects.all().order_by(
-                "-time_created")[:10]
-
-        return latest_movies, new_movies_uploaded
+        new_movies_uploaded_ids = new_movies_uploaded.values_list(
+            "id", flat=True)
+        is_new_movie = []
+        is_new_movie = [
+            True if movies_id in new_movies_uploaded_ids else False for movies_id in latest_movies.values_list("id", flat=True)]
+        return zip(latest_movies, is_new_movie)
 
     @staticmethod
     def get_latest_series():
@@ -80,8 +79,7 @@ class HomePageView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_movies'] = self.get_latest_movies_cached()[0]
-        context['latest_movies_2_days'] = self.get_latest_movies_cached()[1]
+        context['latest_movies'] = self.get_latest_movies_cached()
         context['latest_series'] = self.get_latest_series_cached()[0]
         context['latest_series_2_days'] = self.get_latest_series_cached()[1]
         context['latest_shows'] = self.get_shows_for_main_cached()

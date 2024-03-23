@@ -95,12 +95,7 @@ class MoviesListPage(generic.ListView):
             "id", flat=True)
         is_new_movie = []
         all_movies = self.get_queryset().all()
-        for movies_id in all_movies.values_list("id", flat=True):
-            for news_id in calculate_movie_object_ids:
-                if movies_id == news_id:
-                    is_new_movie.append(True)
-                else:
-                    is_new_movie.append(False)
+        is_new_movie = [movies_id in calculate_movie_object_ids for movies_id in all_movies.values_list("id", flat=True)]
         return is_new_movie
 
     def get_context_data(self, **kwargs):
@@ -119,7 +114,6 @@ class MoviesListPage(generic.ListView):
             movies = paginator.page(paginator.num_pages)
 
         context['movies'] = movies
-        print(movies)
         return context
 
 

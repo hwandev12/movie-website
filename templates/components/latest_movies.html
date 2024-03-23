@@ -11,8 +11,8 @@
         <div class="swiper-wrapper">
 
             <!-- LATEST NEW MOVIES UPLOADED 2DAYS BEFORE -->
-            {% if latest_movies_2_days %}
-            {% for movie in latest_movies_2_days %}
+            <!-- LATEST UPLOADED MOVIES LIST OF TEN EXCLUDED FROM 2DAYS MOVIES UPLOADED -->
+            {% for movie, is_new in latest_movies %}
             <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
                 class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
@@ -30,6 +30,7 @@
                         {{ gen.name }}
                         {% endfor %}
                     </span></p>
+                {% if is_new %}
                 <div class="top__absolute-bg">
                     <h1 class="glow">
                         <span class="new">n</span><span class="new">e</span><span class="new">w</span>
@@ -38,33 +39,13 @@
                     <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
                     {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
-            {% endif %}
-            <!-- LATEST UPLOADED MOVIES LIST OF TEN EXCLUDED FROM 2DAYS MOVIES UPLOADED -->
-            {% for movie in latest_movies %}
-            <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
-                class="latest_movies-cards-top-inner swiper-slide">
-                <div class="latest_movies-cards-inner">
-                    <img loading="lazy" class="latest_movies-cards--box" src="{{ movie.card_poster.url }}" alt="">
-                    <a href="{% url 'movie:single' movie.slug %}" style="background-color: transparent;"
-                        class="click_play">
-                        <div class="latest_movies-cards--box-inner">
-                            <i class="fa-solid fa-circle-play"></i>
-                        </div>
-                    </a>
-                </div>
-                <h4 class="text_title truncate text-slate-950 dark:text-zinc-50">{{ movie.title | safe }}</h4>
-                <p class="text-slate-950 dark:text-zinc-50">{{ movie.get_formatted_duration }} <span>
-                        {% for gen in movie.genre.all %}
-                        {{ gen.name }}
-                        {% endfor %}
-                    </span></p>
+                {% else %}
                 <div class="top__absolute-bg top__absolute-not-new-bg">
                     {% for gen in movie.quality.all %}
                     <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
