@@ -6,6 +6,9 @@ from django.core import serializers
 from django.db.models import Q
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
+from django.utils import timezone
+from datetime import timedelta
+
 
 from . import models
 from apps.entry import models as entry_models
@@ -53,6 +56,16 @@ class MoviesListPage(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        calculate_2_day = timezone.now() - timedelta(days=2)
+        calculate_movie_object = queryset.filter(
+            time_created__gte=calculate_2_day)
+
+        if calculate_movie_object.exists():
+            calculated_movie_ids = calculate_movie_object.values_list(
+                "id", flat=True)
+            queryset = queryset.exclude(id__in=calculated_movie_ids)
+
         filter_quality = self.request.GET.get("filter__movie-quality")
         search__movie = self.request.GET.get("search__movie")
         cache_key = make_template_fragment_key("movies_list_key")
@@ -63,7 +76,8 @@ class MoviesListPage(generic.ListView):
                 Q(actors__icontains=search__movie)
             )
             if filter_quality:
-                queryset = queryset.filter(quality__name__icontains=filter_quality)
+                queryset = queryset.filter(
+                    quality__name__icontains=filter_quality)
             if search__movie:
                 queryset = queryset.filter(
                     Q(title__icontains=search__movie) |
@@ -73,10 +87,38 @@ class MoviesListPage(generic.ListView):
         cache.delete(cache_key)
         return queryset.order_by("-time_created")
 
+    def get_single_new_movie(self):
+        calculate_2_day = timezone.now() - timedelta(days=2)
+        calculate_movie_object = movie_models.Movie.objects.all().filter(
+            time_created__gte=calculate_2_day)
+        
+        filter_quality = self.request.GET.get("filter__movie-quality")
+        search__movie = self.request.GET.get("search__movie")
+        cache_key = make_template_fragment_key("movies_list_key-new")
+        if filter_quality or search__movie:
+            calculate_movie_object = calculate_movie_object.filter(
+                Q(quality__name__icontains=filter_quality) |
+                Q(title__icontains=search__movie) |
+                Q(actors__icontains=search__movie)
+            )
+            if filter_quality:
+                calculate_movie_object = calculate_movie_object.filter(
+                    quality__name__icontains=filter_quality)
+            if search__movie:
+                calculate_movie_object = calculate_movie_object.filter(
+                    Q(title__icontains=search__movie) |
+                    Q(actors__icontains=search__movie)
+                )
+            cache.delete(cache_key)
+        cache.delete(cache_key)
+        return calculate_movie_object
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = entry_models.Category.objects.all()
+        context["new_movies"] = self.get_single_new_movie()
         return context
+
 
 # make classes to function names
 movie_single = MovieSingle.as_view()

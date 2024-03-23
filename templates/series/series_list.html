@@ -50,8 +50,7 @@
                 <div style="width: 18.5%; position: relative; margin-bottom: 50px;"
                     class="latest_movies-cards-top-inner">
                     <div class="latest_movies-cards-inner">
-                        <div class="latest_movies-cards--box"
-                            style="background-image: url({{ serie.card.url }});">
+                        <div class="latest_movies-cards--box" style="background-image: url({{ serie.card.url }});">
                         </div>
                         <a href="{% url 'serie:serie_detail' serie.slug %}" style="background-color: transparent;"
                             class="click_play">
@@ -66,9 +65,11 @@
                             {{ gen.name }}
                             {% endfor %}
                         </span></p>
-                    {% for gen in serie.quality.all %}
-                    <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
-                    {% endfor %}
+                    <div class="top__absolute-bg top__absolute-not-new-bg">
+                        {% for gen in serie.quality.all %}
+                        <span class="hd_movie-badge text-slate-950 dark:text-zinc-50">{{ gen.name }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -104,7 +105,8 @@
                     class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-white transition-all hover:bg-gray-900/10 active:bg-gray-900/20 {% if num == page_obj.number %}bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none{% endif %}"
                     type="button">
                     <a href="?page={{ num }}">
-                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">{{ num }}</span>
+                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">{{ num
+                            }}</span>
                     </a>
                 </button>
                 {% endfor %}
