@@ -139,23 +139,27 @@ if not DEBUG:
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
-CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-MEDIA_LOCATION = 'files/media'
-STATIC_LOCATION = 'static'
-AWS_LOCATION = 'files/media'
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL")
+    CDN_ENDPOINT_URL = os.environ.get("CDN_ENDPOINT_URL")
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    MEDIA_LOCATION = 'files/media'
+    STATIC_LOCATION = 'static'
+    AWS_LOCATION = 'files/media'
 
-STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
-MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
-# STATIC_URL = '/static/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
+    STATIC_URL = '%s/%s/' % (CDN_ENDPOINT_URL, STATIC_LOCATION)
+    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, MEDIA_LOCATION)
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
+
+if DEBUG:
+    STATIC_URL = '/static/'
+
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

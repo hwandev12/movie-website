@@ -8,13 +8,27 @@
         <!-- PC MENU -->
         <ul class="home__navigation-center pc_navigation flex just-content-center align-items-center m-0">
             <li>
-                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'entry:home' %}">Bosh Sahifa</a>
+                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'entry:home' %}">
+                    Bosh Sahifa
+                </a>
             </li>
             <li>
-                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'movie:movies_list' %}">Tarjima Filmlar</a>
+                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'search:search' %}">
+                    Tarjima Filmlar
+                </a>
             </li>
             <li>
-                <a class="text-slate-950 dark:text-zinc-50 uppercase glow" style="box-shadow: none; background-color: transparent;" href="#">
+                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'movie:movies_list' %}">
+                    Kinolar
+                </a>
+            </li>
+            <li>
+                <a class="text-slate-950 dark:text-zinc-50" href="{% url 'serie:series_list_view' %}">
+                    Seriallar
+                </a>
+            </li>
+            <li>
+                <a class="text-slate-950 dark:text-zinc-50 uppercase glow" style="box-shadow: none; background-color: transparent;" href="{% url 'search:search' %}?new_films_filter=new">
                     <span class="new uppercase">n</span><span class="new">e</span><span class="new">w</span>
                 </a>
             </li>
