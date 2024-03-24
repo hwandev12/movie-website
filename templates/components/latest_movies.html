@@ -13,7 +13,7 @@
             <!-- LATEST NEW MOVIES UPLOADED 2DAYS BEFORE -->
             <!-- LATEST UPLOADED MOVIES LIST OF TEN EXCLUDED FROM 2DAYS MOVIES UPLOADED -->
             {% for movie, is_new in latest_movies %}
-            <div style="width: 18.5% !important; position: relative; margin-bottom: 30px;"
+            <div style="width: 13.5% !important; position: relative; margin-bottom: 30px;"
                 class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
                     <img loading="lazy" class="latest_movies-cards--box" src="{{ movie.card_poster.url }}" alt="">
@@ -71,7 +71,7 @@
             <!-- LATEST NEW SERIES UPLOADED 2DAYS BEFORE -->
             <!-- LATEST UPLOADED SERIES LIST OF TEN EXCLUDED FROM 2DAYS SERIES UPLOADED -->
             {% for serie, is_new in latest_series %}
-            <div style="width: 18.5%; position: relative; margin-bottom: 30px;"
+            <div style="width: 13.5%; position: relative; margin-bottom: 30px;"
                 class="latest_movies-cards-top-inner swiper-slide">
                 <div class="latest_movies-cards-inner">
                     <img class="latest_movies-cards--box" loading="lazy" src="{{ serie.card.url }}" alt="No image">

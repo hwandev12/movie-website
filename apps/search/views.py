@@ -15,7 +15,7 @@ from apps.series import models as serie_models
 
 class SearchPage(generic.TemplateView):
     template_name = 'search/search_film.html'
-    paginate_by = 10
+    paginate_by = 12
 
     if not settings.DEBUG:
         def search(self):
