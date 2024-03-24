@@ -32,51 +32,22 @@ class MovieSingle(generic.DetailView):
         context['categories'] = entry_models.Category.objects.all()
         return context
 
-if not settings.DEBUG:
-    def get_single_video(request, ID):
-        is_movie = request.GET.get("is_movie")
-        if is_movie == 'movie':
-            cache_key_movie_trailer = "cache_key_movie_trailer"
-            get_movie_trailer_from_cache = cache.get(cache_key_movie_trailer)
-            movie = movie_models.Movie.objects.get(id=ID)
-            trailer = movie_models.Trailer.objects.get(movie=movie)
-            movie = serializers.serialize('json', [movie])
-            trailer = serializers.serialize("json", [trailer])
-            data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
-            if not get_movie_trailer_from_cache:
-                get_movie_trailer_from_cache = JsonResponse(data, safe=False)
-                cache.set(cache_key_movie_trailer, get_movie_trailer_from_cache, timeout=24*60*60)
-            return get_movie_trailer_from_cache
-        else:
-            cache_key_serie_trailer = "cache_key_serie_trailer"
-            get_serie_trailer_from_cache = cache.get(cache_key_serie_trailer)
-            serie = serie_models.Series.objects.get(id=ID)
-            serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
-            serie = serializers.serialize('json', [serie])
-            serie_trailer = serializers.serialize("json", [serie_trailer])
-            data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
-            if not get_serie_trailer_from_cache:
-                get_serie_trailer_from_cache = JsonResponse(data, safe=False)
-                cache.set(cache_key_movie_trailer, get_serie_trailer_from_cache, timeout=24*60*60)
-            return get_serie_trailer_from_cache
-
-if settings.DEBUG:
-    def get_single_video(request, ID):
-        is_movie = request.GET.get("is_movie")
-        if is_movie == 'movie':
-            movie = movie_models.Movie.objects.get(id=ID)
-            trailer = movie_models.Trailer.objects.get(movie=movie)
-            movie = serializers.serialize('json', [movie])
-            trailer = serializers.serialize("json", [trailer])
-            data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
-            return JsonResponse(data, safe=False)
-        else:
-            serie = serie_models.Series.objects.get(id=ID)
-            serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
-            serie = serializers.serialize('json', [serie])
-            serie_trailer = serializers.serialize("json", [serie_trailer])
-            data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
-            return JsonResponse(data, safe=False)
+def get_single_video(request, ID):
+    is_movie = request.GET.get("is_movie")
+    if is_movie == 'movie':
+        movie = movie_models.Movie.objects.get(id=ID)
+        trailer = movie_models.Trailer.objects.get(movie=movie)
+        movie = serializers.serialize('json', [movie])
+        trailer = serializers.serialize("json", [trailer])
+        data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
+        return JsonResponse(data, safe=False)
+    else:
+        serie = serie_models.Series.objects.get(id=ID)
+        serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
+        serie = serializers.serialize('json', [serie])
+        serie_trailer = serializers.serialize("json", [serie_trailer])
+        data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
+        return JsonResponse(data, safe=False)
 
 
 class MoviesListPage(generic.ListView):
@@ -135,7 +106,8 @@ class MoviesListPage(generic.ListView):
         calculate_movie_object_ids = calculate_movie_object.values_list(
             "id", flat=True)
         all_movies = self.get_queryset().all()
-        is_new_movie = [movies_id in calculate_movie_object_ids for movies_id in all_movies.values_list("id", flat=True)]
+        is_new_movie = [
+            movies_id in calculate_movie_object_ids for movies_id in all_movies.values_list("id", flat=True)]
         return is_new_movie
 
     def get_context_data(self, **kwargs):
@@ -143,7 +115,8 @@ class MoviesListPage(generic.ListView):
         context["categories"] = entry_models.Category.objects.all()
         is_movie = self.get_single_new_movie()
         movies_queryset = self.get_queryset()
-        combined_movies = [{"movie": movie, "is_new": is_new} for movie, is_new in zip(movies_queryset, is_movie)]
+        combined_movies = [{"movie": movie, "is_new": is_new}
+                           for movie, is_new in zip(movies_queryset, is_movie)]
         paginator = Paginator(combined_movies, self.paginate_by)
         page = self.request.GET.get('page')
         try:
