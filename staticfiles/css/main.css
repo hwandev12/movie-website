@@ -510,3 +510,6 @@ body {
 .glow_quality {
   animation: none !important;
 }
+.volume-range {
+  background-color: transparent;
+}
