@@ -9,6 +9,7 @@ from django.core.cache.utils import make_template_fragment_key
 from django.utils import timezone
 from datetime import timedelta
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 from itertools import chain
 
 
@@ -31,23 +32,51 @@ class MovieSingle(generic.DetailView):
         context['categories'] = entry_models.Category.objects.all()
         return context
 
+if not settings.DEBUG:
+    def get_single_video(request, ID):
+        is_movie = request.GET.get("is_movie")
+        if is_movie == 'movie':
+            cache_key_movie_trailer = "cache_key_movie_trailer"
+            get_movie_trailer_from_cache = cache.get(cache_key_movie_trailer)
+            movie = movie_models.Movie.objects.get(id=ID)
+            trailer = movie_models.Trailer.objects.get(movie=movie)
+            movie = serializers.serialize('json', [movie])
+            trailer = serializers.serialize("json", [trailer])
+            data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
+            if not get_movie_trailer_from_cache:
+                get_movie_trailer_from_cache = JsonResponse(data, safe=False)
+                cache.set(cache_key_movie_trailer, get_movie_trailer_from_cache, timeout=24*60*60)
+            return get_movie_trailer_from_cache
+        else:
+            cache_key_serie_trailer = "cache_key_serie_trailer"
+            get_serie_trailer_from_cache = cache.get(cache_key_serie_trailer)
+            serie = serie_models.Series.objects.get(id=ID)
+            serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
+            serie = serializers.serialize('json', [serie])
+            serie_trailer = serializers.serialize("json", [serie_trailer])
+            data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
+            if not get_serie_trailer_from_cache:
+                get_serie_trailer_from_cache = JsonResponse(data, safe=False)
+                cache.set(cache_key_movie_trailer, get_serie_trailer_from_cache, timeout=24*60*60)
+            return get_serie_trailer_from_cache
 
-def get_single_video(request, ID):
-    is_movie = request.GET.get("is_movie")
-    if is_movie == 'movie':
-        movie = movie_models.Movie.objects.get(id=ID)
-        trailer = movie_models.Trailer.objects.get(movie=movie)
-        movie = serializers.serialize('json', [movie])
-        trailer = serializers.serialize("json", [trailer])
-        data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
-        return JsonResponse(data, safe=False)
-    else:
-        serie = serie_models.Series.objects.get(id=ID)
-        serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
-        serie = serializers.serialize('json', [serie])
-        serie_trailer = serializers.serialize("json", [serie_trailer])
-        data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
-        return JsonResponse(data, safe=False)
+if settings.DEBUG:
+    def get_single_video(request, ID):
+        is_movie = request.GET.get("is_movie")
+        if is_movie == 'movie':
+            movie = movie_models.Movie.objects.get(id=ID)
+            trailer = movie_models.Trailer.objects.get(movie=movie)
+            movie = serializers.serialize('json', [movie])
+            trailer = serializers.serialize("json", [trailer])
+            data = {"id": ID, "movie_ajax": movie, "trailer_ajax": trailer}
+            return JsonResponse(data, safe=False)
+        else:
+            serie = serie_models.Series.objects.get(id=ID)
+            serie_trailer = serie_models.SeriesTrailer.objects.get(movie=serie)
+            serie = serializers.serialize('json', [serie])
+            serie_trailer = serializers.serialize("json", [serie_trailer])
+            data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
+            return JsonResponse(data, safe=False)
 
 
 class MoviesListPage(generic.ListView):
@@ -55,37 +84,49 @@ class MoviesListPage(generic.ListView):
     model = movie_models.Movie
     template_name = 'movies/movies_list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-
-        # calculate_2_day = timezone.now() - timedelta(days=2)
-        # calculate_movie_object = queryset.filter(
-        #     time_created__gte=calculate_2_day)
-
-        # if calculate_movie_object.exists():
-        #     calculated_movie_ids = calculate_movie_object.values_list(
-        #         "id", flat=True)
-        #     queryset = queryset.exclude(id__in=calculated_movie_ids)
-
-        filter_quality = self.request.GET.get("filter__movie-quality")
-        search__movie = self.request.GET.get("search__movie")
-        cache_key = make_template_fragment_key("movies_list_key")
-        if filter_quality or search__movie:
-            queryset = queryset.filter(
-                Q(quality__name__icontains=filter_quality) |
-                Q(title__icontains=search__movie) |
-                Q(actors__icontains=search__movie)
-            )
-            if filter_quality:
+    if not settings.DEBUG:
+        def get_queryset(self):
+            filter_quality = self.request.GET.get("filter__movie-quality")
+            search__movie = self.request.GET.get("search__movie")
+            cache_key = "movies_list_key"
+            queryset_from_cache = cache.get(cache_key)
+            if not queryset_from_cache:
+                queryset_from_cache = super().get_queryset()
+                if filter_quality or search__movie:
+                    queryset_from_cache = queryset_from_cache.filter(
+                        Q(quality__name__icontains=filter_quality) |
+                        Q(title__icontains=search__movie) |
+                        Q(actors__icontains=search__movie)
+                    )
+                    if filter_quality:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            quality__name__icontains=filter_quality)
+                    if search__movie:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            Q(title__icontains=search__movie) |
+                            Q(actors__icontains=search__movie)
+                        )
+            return queryset_from_cache.order_by("-time_created")
+    else:
+        def get_queryset(self):
+            queryset = super().get_queryset()
+            filter_quality = self.request.GET.get("filter__movie-quality")
+            search__movie = self.request.GET.get("search__movie")
+            if filter_quality or search__movie:
                 queryset = queryset.filter(
-                    quality__name__icontains=filter_quality)
-            if search__movie:
-                queryset = queryset.filter(
+                    Q(quality__name__icontains=filter_quality) |
                     Q(title__icontains=search__movie) |
                     Q(actors__icontains=search__movie)
                 )
-            cache.delete(cache_key)
-        return queryset.order_by("-time_created")
+                if filter_quality:
+                    queryset = queryset.filter(
+                        quality__name__icontains=filter_quality)
+                if search__movie:
+                    queryset = queryset.filter(
+                        Q(title__icontains=search__movie) |
+                        Q(actors__icontains=search__movie)
+                    )
+            return queryset.order_by("-time_created")
 
     def get_single_new_movie(self):
         calculate_2_day = timezone.now() - timedelta(days=2)

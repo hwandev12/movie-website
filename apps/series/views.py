@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.utils import timezone
 from datetime import timedelta
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.conf import settings
 
 from . import models as serie_models
 from apps.entry import models as entry_models
@@ -112,28 +113,48 @@ class SeriesListPage(generic.ListView):
     context_object_name = 'series'
     template_name = 'series/series_list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        filter_quality = self.request.GET.get("filter__movie-quality")
-        search__movie = self.request.GET.get("search__movie")
-        cache_key = make_template_fragment_key("series_list_key")
-        if filter_quality or search__movie:
-            queryset = queryset.filter(
-                Q(quality__name__icontains=filter_quality) |
-                Q(title__icontains=search__movie) |
-                Q(actors__icontains=search__movie)
-            )
-            if filter_quality:
+    if not settings.DEBUG:
+        def get_queryset(self):
+            filter_quality = self.request.GET.get("filter__movie-quality")
+            search__movie = self.request.GET.get("search__movie")
+            cache_key = "series_list_key"
+            queryset_from_cache = cache.get(cache_key)
+            if not queryset_from_cache:
+                if filter_quality or search__movie:
+                    queryset_from_cache = queryset_from_cache.filter(
+                        Q(quality__name__icontains=filter_quality) |
+                        Q(title__icontains=search__movie) |
+                        Q(actors__icontains=search__movie)
+                    )
+                    if filter_quality:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            quality__name__icontains=filter_quality)
+                    if search__movie:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            Q(title__icontains=search__movie) |
+                            Q(actors__icontains=search__movie)
+                        )
+            return queryset_from_cache.order_by("-time_created")
+    else:
+        def get_queryset(self):
+            queryset = super().get_queryset()
+            filter_quality = self.request.GET.get("filter__movie-quality")
+            search__movie = self.request.GET.get("search__movie")
+            if filter_quality or search__movie:
                 queryset = queryset.filter(
-                    quality__name__icontains=filter_quality)
-            if search__movie:
-                queryset = queryset.filter(
+                    Q(quality__name__icontains=filter_quality) |
                     Q(title__icontains=search__movie) |
                     Q(actors__icontains=search__movie)
                 )
-            cache.delete(cache_key)
-        cache.delete(cache_key)
-        return queryset.order_by("-time_created")
+                if filter_quality:
+                    queryset = queryset.filter(
+                        quality__name__icontains=filter_quality)
+                if search__movie:
+                    queryset = queryset.filter(
+                        Q(title__icontains=search__movie) |
+                        Q(actors__icontains=search__movie)
+                    )
+            return queryset.order_by("-time_created")
 
     def get_single_new_serie(self):
         calculate_2_day = timezone.now() - timedelta(days=2)

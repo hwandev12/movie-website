@@ -15,12 +15,27 @@ from apps.series import models as series_models
 
 import random
 import json
+import logging
+import platform
+import datetime
+
+logger = logging.getLogger(__name__)
 
 
 class HomePageView(generic.ListView):
     model = models.Category
     context_object_name = "categories"
     template_name = "home.html"
+    
+    def who_is_entering_website_show_loggers(self):
+        ip_address = self.request.META.get("REMOTE_ADDR")
+        user_agent = self.request.META.get("HTTP_USER_AGENT")
+        device_info = platform.node()
+        browser_type = None
+        time = "%s hours" % str(datetime.datetime.now())
+        if user_agent:
+            browser_type = user_agent.split('/')[0]
+        logger.info(f"IP Address: {ip_address}, Device Info: {device_info}, Browser Type: {browser_type} at {time}")
 
     @staticmethod
     def get_latest_movies():
@@ -43,11 +58,15 @@ class HomePageView(generic.ListView):
         """
         Get the latest 10 series.
         """
-        latest_series = series_models.Series.objects.all().order_by("-time_created")[:10]
+        latest_series = series_models.Series.objects.all().order_by(
+            "-time_created")[:10]
         two_days_filter_get_variable = timezone.now() - timedelta(days=2)
-        new_series_uploaded = series_models.Series.objects.filter(time_created__gte=two_days_filter_get_variable)
-        new_series_uploaded_ids = new_series_uploaded.values_list("id", flat=True)
-        is_new_serie = [True if series_id in new_series_uploaded_ids else False for series_id in latest_series.values_list("id", flat=True)]
+        new_series_uploaded = series_models.Series.objects.filter(
+            time_created__gte=two_days_filter_get_variable)
+        new_series_uploaded_ids = new_series_uploaded.values_list(
+            "id", flat=True)
+        is_new_serie = [
+            True if series_id in new_series_uploaded_ids else False for series_id in latest_series.values_list("id", flat=True)]
         return zip(latest_series, is_new_serie)
 
     @staticmethod
@@ -73,10 +92,16 @@ class HomePageView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_movies'] = self.get_latest_movies_cached()
-        context['latest_series'] = self.get_latest_series_cached()
-        context['latest_shows'] = self.get_shows_for_main_cached()
-        context['DEBUG'] = settings.DEBUG
+        if not settings.DEBUG:
+            info = self.who_is_entering_website_show_loggers()
+            context['latest_movies'] = self.get_latest_movies_cached()
+            context['latest_series'] = self.get_latest_series_cached()
+            context['latest_shows'] = self.get_shows_for_main_cached()
+        else:
+            info = self.who_is_entering_website_show_loggers()
+            context['latest_movies'] = self.get_latest_movies()
+            context['latest_series'] = self.get_latest_series()
+            context['latest_shows'] = self.get_shows_for_main()
         return context
 
     @staticmethod
@@ -123,7 +148,7 @@ class HomePageView(generic.ListView):
         could be called in everywhere
         """
         cache.delete_many(
-            ['latest_movies-key', 'latest_series-key', 'get_shows-key'])
+            ['latest_movies-key', 'latest_series-key', 'get_shows-key', 'cache_key_movie_trailer', 'cache_key_serie_trailer', 'movies_list_key', 'series_list_key', 'searching_film_cache_key', 'added_new_films_keys'])
 
 
 # make classes as views name

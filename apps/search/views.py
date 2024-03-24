@@ -4,16 +4,19 @@ from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils import timezone
 from datetime import timedelta
+from django.core.cache import cache
+from django.conf import settings
 
 
 from apps.entry import models as entry_models
 from apps.movie import models as movie_models
 from apps.series import models as serie_models
 
+
 class SearchPage(generic.TemplateView):
     template_name = 'search/search_film.html'
     paginate_by = 10
-    
+
     def search(self):
         movies = movie_models.Movie.objects.all().order_by("-time_created")
         series = serie_models.Series.objects.all().order_by("-time_created")
@@ -26,7 +29,7 @@ class SearchPage(generic.TemplateView):
                     Q(actors__icontains=search_film)
                 )
                 found_series = series.filter(
-                    Q(title__icontains=search_film) | 
+                    Q(title__icontains=search_film) |
                     Q(actors__icontains=search_film)
                 )
                 all_films = list(chain(found_movies, found_series))
@@ -37,7 +40,7 @@ class SearchPage(generic.TemplateView):
                     reverse=True
                 )
         return all_films
-    
+
     def get_new_added_films(self):
         all_movies = movie_models.Movie.objects.all().order_by("-time_created")
         all_series = serie_models.Series.objects.all().order_by("-time_created")
@@ -47,16 +50,27 @@ class SearchPage(generic.TemplateView):
         calculate_serie_object = serie_models.Series.objects.all().filter(
             time_created__gte=calculate_2_day
         )
-        calculate_movie_object_ids = calculate_movie_object.values_list("id", flat=True)
-        calculate_serie_object_ids = calculate_serie_object.values_list("id", flat=True)
-        new_movies = {movie.id: True if movie.id in calculate_movie_object_ids else False for movie in all_movies}
-        new_series = {serie.id: True if serie.id in calculate_serie_object_ids else False for serie in all_series}
+        calculate_movie_object_ids = calculate_movie_object.values_list(
+            "id", flat=True)
+        calculate_serie_object_ids = calculate_serie_object.values_list(
+            "id", flat=True)
+        new_movies = {
+            movie.id: True if movie.id in calculate_movie_object_ids else False for movie in all_movies}
+        new_series = {
+            serie.id: True if serie.id in calculate_serie_object_ids else False for serie in all_series}
         return new_movies, new_series
-        
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = entry_models.Category.objects.all()
-        search = self.search()
+        search = None
+        new_movies, new_series = None, None
+        if settings.DEBUG:
+            search = self.search()
+            new_movies, new_series = self.get_new_added_films()
+        else:
+            search = self.get_searched_films_from_cache()
+            new_movies, new_series = self.get_new_added_films_from_cache()
         paginator = Paginator(search, self.paginate_by)
         page = self.request.GET.get("page")
         try:
@@ -66,21 +80,43 @@ class SearchPage(generic.TemplateView):
         except EmptyPage:
             results = paginator.page(paginator.num_pages)
 
-        new_movies, new_series = self.get_new_added_films()
-        
         for obj in results.object_list:
             if isinstance(obj, movie_models.Movie):
                 obj.is_new = new_movies.get(obj.id, False)
             elif isinstance(obj, serie_models.Series):
                 obj.is_new = new_series.get(obj.id, False)
-        
+
         context['results'] = results
         context['new_movies'] = new_movies
         context['new_series'] = new_series
-        print(new_movies)
-        
         return context
-            
-    
+
+    @staticmethod
+    def get_searched_films_from_cache():
+        """
+        Cache: get films from here if found in cache
+        IF FOUND IT returns films come from cache
+        """
+        searching_film_cache_key = "searching_film_cache_key"
+        get_searched_film_from_cache = cache.get(searching_film_cache_key)
+        if not get_searched_film_from_cache:
+            get_searched_film_from_cache = SearchPage.search()
+            cache.set(searching_film_cache_key,
+                      get_searched_film_from_cache, timeout=24*60*60)
+        return get_searched_film_from_cache
+
+    @staticmethod
+    def get_new_added_films_from_cache():
+        """
+        add newly added movies to cache
+        """
+        added_new_films_keys = "added_new_films_keys"
+        get_newly_added_films_from_cache = cache.get(added_new_films_keys)
+        if not get_newly_added_films_from_cache:
+            get_newly_added_films_from_cache = SearchPage.get_new_added_films()
+            cache.set(added_new_films_keys,
+                      get_newly_added_films_from_cache, timeout=24*60*60)
+        return get_newly_added_films_from_cache
+
 
 search_page = SearchPage.as_view()

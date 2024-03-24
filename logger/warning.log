@@ -1,92 +1,8 @@
-Watching for file changes with StatReloader
-"GET / HTTP/1.1" 200 62297
-"GET /static/css/output.css HTTP/1.1" 304 0
-"GET /static/css/main.css HTTP/1.1" 304 0
-"GET /static/js/video.js HTTP/1.1" 304 0
-"GET /static/css/tailwindcss/base HTTP/1.1" 404 1920
-"GET /static/css/media.css HTTP/1.1" 304 0
-"GET /static/css/tailwindcss/utilities HTTP/1.1" 404 1935
-"GET /static/css/tailwindcss/components HTTP/1.1" 404 1938
-"GET / HTTP/1.1" 200 62298
-"GET /static/css/tailwindcss/components HTTP/1.1" 404 1938
-"GET /static/css/tailwindcss/utilities HTTP/1.1" 404 1935
-"GET /static/css/tailwindcss/base HTTP/1.1" 404 1920
-"GET / HTTP/1.1" 200 62295
-"GET /static/css/navigation.css HTTP/1.1" 200 2022
-"GET /static/css/movies_list.css HTTP/1.1" 200 1335
-"GET /static/css/output.css HTTP/1.1" 200 72587
-"GET /static/js/carousel.js HTTP/1.1" 200 0
-"GET /static/js/navigation.js HTTP/1.1" 200 127
-"GET /static/css/main.css HTTP/1.1" 200 8547
-"GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 200 12621
-"GET /static/js/main.js HTTP/1.1" 200 2749
-"GET /static/js/tw-elements.umd.min.js HTTP/1.1" 200 113970
-"GET /static/js/video.js HTTP/1.1" 200 4673
-"GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 200 13578
-"GET /static/js/get_single_video.js HTTP/1.1" 200 1035
-"GET /static/css/tailwindcss/base HTTP/1.1" 404 1920
-"GET /static/css/tailwindcss/components HTTP/1.1" 404 1938
-"GET /static/css/tailwindcss/utilities HTTP/1.1" 404 1935
-"GET /static/css/media.css HTTP/1.1" 200 15591
-"GET /static/css/single_movie.css HTTP/1.1" 200 4321
-"GET /static/debug_toolbar/js/utils.js HTTP/1.1" 200 4527
-"GET /static/debug_toolbar/css/print.css HTTP/1.1" 200 43
-"GET /movie_posters/damselposter.jpeg HTTP/1.1" 200 205904
-"GET /movie_posters/tronposter.jpg HTTP/1.1" 200 430599
-"GET /movie_posters/widowposter.webp HTTP/1.1" 200 169772
-"GET /movie_posters/spiderposter.jpg HTTP/1.1" 200 312289
-"GET /movie_posters/deadposter.jpg HTTP/1.1" 200 697866
-Not Found: /favicon.ico
-"GET /favicon.ico HTTP/1.1" 404 12266
-"GET /card_poster/widowcard.jpg HTTP/1.1" 200 278947
-"GET /card_poster/deadcard.jpg HTTP/1.1" 200 441279
-"GET /movie_posters/kaneposter.jpg HTTP/1.1" 200 2749955
-"GET /card_poster/damselcard.jpg HTTP/1.1" 200 513343
-"GET /card_poster/kanecard.jpg HTTP/1.1" 200 218600
-"GET /card_poster/readycard.jpg HTTP/1.1" 200 210284
-"GET /card_poster/spidercard.jpg HTTP/1.1" 200 389178
-"GET /movie_posters/avengersposter_64Iteai.webp HTTP/1.1" 200 123536
-"GET /series_posters/luciferposter_4coMJ62.jpg HTTP/1.1" 200 109843
-"GET /series_cards/lucifercard_wxSBXkU.jpg HTTP/1.1" 200 552448
-"GET /card_poster/avengerscard_CPu1Svi.jpg HTTP/1.1" 200 514256
-"GET /card_poster/troncard.jpg HTTP/1.1" 200 1370522
-"GET / HTTP/1.1" 200 62295
-"GET / HTTP/1.1" 200 62295
-"GET / HTTP/1.1" 200 62298
-"GET / HTTP/1.1" 200 62295
-"GET /__debug__/render_panel/?store_id=3faaf1bea1da4ce1b97ce2b83f5c1ad5&panel_id=CachePanel HTTP/1.1" 200 11915
-"GET / HTTP/1.1" 200 62298
-"GET / HTTP/1.1" 200 62295
-"GET /static/css/output.css HTTP/1.1" 304 0
-"GET /static/css/media.css HTTP/1.1" 304 0
-"GET /static/css/tailwindcss/components HTTP/1.1" 404 1938
-"GET /static/css/tailwindcss/base HTTP/1.1" 404 1920
-"GET /static/css/tailwindcss/utilities HTTP/1.1" 404 1935
-"GET /__debug__/render_panel/?store_id=13b24735f1c942efa40a19739db9e25c&panel_id=CachePanel HTTP/1.1" 200 11915
-"GET / HTTP/1.1" 200 62296
-"GET / HTTP/1.1" 200 62295
-Watching for file changes with StatReloader
 Not Found: /favicon.ico
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\apps\logger_cache_keys_middleware.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
 Not Found: /favicon.ico
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
 Internal Server Error: /
 Traceback (most recent call last):
   File "C:\Users\Khusan Akhmedov\Documents\movie\.environment\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
@@ -110,8 +26,6 @@ Traceback (most recent call last):
   File "C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py", line 29, in get_cache_keys
     for key in cache:
 TypeError: 'ConnectionProxy' object is not iterable
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
 Internal Server Error: /
 Traceback (most recent call last):
   File "C:\Users\Khusan Akhmedov\Documents\movie\.environment\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
@@ -140,11 +54,7 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'LocMemCache' object has no attribute 'keys'
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
 Internal Server Error: /
 Traceback (most recent call last):
   File "C:\Users\Khusan Akhmedov\Documents\movie\.environment\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
@@ -199,39 +109,5 @@ Traceback (most recent call last):
     return getattr(self._connections[self._alias], item)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'FileBasedCache' object has no attribute 'keys'
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\movie\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\series\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\search\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\search\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla
 Not Found: /favicon.ico
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla
-C:\Users\Khusan Akhmedov\Documents\movie\apps\entry\views.py changed, reloading.
-Watching for file changes with StatReloader
-IP Address: 127.0.0.1, Device Info: DESKTOP-1L48E41, Browser Type: Mozilla at 2024-03-24 12:26:53.638259 hours
 Not Found: /favicon.ico
-C:\Users\Khusan Akhmedov\Documents\movie\backend\settings.py changed, reloading.
-Watching for file changes with StatReloader
