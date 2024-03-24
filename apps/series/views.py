@@ -120,6 +120,7 @@ class SeriesListPage(generic.ListView):
             cache_key = "series_list_key"
             queryset_from_cache = cache.get(cache_key)
             if not queryset_from_cache:
+                queryset_from_cache = super().get_queryset()
                 if filter_quality or search__movie:
                     queryset_from_cache = queryset_from_cache.filter(
                         Q(quality__name__icontains=filter_quality) |

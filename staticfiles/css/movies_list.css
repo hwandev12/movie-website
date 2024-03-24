@@ -2,7 +2,8 @@
   width: 100%;
   height: auto;
   position: relative;
-  border-top: 3px solid rgba(50, 205, 50, 0.8);
+  border-top: 2px solid rgba(50, 205, 50, 0.8);
+  margin-top: -2px;
 }
 .movies__list-top-wrapper {
     width: 100%;
