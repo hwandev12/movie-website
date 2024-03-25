@@ -68,7 +68,18 @@
                 <a href="{% url 'entry:home' %}" class="text-slate-950 dark:text-zinc-50">Bosh Sahifa</a>
             </li>
             <li>
-                <a href="{% url 'movie:movies_list' %}" class="text-slate-950 dark:text-zinc-50">Tarjima Filmlar</a>
+                <a href="{% url 'search:search' %}" class="text-slate-950 dark:text-zinc-50">Tarjima Filmlar</a>
+            </li>
+            <li>
+                <a href="{% url 'movie:movies_list' %}" class="text-slate-950 dark:text-zinc-50">Kinolar</a>
+            </li>
+            <li>
+                <a href="{% url 'serie:series_list_view' %}" class="text-slate-950 dark:text-zinc-50">Seriallar</a>
+            </li>
+            <li>
+                <a href="{% url 'search:search' %}?new_films_filter=new" class="text-slate-950 dark:text-zinc-50 glow" style="box-shadow: none; background-color: transparent;">
+                    <span class="new uppercase">n</span><span class="new uppercase">e</span><span class="new uppercase">w</span>
+                </a>
             </li>
             {% for category in categories %}
             <li class="nav__janr home__phone-janr relative" id="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-toggle-ref data-twe-ripple-init data-twe-ripple-color="light">
