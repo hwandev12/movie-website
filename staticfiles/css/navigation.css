@@ -31,7 +31,7 @@
   display: inline-block;
   font-weight: 600;
   letter-spacing: 0.1px;
-  font-size: 15px;
+  font-size: 13px;
   transition: 0.2s all ease;
 }
 .home__navigation-center > li i {
@@ -150,6 +150,10 @@
   height: 100%;
   background-color: orangered;
 }
+.pc_navigation > li:nth-child(7):hover::before {
+  height: 100%;
+  background-color: orchid;
+}
 .pc_navigation > li:first-child {
   border-bottom: 2px solid #442288;
 }
@@ -167,4 +171,7 @@
 }
 .pc_navigation > li:nth-child(6) {
   border-bottom: 2px solid orangered;
+}
+.pc_navigation > li:nth-child(7) {
+  border-bottom: 2px solid orchid;
 }
