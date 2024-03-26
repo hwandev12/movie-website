@@ -2337,7 +2337,6 @@ video::-webkit-media-controls-enclosure {
     border-width: 1px;
     border-style: solid;
     padding: 5px 15px;
-    border-radius: 15px;
   }
 
   .home__navigation-phone li {
@@ -2636,7 +2635,6 @@ video::-webkit-media-controls-enclosure {
     border-width: 1px;
     border-style: solid;
     padding: 5px 15px;
-    border-radius: 15px;
   }
 
   .home__navigation-phone li {
