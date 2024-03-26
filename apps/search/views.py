@@ -19,12 +19,12 @@ class SearchPage(generic.TemplateView):
 
     if not settings.DEBUG:
         def search(self):
+            movies = movie_models.Movie.objects.all().order_by("-time_created")
+            series = serie_models.Series.objects.all().order_by("-time_created")
             calculate_2_day = timezone.now() - timedelta(days=2)
             cache_key = "searching_film_cache_key"
             queryset_from_search = cache.get(cache_key)
             if not queryset_from_search:
-                movies = movie_models.Movie.objects.all().order_by("-time_created")
-                series = serie_models.Series.objects.all().order_by("-time_created")
                 queryset_from_search = list((chain(movies, series)))
                 if self.request.method == 'GET':
                     search_film = self.request.GET.get("search__all_films")
@@ -55,7 +55,40 @@ class SearchPage(generic.TemplateView):
                             key=lambda x: x.time_created,
                             reverse=True
                         )
-            return queryset_from_search
+                cache.set(cache_key, queryset_from_search)
+                return queryset_from_search
+            else:
+                queryset_from_search = list((chain(movies, series)))
+                if self.request.method == 'GET':
+                    search_film = self.request.GET.get("search__all_films")
+                    new_films_filter = self.request.GET.get("new_films_filter")
+                    if search_film:
+                        found_movies = movies.filter(
+                            Q(title__icontains=search_film) |
+                            Q(actors__icontains=search_film)
+                        )
+                        found_series = series.filter(
+                            Q(title__icontains=search_film) |
+                            Q(actors__icontains=search_film)
+                        )
+                        queryset_from_search = list(
+                            chain(found_movies, found_series))
+                    elif new_films_filter == 'new':
+                        found_movies = movies.filter(
+                            time_created__gte=calculate_2_day
+                        )
+                        found_series = series.filter(
+                            time_created__gte=calculate_2_day
+                        )
+                        queryset_from_search = list(
+                            chain(found_movies, found_series))
+                    else:
+                        queryset_from_search = sorted(
+                            chain(movies, series),
+                            key=lambda x: x.time_created,
+                            reverse=True
+                        )
+                return queryset_from_search
 
     if settings.DEBUG:
         def search(self):
@@ -149,8 +182,7 @@ class SearchPage(generic.TemplateView):
         get_newly_added_films_from_cache = cache.get(added_new_films_keys)
         if not get_newly_added_films_from_cache:
             get_newly_added_films_from_cache = SearchPage.get_new_added_films()
-            cache.set(added_new_films_keys,
-                      get_newly_added_films_from_cache, timeout=24*60*60)
+            cache.set(added_new_films_keys, get_newly_added_films_from_cache)
         return get_newly_added_films_from_cache
 
 

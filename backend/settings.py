@@ -132,9 +132,11 @@ if not DEBUG:
         "default": {
             "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
             "LOCATION": "/var/tmp/django_cache",
-            "TIMEOUT": 24*60*60
         }
     }
+    
+CACHE_DEFAULT_TIMEOUT = 86400
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -77,7 +77,24 @@ class MoviesListPage(generic.ListView):
                             Q(title__icontains=search__movie) |
                             Q(actors__icontains=search__movie)
                         )
-            return queryset_from_cache.order_by("-time_created")
+                cache.set(cache_key, queryset_from_cache)
+                return queryset_from_cache.order_by("-time_created")
+            else:
+                if filter_quality or search__movie:
+                    queryset_from_cache = queryset_from_cache.filter(
+                        Q(quality__name__icontains=filter_quality) |
+                        Q(title__icontains=search__movie) |
+                        Q(actors__icontains=search__movie)
+                    )
+                    if filter_quality:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            quality__name__icontains=filter_quality)
+                    if search__movie:
+                        queryset_from_cache = queryset_from_cache.filter(
+                            Q(title__icontains=search__movie) |
+                            Q(actors__icontains=search__movie)
+                        )
+                return queryset_from_cache.order_by("-time_created")
     else:
         def get_queryset(self):
             queryset = super().get_queryset()

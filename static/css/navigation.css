@@ -60,7 +60,7 @@
   left: -220px;
   border-top: 3px solid #28b5f5;
   background-color: #131722;
-  top: 77px;
+  top: 71px;
   padding: 15px;
 }
 .dropdown__janr ul li {
@@ -175,12 +175,13 @@
 .pc_navigation > li:nth-child(6) {
   border-bottom: 2px solid orangered;
 }
-<<<<<<< HEAD
+
 .logo {
   position: relative;
   top: -42px;
   text-decoration: none;
   display: inline-block;
+  width: 163px;
 }
 
 .logo_tv {
@@ -207,8 +208,7 @@
     transform: rotate(360deg);
   }
 }
-=======
 .pc_navigation > li:nth-child(7) {
   border-bottom: 2px solid orchid;
 }
->>>>>>> origin/main
+

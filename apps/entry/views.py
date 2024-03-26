@@ -26,7 +26,17 @@ class HomePageView(generic.ListView):
     model = models.Category
     context_object_name = "categories"
     template_name = "home.html"
-    
+
+    if not settings.DEBUG:
+        def get_queryset(self):
+            queryset = super().get_queryset()
+            base_queryset_key = "category_cache_key"
+            queryset_from_cache = cache.get(base_queryset_key)
+            if not queryset_from_cache:
+                queryset_from_cache = super().get_queryset()
+                cache.set(base_queryset_key, queryset_from_cache)
+            return queryset_from_cache
+
     def who_is_entering_website_show_loggers(self):
         ip_address = self.request.META.get("REMOTE_ADDR")
         user_agent = self.request.META.get("HTTP_USER_AGENT")
@@ -35,7 +45,8 @@ class HomePageView(generic.ListView):
         time = "%s hours" % str(datetime.datetime.now())
         if user_agent:
             browser_type = user_agent.split('/')[0]
-        logger.info(f"IP Address: {ip_address}, Device Info: {device_info}, Browser Type: {browser_type} at {time}")
+        logger.info(
+            f"IP Address: {ip_address}, Device Info: {device_info}, Browser Type: {browser_type} at {time}")
 
     @staticmethod
     def get_latest_movies():
@@ -113,7 +124,7 @@ class HomePageView(generic.ListView):
         latest_movies = cache.get(cache_key)
         if not latest_movies:
             latest_movies = HomePageView.get_latest_movies()
-            cache.set(cache_key, latest_movies, timeout=24*60*60)
+            cache.set(cache_key, latest_movies)
         return latest_movies
 
     @staticmethod
@@ -125,7 +136,7 @@ class HomePageView(generic.ListView):
         latest_series = cache.get(cache_key)
         if not latest_series:
             latest_series = HomePageView.get_latest_series()
-            cache.set(cache_key, latest_series, timeout=24*60*60)
+            cache.set(cache_key, latest_series)
         return latest_series
 
     @staticmethod
@@ -137,8 +148,7 @@ class HomePageView(generic.ListView):
         get_shows_form_main_variable = cache.get(cache_key)
         if not get_shows_form_main_variable:
             get_shows_form_main_variable = HomePageView.get_shows_for_main()
-            cache.set(cache_key, get_shows_form_main_variable,
-                      timeout=24*60*60)
+            cache.set(cache_key, get_shows_form_main_variable)
         return get_shows_form_main_variable
 
     @staticmethod
