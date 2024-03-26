@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.home__navigation {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.home__nav-logo {
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 700;
+}
+.home__nav-logo span {
+  color: #28b5f5;
+  font-weight: 800;
+}
+.home__navigation-center > li {
+  list-style: none;
+  position: relative;
+  padding-right: 30px;
+  padding-left: 30px;
+  z-index: 100;
+}
+
+.home__navigation-center > li a {
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  font-size: 13px;
+  transition: 0.2s all ease;
+}
+.home__navigation-center > li i {
+  font-size: 11px;
+}
+.home__navigation-center > li > a {
+  padding: 26px 0px;
+  position: relative;
+  z-index: 200;
+  text-transform: uppercase;
+}
+.home__navigation-center > li i {
+  margin-left: 5px;
+}
+.home__navigation-center {
+  position: relative;
+}
+.dropdown__janr {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  width: 600px;
+  height: auto;
+  max-height: 35vh;
+  left: -220px;
+  border-top: 3px solid #28b5f5;
+  background-color: #131722;
+  top: 77px;
+  padding: 15px;
+}
+.dropdown__janr ul li {
+  margin-bottom: 10px;
+  width: 30%;
+  text-align: justify;
+  display: inline-block;
+}
+.dropdown__janr ul li a {
+  display: inline-block;
+  width: 100%;
+}
+.dropdown__janr ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav__janr:hover .dropdown__janr {
+  display: block !important;
+}
+.nav__janr > a {
+  padding: 26px 0px !important;
+}
+.home__navigation-phone {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* padding: 20px; */
+  height: 0;
+  transition: 2s height ease;
+  z-index: 500;
+  display: none;
+}
+.home__navigation-phone.active {
+  transform: translateY(0);
+  height: 230px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 5px 15px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.filter-white {
+  filter: invert(100%) sepia(21%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+}
+.filter-black {
+  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+}
+.pc_navigation > li::before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  content: "";
+  transition: 0.3s all ease;
+  z-index: 10;
+}
+.pc_navigation > li:hover a {
+  color: #fff;
+}
+.pc_navigation > li:first-child:hover::before {
+  height: 100%;
+  background-color: #442288;
+}
+.pc_navigation > li:nth-child(2):hover::before {
+  height: 100%;
+  background-color: #6ca2ea;
+}
+.pc_navigation > li:nth-child(3):hover::before {
+  height: 100%;
+  background-color: #b5d33d;
+}
+.pc_navigation > li:nth-child(4):hover::before {
+  height: 100%;
+  background-color: #fed23f;
+}
+.pc_navigation > li:nth-child(5):hover::before {
+  height: 100%;
+  background-color: #eb7d5b;
+}
+.pc_navigation > li:nth-child(6):hover::before {
+  height: 100%;
+  background-color: orangered;
+}
+.pc_navigation > li:nth-child(7):hover::before {
+  height: 100%;
+  background-color: orchid;
+}
+.pc_navigation > li:first-child {
+  border-bottom: 2px solid #442288;
+}
+.pc_navigation > li:nth-child(2) {
+  border-bottom: 2px solid #6ca2ea;
+}
+.pc_navigation > li:nth-child(3) {
+  border-bottom: 2px solid #b5d33d;
+}
+.pc_navigation > li:nth-child(4) {
+  border-bottom: 2px solid #fed23f;
+}
+.pc_navigation > li:nth-child(5) {
+  border-bottom: 2px solid #eb7d5b;
+}
+.pc_navigation > li:nth-child(6) {
+  border-bottom: 2px solid orangered;
+}
+<<<<<<< HEAD
+.logo {
+  position: relative;
+  top: -42px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logo_tv {
+  position: absolute;
+  max-width: 163px !important;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: 50%;
+  width: 163px;
+}
+.reel__animation {
+  max-width: 40px !important;
+  position: absolute;
+  top: 22px;
+  left: 52px;
+  width: 40px;
+  object-fit: cover;
+  object-position: 50%;
+  animation: reel 10s running infinite linear;
+}
+@keyframes reel {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+=======
+.pc_navigation > li:nth-child(7) {
+  border-bottom: 2px solid orchid;
+}
+>>>>>>> origin/main
