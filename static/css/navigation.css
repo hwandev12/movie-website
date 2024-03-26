@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .home__nav-logo {
   text-decoration: none;
@@ -107,11 +108,13 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.filter-white{
-  filter: invert(100%) sepia(21%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+.filter-white {
+  filter: invert(100%) sepia(21%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
 }
 .filter-black {
-  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
 }
 .pc_navigation > li::before {
   position: absolute;
@@ -132,19 +135,19 @@
 }
 .pc_navigation > li:nth-child(2):hover::before {
   height: 100%;
-  background-color: #6CA2EA;
+  background-color: #6ca2ea;
 }
 .pc_navigation > li:nth-child(3):hover::before {
   height: 100%;
-  background-color: #B5D33D;
+  background-color: #b5d33d;
 }
 .pc_navigation > li:nth-child(4):hover::before {
   height: 100%;
-  background-color: #FED23F;
+  background-color: #fed23f;
 }
 .pc_navigation > li:nth-child(5):hover::before {
   height: 100%;
-  background-color: #EB7D5B;
+  background-color: #eb7d5b;
 }
 .pc_navigation > li:nth-child(6):hover::before {
   height: 100%;
@@ -154,17 +157,48 @@
   border-bottom: 2px solid #442288;
 }
 .pc_navigation > li:nth-child(2) {
-  border-bottom: 2px solid #6CA2EA;
+  border-bottom: 2px solid #6ca2ea;
 }
 .pc_navigation > li:nth-child(3) {
-  border-bottom: 2px solid #B5D33D;
+  border-bottom: 2px solid #b5d33d;
 }
 .pc_navigation > li:nth-child(4) {
-  border-bottom: 2px solid #FED23F;
+  border-bottom: 2px solid #fed23f;
 }
 .pc_navigation > li:nth-child(5) {
-  border-bottom: 2px solid #EB7D5B;
+  border-bottom: 2px solid #eb7d5b;
 }
 .pc_navigation > li:nth-child(6) {
   border-bottom: 2px solid orangered;
+}
+.logo {
+  position: relative;
+  top: -42px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logo_tv {
+  position: absolute;
+  max-width: 163px !important;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: 50%;
+  width: 163px;
+}
+.reel__animation {
+  max-width: 40px !important;
+  position: absolute;
+  top: 22px;
+  left: 52px;
+  width: 40px;
+  object-fit: cover;
+  object-position: 50%;
+  animation: reel 10s running infinite linear;
+}
+@keyframes reel {
+  100% {
+    transform: rotate(360deg);
+  }
 }

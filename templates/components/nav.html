@@ -1,9 +1,9 @@
 {% load static %}
 <div class="home__navigation-wrapper">
     <div class="home__navigation container">
-        <a href="{% url 'entry:home' %}" class="home__nav-logo text-slate-950 dark:text-zinc-50">
-            <i class="fa-regular fa-circle-play"></i>
-            Perona<span>TV</span>
+        <a class="logo" href="/">
+            <img class="logo_tv" src="{% static 'images/logo.png' %}" alt="logo" width="163" height="38" loading="lazy">
+            <img class="reel__animation" src="{% static 'images/reel.png' %}" alt="reel">
         </a>
         <!-- PC MENU -->
         <ul class="home__navigation-center pc_navigation flex just-content-center align-items-center m-0">
