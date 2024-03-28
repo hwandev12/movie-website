@@ -27,16 +27,19 @@
         font-family: monospace;
         text-align: left;
     }
+    .movies__cards-inner h1 p:first-child {
+        margin-left: 5px !important;
+    }
 </style>
 {% if movies %}
 {% for movie in movies %}
 <a href="{% url 'agent:movie_detail' movie.id %}">
     <div class="movies__cards">
         <div class="movies__cards-inner">
-            <h1 style="font-size: 17px; display: flex;">
+            <h1 style="font-size: 17px; display: flex; flex-wrap: wrap; align-items: center;">
                 {{ movie.title }}
                 {% for x in movie.genre.all %}
-                <p style="margin: 0; margin-left: 10px; color: brown;">{{x.name}}</p>
+                <p style="margin: 0; margin-right: 10px; color: brown;">{{x.name}}</p>
                 {% endfor %}
             </h1>
         </div>

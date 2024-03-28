@@ -27,16 +27,19 @@
         font-family: monospace;
         text-align: left;
     }
+    .movies__cards-inner h1 p:first-child {
+        margin-left: 5px !important;
+    }
 </style>
 {% if series %}
 {% for serie in series %}
 <a href="#">
     <div class="movies__cards">
         <div class="movies__cards-inner">
-            <h1 style="font-size: 17px;">
+            <h1 style="font-size: 17px; display: flex; align-items: center; flex-wrap: wrap;">
                 {{ serie.title }}
                 {% for x in serie.genre.all %}
-                <p style="margin: 0; margin-left: 10px; color: brown;">
+                <p style="margin: 0; margin-right: 10px; color: brown;">
                 {{ x.name }}
                 </p>
                 {% endfor %}

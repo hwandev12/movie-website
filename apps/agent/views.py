@@ -13,6 +13,10 @@ class AgentMoviePage(generic.ListView):
     model = movie_models.Movie
     context_object_name = 'movies'
     template_name = "agent/movies.html"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by("-time_created")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -25,6 +29,10 @@ class AgentSeriePage(generic.ListView):
     model = serie_models.Series
     context_object_name = 'series'
     template_name = "agent/series.html"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by("-time_created")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -60,6 +68,8 @@ class MovieDetailPage(generic.DetailView):
 
         return JsonResponse({"success": "Uploaded successfully"})
 
+# class EpisodeVideoUploadPage(generic.DetailView):
+    
 
 
 agent_movie_page = AgentMoviePage.as_view()
