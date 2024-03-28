@@ -11,7 +11,11 @@
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
         <video id="videoSingle" class="w-full">
-            <source src="{% static 'images/video.mp4' %}" type="video/mp4" style="width: 100%;">
+            {% if movie.video %}
+            <source src="{{ movie.video.url }}" type="video/mp4" style="width: 100%;">
+            {% else %}
+            <source src="#" type="video/mp4" style="width: 100%;">
+            {% endif %}
         </video>
         <i class="fa-solid fa-circle-play custom-play"></i>
         <div id="controls"

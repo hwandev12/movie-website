@@ -3,6 +3,62 @@ from django_countries.fields import CountryField
 from django.core.validators import URLValidator
 from django.utils.text import slugify
 
+from django.core.exceptions import ValidationError
+import os
+
+class CountryChoices(models.TextChoices):
+    
+    Xitoy = "Xitoy", ("Xitoy"),  # China
+    Hindiston = "Hindiston", ("Hindiston"),  # India
+    Indoneziya = "Indoneziya", ("Indoneziya"),  # Indonesia
+    Braziliya = "Braziliya", ("Braziliya"),  # Brazil
+    Pakistan = "Pakistan", ("Pakistan"),
+    Nigeriya = "Nigeriya", ("Nigeriya"),  # Nigeria
+    Bangladesh = "Bangladesh", ("Bangladesh"),
+    Rossiya = "Rossiya", ("Rossiya"),  # Russia
+    Meksika = "Meksika", ("Meksika"),  # Mexico
+    Yaponiya = "Yaponiya", ("Yaponiya"),  # Japan
+    Filippin = "Filippin", ("Filippin"),  # Philippines
+    Eron = "Eron", ("Eron"),  # Iran
+    Wietnam = "Wietnam", ("Wietnam"),  # Vietnam
+    Tanzaniya = "Tanzaniya", ("Tanzaniya"),  # Tanzania
+    Turkiya = "Turkiya", ("Turkiya"),  # Turkey
+    Kenya = "Kenya", ("Kenya"),
+    Kolombiya = "Kolombiya", ("Kolombiya"),  # Colombia
+    Ispaniya = "Ispaniya", ("Ispaniya"),  # Spain
+    Ukraina = "Ukraina", ("Ukraina"),  # Ukraine
+    Uganda = "Uganda", ("Uganda"),
+    Arjentina = "Arjentina", ("Arjentina"),  # Argentina
+    Zimbabve = "Zimbabve", ("Zimbabve"),  # Zimbabwe
+    Tayland = "Tayland", ("Tayland"),  # Thailand
+    Almaniya = "Almaniya", ("Almaniya"),  # Germany
+    Aljir = "Aljir", ("Aljir"),  # Algeria
+    Polsha = "Polsha", ("Polsha"),  # Poland
+    Kanada = "Kanada", ("Kanada"),  # Canada
+    Marokash = "Marokash", ("Marokash"),  # Morocco
+    Saudiya = "Saudiya", ("Saudiya Arabistoni")
+    Uzbekiston = "Uzbekiston", ("Uzbekiston"),  # Uzbekistan
+    Peru = "Peru", ("Peru"),
+    Malayziya = "Malayziya", ("Malayziya"),  # Malaysia
+    Venesuela = "Venesuela", ("Venesuela"),  # Venezuela
+    Ungariya = "Ungariya", ("Ungariya"),  # Hungary
+    Koreya = "Koreya", ("Koreya"),
+    Amerika = "Amerika", ("Amerika")
+
+def is_video(filename):
+    video_extensions = ['.mp4', '.avi', '.mov', '.mkv', '.wmv']  # Add more video extensions if needed
+    ext = os.path.splitext(filename)[1]
+    return ext.lower() in video_extensions
+
+class VideoFileField(models.FileField):
+    def clean(self, value, model_instance):
+        file = super().clean(value, model_instance)
+        # Check if the file is a video
+        if file:
+            if not is_video(file.name):
+                raise ValidationError('Only video files are allowed.',)
+        return file
+
 
 class QualityChoices(models.Model):
 
@@ -59,7 +115,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=255)
     actors = models.CharField(max_length=255)
     genre = models.ManyToManyField(GenreChoices)
-    countries = CountryField(multiple=True)
+    countries = models.CharField(max_length=200, null=True, choices=CountryChoices.choices)
     duration_time = models.TimeField()
     rating = models.FloatField()
     quality = models.ManyToManyField(QualityChoices)
@@ -67,6 +123,7 @@ class Movie(models.Model):
         upload_to='movie_posters/', null=True, blank=True)
     card_poster = models.ImageField(
         upload_to="card_poster/", null=True, blank=True)
+    video = VideoFileField(upload_to='movies/videos/', null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     main = models.BooleanField(default=True, null=True)
     is_movie = models.BooleanField(default=True, null=True)

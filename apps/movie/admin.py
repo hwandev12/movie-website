@@ -27,7 +27,7 @@ class CustomMovieModelAdmin(admin.ModelAdmin):
     # Define fields you want to customize
     fieldsets = (
         ('', {
-            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'main', 'is_movie', 'poster', 'card_poster', 'slug')
+            'fields': ('title', 'description', 'release_date', 'director', 'actors', 'genre', 'countries', 'duration_time', 'rating', 'quality', 'main', 'is_movie', 'poster', 'card_poster', 'video', 'slug')
         }),
     )
 
@@ -57,6 +57,8 @@ class CustomMovieModelAdmin(admin.ModelAdmin):
             field.label = "Asosiy qilinsinmi?"
         if db_field.name == 'is_movie':
             field.label = 'Kino'
+        if db_field.name == 'video':
+            field.label = 'video'
         return field
     
     def save_model(self, request, obj, form, change):

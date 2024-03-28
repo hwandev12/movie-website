@@ -6,6 +6,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.core.cache import cache
 from django.conf import settings
+from django_countries.fields import CountryIContains
 
 
 from apps.entry import models as entry_models
@@ -17,113 +18,52 @@ class SearchPage(generic.TemplateView):
     template_name = 'search/search_film.html'
     paginate_by = 12
 
-    if not settings.DEBUG:
-        def search(self):
-            movies = movie_models.Movie.objects.all().order_by("-time_created")
-            series = serie_models.Series.objects.all().order_by("-time_created")
-            calculate_2_day = timezone.now() - timedelta(days=2)
-            cache_key = "searching_film_cache_key"
-            queryset_from_search = cache.get(cache_key)
-            if not queryset_from_search:
-                queryset_from_search = list((chain(movies, series)))
-                if self.request.method == 'GET':
-                    search_film = self.request.GET.get("search__all_films")
-                    new_films_filter = self.request.GET.get("new_films_filter")
-                    if search_film:
-                        found_movies = movies.filter(
-                            Q(title__icontains=search_film) |
-                            Q(actors__icontains=search_film)
-                        )
-                        found_series = series.filter(
-                            Q(title__icontains=search_film) |
-                            Q(actors__icontains=search_film)
-                        )
-                        queryset_from_search = list(
-                            chain(found_movies, found_series))
-                    elif new_films_filter == 'new':
-                        found_movies = movies.filter(
-                            time_created__gte=calculate_2_day
-                        )
-                        found_series = series.filter(
-                            time_created__gte=calculate_2_day
-                        )
-                        queryset_from_search = list(
-                            chain(found_movies, found_series))
-                    else:
-                        queryset_from_search = sorted(
-                            chain(movies, series),
-                            key=lambda x: x.time_created,
-                            reverse=True
-                        )
-                cache.set(cache_key, queryset_from_search)
-                return queryset_from_search
+    def search(self):
+        calculate_2_day = timezone.now() - timedelta(days=2)
+        movies = movie_models.Movie.objects.all().order_by("-time_created")
+        series = serie_models.Series.objects.all().order_by("-time_created")
+        all_films = list((chain(movies, series)))
+        if self.request.method == 'GET':
+            search_film = self.request.GET.get("search__all_films")
+            new_films_filter = self.request.GET.get("new_films_filter")
+            film_filter_by_janr = self.request.GET.get("filter_movies")
+            if search_film:
+                found_movies = movies.filter(
+                    Q(title__icontains=search_film) |
+                    Q(actors__icontains=search_film)
+                )
+                found_series = series.filter(
+                    Q(title__icontains=search_film) |
+                    Q(actors__icontains=search_film)
+                )
+                all_films = list(chain(found_movies, found_series))
+            if new_films_filter == 'new':
+                found_movies = movies.filter(
+                    time_created__gte=calculate_2_day
+                )
+                found_series = series.filter(
+                    time_created__gte=calculate_2_day
+                )
+                all_films = list(chain(found_movies, found_series))
+            if film_filter_by_janr:
+                found_movies = movies.filter(
+                    Q(countries__icontains=film_filter_by_janr) |
+                    Q(genre__name__contains=film_filter_by_janr)
+                ).distinct()
+                
+                found_series = series.filter(
+                    Q(countries__icontains=film_filter_by_janr) |
+                    Q(genre__name__icontains=film_filter_by_janr)
+                ).distinct()
+                
+                all_films = list(chain(found_movies, found_series))
             else:
-                queryset_from_search = list((chain(movies, series)))
-                if self.request.method == 'GET':
-                    search_film = self.request.GET.get("search__all_films")
-                    new_films_filter = self.request.GET.get("new_films_filter")
-                    if search_film:
-                        found_movies = movies.filter(
-                            Q(title__icontains=search_film) |
-                            Q(actors__icontains=search_film)
-                        )
-                        found_series = series.filter(
-                            Q(title__icontains=search_film) |
-                            Q(actors__icontains=search_film)
-                        )
-                        queryset_from_search = list(
-                            chain(found_movies, found_series))
-                    elif new_films_filter == 'new':
-                        found_movies = movies.filter(
-                            time_created__gte=calculate_2_day
-                        )
-                        found_series = series.filter(
-                            time_created__gte=calculate_2_day
-                        )
-                        queryset_from_search = list(
-                            chain(found_movies, found_series))
-                    else:
-                        queryset_from_search = sorted(
-                            chain(movies, series),
-                            key=lambda x: x.time_created,
-                            reverse=True
-                        )
-                return queryset_from_search
-
-    if settings.DEBUG:
-        def search(self):
-            calculate_2_day = timezone.now() - timedelta(days=2)
-            movies = movie_models.Movie.objects.all().order_by("-time_created")
-            series = serie_models.Series.objects.all().order_by("-time_created")
-            all_films = list((chain(movies, series)))
-            if self.request.method == 'GET':
-                search_film = self.request.GET.get("search__all_films")
-                new_films_filter = self.request.GET.get("new_films_filter")
-                if search_film:
-                    found_movies = movies.filter(
-                        Q(title__icontains=search_film) |
-                        Q(actors__icontains=search_film)
-                    )
-                    found_series = series.filter(
-                        Q(title__icontains=search_film) |
-                        Q(actors__icontains=search_film)
-                    )
-                    all_films = list(chain(found_movies, found_series))
-                elif new_films_filter == 'new':
-                    found_movies = movies.filter(
-                        time_created__gte=calculate_2_day
-                    )
-                    found_series = series.filter(
-                        time_created__gte=calculate_2_day
-                    )
-                    all_films = list(chain(found_movies, found_series))
-                else:
-                    all_films = sorted(
-                        chain(movies, series),
-                        key=lambda x: x.time_created,
-                        reverse=True
-                    )
-            return all_films
+                all_films = sorted(
+                    chain(movies, series),
+                    key=lambda x: x.time_created,
+                    reverse=True
+                )
+        return all_films
 
     @staticmethod
     def get_new_added_films():

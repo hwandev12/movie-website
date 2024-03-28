@@ -44,7 +44,7 @@
                         {% for subcategory in category.sub_category.all %}
                         <li class="inline-block rounded border-2 border-warning px-3 pb-[4px] pt-1 capitalize transition duration-150 ease-in-out hover:border-warning-600 hover:bg-warning-50/50"
                             data-twe-ripple-init>
-                            <a href="#" class="text-zinc-50 dark:text-zinc-50">{{ subcategory.name }}</a>
+                            <a href="{% url 'search:search' %}?filter_movies={{ subcategory.name }}" class="text-zinc-50 dark:text-zinc-50">{{ subcategory.name }}</a>
                         </li>
                         {% endfor %}
                     </ul>

@@ -4,6 +4,8 @@ from django_countries.fields import CountryField
 from django.core.validators import URLValidator
 from django.utils.text import slugify
 
+from apps.movie.models import CountryChoices, VideoFileField
+
 
 class SeriesTrailer(models.Model):
     title = models.CharField(max_length=100)
@@ -27,7 +29,7 @@ class Series(models.Model):
     director = models.CharField(max_length=255)
     actors = models.CharField(max_length=255)
     genre = models.ManyToManyField(GenreChoices)
-    countries = CountryField(multiple=True)
+    countries = models.CharField(max_length=200,  null=True, choices=CountryChoices.choices)
     rating = models.FloatField()
     quality = models.ManyToManyField(QualityChoices)
     poster = models.ImageField(
@@ -67,7 +69,7 @@ class Episode(models.Model):
     card = models.ImageField(
         upload_to='episodes_cards/', null=True, blank=True
     )
-    video = models.FileField(
+    video = VideoFileField(
         upload_to='series/videos/', null=True, blank=False)
     time_created = models.DateTimeField(auto_now_add=True)
 
