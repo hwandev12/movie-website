@@ -15,16 +15,17 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# Application definition
 
+# Application definition
 LOCAL_APPS = [
     "apps.entry.apps.EntryConfig",
     "apps.movie.apps.MovieConfig",
     "apps.series.apps.SeriesConfig",
-    "apps.cdn.apps.CdnConfig"
+    "apps.cdn.apps.CdnConfig",
+    "apps.agent.apps.AgentConfig"
 ]
 
 INSTALLED_APPS = [

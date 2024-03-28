@@ -123,7 +123,7 @@ class Movie(models.Model):
         upload_to='movie_posters/', null=True, blank=True)
     card_poster = models.ImageField(
         upload_to="card_poster/", null=True, blank=True)
-    video = VideoFileField(upload_to='movies/videos/', null=True)
+    video = VideoFileField(upload_to='movies/videos/', null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     main = models.BooleanField(default=True, null=True)
     is_movie = models.BooleanField(default=True, null=True)
@@ -148,3 +148,7 @@ class Movie(models.Model):
 
     def get_title_for_movie_cards(self):
         return self.title.split(maxsplit=2)[0:2]
+    
+    class Meta:
+        verbose_name = "Kino "
+        verbose_name_plural = "Kinolar"

@@ -9,6 +9,7 @@ urlpatterns = [
     path("movies/", include("apps.movie.urls")),
     path("series/", include("apps.series.urls")),
     path("search/kinolar-seriallar-qidirish/", include("apps.search.urls")),
+    path("agent/", include("apps.agent.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

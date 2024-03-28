@@ -49,7 +49,6 @@ def get_single_video(request, ID):
         data = {"id": ID, "serie_ajax": serie, "serie_trailer": serie_trailer}
         return JsonResponse(data, safe=False)
 
-
 class MoviesListPage(generic.ListView):
     paginate_by = 10
     model = movie_models.Movie

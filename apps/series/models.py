@@ -70,7 +70,7 @@ class Episode(models.Model):
         upload_to='episodes_cards/', null=True, blank=True
     )
     video = VideoFileField(
-        upload_to='series/videos/', null=True, blank=False)
+        upload_to='series/videos/', null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def get_formatted_duration(self):

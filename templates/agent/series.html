@@ -1,0 +1,51 @@
+{% extends 'agent/index.html' %}
+
+{% block agent %}
+<style>
+    .movies__cards {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    .movies__cards-inner {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #999;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0 0 0 10px;
+    }
+
+    .movies__cards-inner h1 {
+        font-family: monospace;
+        text-align: left;
+    }
+</style>
+{% if series %}
+{% for serie in series %}
+<a href="#">
+    <div class="movies__cards">
+        <div class="movies__cards-inner">
+            <h1 style="font-size: 17px;">
+                {{ serie.title }}
+                {% for x in serie.genre.all %}
+                <p style="margin: 0; margin-left: 10px; color: brown;">
+                {{ x.name }}
+                </p>
+                {% endfor %}
+            </h1>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% else %}
+<h2 style="color: #444; font-size: 25px; text-align: center; padding: 10px 0;">Hech qanday film yo'q</h2>
+{% endif %}
+{% endblock %}

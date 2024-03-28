@@ -1,0 +1,64 @@
+{% extends 'agent/index.html' %}
+
+
+{% block agent %}
+<form action="#" method="post" enctype="multipart/form-data" class="m-4">
+    {% csrf_token %}
+    <input type="file" name="chunk" id="fileInput" required>
+    <button type="submit">Upload</button>
+</form>
+<p id="movie_id" style="display: none;" data-movie-id="{{ movie.id }}"></p>
+<script>
+    // Function to slice a file into chunks
+    function sliceFile(file, chunkSize) {
+        const chunks = [];
+        let offset = 0;
+
+        while (offset < file.size) {
+            const chunk = file.slice(offset, offset + chunkSize);
+            chunks.push(chunk);
+            offset += chunkSize;
+        }
+        return chunks;
+    }
+
+    // Function to upload a chunk
+    async function uploadChunk(uploadUrl, chunk) {
+        const formData = new FormData();
+        formData.append('chunk', chunk);
+
+        const response = await fetch(uploadUrl, {
+            method: 'POST',
+            body: formData,
+        });
+
+        return response.json();
+    }
+
+    // Function to upload file in chunks
+    async function uploadFileInChunks(file, chunkSize, uploadUrl) {
+        const chunks = sliceFile(file, chunkSize);
+        const totalChunks = chunks.length;
+
+        for (let i = 0; i < totalChunks; i++) {
+            const chunk = chunks[i];
+            const response = await uploadChunk(uploadUrl, chunk);
+            console.log(`Uploaded chunk ${i + 1}/${totalChunks}: ${response.status}`);
+        }
+
+        console.log('All chunks uploaded successfully');
+    }
+
+    // Usage
+    const fileInput = document.getElementById('fileInput');
+    const movieId = document.getElementById("movie_id");
+    const uploadUrl = `/agent/movie/${movieId.getAttribute("data-movie-id")}`;
+    const chunkSize = 1024 * 1024;
+
+    fileInput.addEventListener('change', async (event) => {
+        const file = event.target.files[0];
+        await uploadFileInChunks(file, chunkSize, uploadUrl);
+    });
+
+</script>
+{% endblock %}

@@ -23,11 +23,24 @@ class SeriesTrailerInline(admin.TabularInline):
 class SeriesModelAdmin(admin.ModelAdmin):
     inlines = (SeriesTrailerInline, )
     prepopulated_fields = {"slug": ("title",)}
-    
+    fieldsets = (
+        ("", {
+            "fields": ("title", "description", "release_date", "duration_time", "series", "season_number", "episode_number", "card")
+        }),
+    )
+
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         HomePageView.invalidate_cache()
+        
+class EpisodeModelAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ("", {
+            "fields": ("title", "description", "release_date", "duration_time", "series", "season_number", "episode_number", "card")
+        }),
+    )
+
 
 
 admin.site.register(models.Series, SeriesModelAdmin)
-admin.site.register(models.Episode)
+admin.site.register(models.Episode, EpisodeModelAdmin)
