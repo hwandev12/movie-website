@@ -37,7 +37,7 @@ class SearchPage(generic.TemplateView):
                     Q(actors__icontains=search_film)
                 )
                 all_films = list(chain(found_movies, found_series))
-            if new_films_filter == 'new':
+            elif new_films_filter == 'new':
                 found_movies = movies.filter(
                     time_created__gte=calculate_2_day
                 )
@@ -45,7 +45,7 @@ class SearchPage(generic.TemplateView):
                     time_created__gte=calculate_2_day
                 )
                 all_films = list(chain(found_movies, found_series))
-            if film_filter_by_janr:
+            elif film_filter_by_janr:
                 found_movies = movies.filter(
                     Q(countries__icontains=film_filter_by_janr) |
                     Q(genre__name__contains=film_filter_by_janr)
