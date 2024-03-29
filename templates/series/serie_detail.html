@@ -9,7 +9,7 @@
     <div class="single__movie-video_player container">
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
-        <video controls id="videoSingle">
+        <video id="videoSingle">
             {% if first_episode.video %}
             <source src="{{ first_episode.video.url }}" type="video/mp4">
             {% endif %}

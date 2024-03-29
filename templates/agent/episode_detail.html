@@ -89,35 +89,30 @@
         right: 25px;
         cursor: pointer;
     }
+
     button:disabled {
         background-color: #cccccc !important;
         /* Grey */
         cursor: not-allowed;
         border: none;
     }
+
     @media(max-width: 700px) {
         .clear-button {
             padding: 1px 2px;
         }
     }
 </style>
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-success" role="alert" style="position: absolute; width: 100%; top: 0; left: 0; text-align: right;">
-   {{ message }}
-</div>
-{% endfor %}
-{% endif %}
 <form action="#" method="post" enctype="multipart/form-data" class="m-4"
     style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
     {% csrf_token %}
-    <label for="fileInput" style="width: 90%; height: 200px; text-align: center; display: flex;
+    <label for="fileInputSerie" style="width: 90%; height: 200px; text-align: center; display: flex;
     justify-content: center;
     align-items: center; flex-direction: column;">
         <i class="fa-solid fa-cloud-arrow-up" style="font-size: 40px; color: #555;"></i>
-        Kino tanlang
+        Qism tanlang
     </label>
-    <input type="file" name="video" id="fileInput" required style="display: none;">
+    <input type="file" name="video_serie" id="fileInputSerie" required style="display: none;">
     <button type="submit" class="btn btn-primary button_upload" style="width: 100%;" disabled>Upload</button>
 </form>
 <p id="movie_id" style="display: none;" data-movie-id="{{ movie.id }}"></p>
@@ -133,7 +128,7 @@
     </button>
 </div>
 <script>
-    const fInput = document.getElementById('fileInput');
+    const fInput = document.getElementById('fileInputSerie');
     const pBar = document.getElementById('progressBar');
     const pText = document.getElementById('progressText');
     const fName = document.getElementById('fileName');
@@ -170,6 +165,7 @@
                     pBar.style.width = `${progress}%`;
                     pText.innerText = `${Math.round(progress)}%`;
                     currentStep++;
+                    uploadBtn.disabled = true
 
                     if (currentStep <= steps) {
                         setTimeout(updateProgress, interval);

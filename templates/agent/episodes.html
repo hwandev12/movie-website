@@ -31,18 +31,20 @@
         margin-left: 5px !important;
     }
 </style>
-{% if series %}
-{% for serie in series %}
-<a href="{% url 'agent:episodes' serie.id %}">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert" style="position: absolute; width: 100%; top: 0; left: 0;">
+   {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% if episodes %}
+{% for episode in episodes %}
+<a href="{% url 'agent:episode_detail' episode.id %}" style="text-decoration: none;">
     <div class="movies__cards">
         <div class="movies__cards-inner">
             <h1 style="font-size: 17px; display: flex; align-items: center; flex-wrap: wrap;">
-                {{ serie.title }}
-                {% for x in serie.genre.all %}
-                <p style="margin: 0; margin-right: 10px; color: brown;">
-                {{ x.name }}
-                </p>
-                {% endfor %}
+                {{ episode.title }} 
             </h1>
         </div>
     </div>
