@@ -160,7 +160,10 @@ if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # STATICFILES_STORAGE = 'apps.cdn.space_storages.StaticRootS3BotoStorage'
 
-AWS_S3_MAX_MEMORY_SIZE = 10 * 1024 * 1024
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB in bytes
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB in bytes
+
 
 if DEBUG:
     STATIC_URL = '/static/'
