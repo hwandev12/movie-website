@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.utils import timezone
 from datetime import timedelta
 from django.core.cache import cache
+from django.views import View
 
 
 from . import models
@@ -108,15 +109,19 @@ class HomePageView(generic.ListView):
             context['latest_movies'] = self.get_latest_movies_cached()
             context['latest_series'] = self.get_latest_series_cached()
             context['latest_shows'] = self.get_shows_for_main_cached()
-            context['series_to_check_true'] = series_models.Series.objects.all()[:10]
-            context["movies_to_check_true"] = movie_models.Movie.objects.all()[:10]
+            context['series_to_check_true'] = series_models.Series.objects.all()[
+                :10].exists()
+            context["movies_to_check_true"] = movie_models.Movie.objects.all()[
+                :10].exists()
         else:
             info = self.who_is_entering_website_show_loggers()
             context['latest_movies'] = self.get_latest_movies()
             context['latest_series'] = self.get_latest_series()
             context['latest_shows'] = self.get_shows_for_main()
-            context['series_to_check_true'] = series_models.Series.objects.all()[:10]
-            context["movies_to_check_true"] = movie_models.Movie.objects.all()[:10]
+            context['series_to_check_true'] = series_models.Series.objects.all()[
+                :10].exists()
+            context["movies_to_check_true"] = movie_models.Movie.objects.all()[
+                :10].exists()
         return context
 
     @staticmethod
@@ -165,5 +170,11 @@ class HomePageView(generic.ListView):
             ['latest_movies-key', 'latest_series-key', 'get_shows-key', 'cache_key_movie_trailer', 'cache_key_serie_trailer', 'movies_list_key', 'series_list_key', 'searching_film_cache_key', 'added_new_films_keys'])
 
 
+class NotFoundViewPage(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, '404.html', status=404)
+
+
 # make classes as views name
 home_page_view = HomePageView.as_view()
+not_found_page = NotFoundViewPage.as_view()

@@ -152,13 +152,13 @@
             <a href="{% url 'serie:episode' serie.slug episode.id %}" data-serie-id="{{ serie.id }}"
                 class="inline-block rounded-lg border-2 border-primary {% if is_main_tag_home %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
                 style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
-                Season 1
+                Fasl 1
             </a>
             {% for number in season_number %}
             <a href="?season-number-got={{number}}" data-serie-id="{{ number }}"
                 class="inline-block rounded-lg border-2 border-primary {% if request_episode == number %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
                 style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
-                Season {{ number }}
+                Fasl {{ number }}
             </a>
             {% endfor %}
         </div>

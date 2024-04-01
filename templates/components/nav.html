@@ -61,48 +61,48 @@
             <i class="fa-solid fa-bars text-slate-950 dark:text-stone-50 ml-6 text-xl cursor-pointer"
                 onclick="toggleMenu()"></i>
         </div>
-        <!-- PHONE MENU -->
-        <ul class="home__navigation-phone flex flex-col just-content-center align-items-center bg-white dark:bg-gray-950 dark:border-slate-800 relative"
-            data-twe-dropdown-ref>
-            <li>
-                <a href="{% url 'entry:home' %}" class="text-slate-950 dark:text-zinc-50">Bosh Sahifa</a>
-            </li>
-            <li>
-                <a href="{% url 'search:search' %}" class="text-slate-950 dark:text-zinc-50">Tarjima Filmlar</a>
-            </li>
-            <li>
-                <a href="{% url 'movie:movies_list' %}" class="text-slate-950 dark:text-zinc-50">Kinolar</a>
-            </li>
-            <li>
-                <a href="{% url 'serie:series_list_view' %}" class="text-slate-950 dark:text-zinc-50">Seriallar</a>
-            </li>
-            <li>
-                <a href="{% url 'search:search' %}?new_films_filter=new" class="text-slate-950 dark:text-zinc-50 glow" style="box-shadow: none; background-color: transparent;">
-                    <span class="new uppercase">n</span><span class="new uppercase">e</span><span class="new uppercase">w</span>
-                </a>
-            </li>
-            {% for category in categories %}
-            <li class="nav__janr home__phone-janr relative" id="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-toggle-ref data-twe-ripple-init data-twe-ripple-color="light">
-                <a href="#" class="text-slate-950 dark:text-zinc-50 cursor-pointer">
-                    {{ category.name }}
-                    <i class="fa-solid fa-chevron-down"></i>
-                </a>
-            </li>
-            {% if not category.sub_category.all %}
-            {% else %}
-            <div class="phone__menu-dropdown absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden
-                rounded-lg border-none text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-slate-900 bg-slate-200" aria-labelledby="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-menu-ref>
-                <ul class="">
-                    {% for subcategory in category.sub_category.all %}
-                    <li>
-                        <a href="#" class="text-slate-950 dark:text-zinc-50" data-twe-dropdown-item-ref>{{ subcategory.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </ul>
-        <!-- PHONE MENU -->
     </div>
+    <!-- PHONE MENU -->
+    <ul class="home__navigation-phone flex flex-col just-content-center align-items-center bg-white dark:bg-gray-950 dark:border-slate-800 relative"
+        data-twe-dropdown-ref>
+        <li>
+            <a href="{% url 'entry:home' %}" class="text-slate-950 dark:text-zinc-50">Bosh Sahifa</a>
+        </li>
+        <li>
+            <a href="{% url 'search:search' %}" class="text-slate-950 dark:text-zinc-50">Tarjima Filmlar</a>
+        </li>
+        <li>
+            <a href="{% url 'movie:movies_list' %}" class="text-slate-950 dark:text-zinc-50">Kinolar</a>
+        </li>
+        <li>
+            <a href="{% url 'serie:series_list_view' %}" class="text-slate-950 dark:text-zinc-50">Seriallar</a>
+        </li>
+        <li>
+            <a href="{% url 'search:search' %}?new_films_filter=new" class="text-slate-950 dark:text-zinc-50 glow" style="box-shadow: none; background-color: transparent;">
+                <span class="new uppercase">n</span><span class="new uppercase">e</span><span class="new uppercase">w</span>
+            </a>
+        </li>
+        {% for category in categories %}
+        <li class="nav__janr home__phone-janr relative" id="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-toggle-ref data-twe-ripple-init data-twe-ripple-color="light">
+            <a href="#" class="text-slate-950 dark:text-zinc-50 cursor-pointer">
+                {{ category.name }}
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </li>
+        {% if not category.sub_category.all %}
+        {% else %}
+        <div class="phone__menu-dropdown absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden
+            rounded-lg border-none text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-slate-900 bg-slate-200" aria-labelledby="dropDownPhoneMenu{{category.id}}" data-twe-dropdown-menu-ref>
+            <ul class="">
+                {% for subcategory in category.sub_category.all %}
+                <li>
+                    <a href="#" class="text-slate-950 dark:text-zinc-50" data-twe-dropdown-item-ref>{{ subcategory.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <!-- PHONE MENU -->
 </div>
