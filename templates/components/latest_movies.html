@@ -1,10 +1,11 @@
 {% load static %}
 {% load cache %}
 <!-- MOVIES -->
+{% if movies_to_check_true %}
 <div class="latest_movies container">
     <div class="latest_movies-top">
-        <h3 class="text-slate-950 dark:text-zinc-50">latest movies</h3>
-        <a href="{% url 'movie:movies_list' %}" class="text-zinc-50">view all</a>
+        <h3 class="text-slate-950 dark:text-zinc-50">Oxirgi kinolar</h3>
+        <a href="{% url 'movie:movies_list' %}" class="text-zinc-50">barchasi</a>
     </div>
     <div class="swiper latest_movies-cards latest_movies-swiper">
         <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
@@ -52,6 +53,7 @@
         <i class="fa-solid fa-chevron-right swiper-button-next"></i>
     </div>
 </div>
+{% endif %}
 <!-- MOVIES -->
 <style>
     .text_title span {
@@ -61,10 +63,11 @@
     }
 </style>
 <!-- SERIES -->
+{% if series_to_check_true %}
 <div class="latest_movies container">
     <div class="latest_movies-top">
-        <h3 class="text-slate-950 dark:text-zinc-50">latest series</h3>
-        <a href="{% url 'serie:series_list_view' %}" class="text-zinc-50">view all</a>
+        <h3 class="text-slate-950 dark:text-zinc-50">Oxirgi seriallar</h3>
+        <a href="{% url 'serie:series_list_view' %}" class="text-zinc-50">barchasi</a>
     </div>
     <div class="latest_movies-cards swiper latest_series-swiper">
         <div class="swiper-wrapper">
@@ -109,4 +112,5 @@
         </div>
     </div>
 </div>
+{% endif %}
 <!-- SERIES -->

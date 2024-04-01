@@ -123,7 +123,7 @@ class Movie(models.Model):
         upload_to='movie_posters/', null=True, blank=True)
     card_poster = models.ImageField(
         upload_to="card_poster/", null=True, blank=True)
-    video = VideoFileField(upload_to='movies/videos/', null=True, blank=True)
+    video_url = models.CharField(max_length=255, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     main = models.BooleanField(default=True, null=True)
     is_movie = models.BooleanField(default=True, null=True)

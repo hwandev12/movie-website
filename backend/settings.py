@@ -13,9 +13,8 @@ load_dotenv(dotenv_path)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -25,7 +24,6 @@ LOCAL_APPS = [
     "apps.movie.apps.MovieConfig",
     "apps.series.apps.SeriesConfig",
     "apps.cdn.apps.CdnConfig",
-    "apps.agent.apps.AgentConfig"
 ]
 
 INSTALLED_APPS = [

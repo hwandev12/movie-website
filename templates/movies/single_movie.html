@@ -11,8 +11,8 @@
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
         <video id="videoSingle" class="w-full">
-            {% if movie.video %}
-            <source src="{{ movie.video.url }}" type="video/mp4" style="width: 100%;">
+            {% if movie.video_url %}
+            <source src="{{ movie.video_url }}" type="video/mp4" style="width: 100%;">
             {% else %}
             <source src="#" type="video/mp4" style="width: 100%;">
             {% endif %}
@@ -95,12 +95,9 @@
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
                             <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
-                            {% for con in movie.countries %}
                             <a href="#" class="text-cyan-500">
-                                {{ con.code }}
-                                {% if not forloop.last %},{% endif %}
+                                {{ movie.countries }}
                             </a>
-                            {% endfor %}
                         </div>
                     </div>
                     <div class="single__movie-detail-center-content-row-col">

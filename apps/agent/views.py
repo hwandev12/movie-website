@@ -9,7 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from botocore.client import Config
 from boto3.s3.transfer import TransferConfig
-from retrying import retry
 from django.contrib import messages
 
 from apps.movie import models as movie_models

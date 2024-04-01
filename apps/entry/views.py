@@ -108,11 +108,15 @@ class HomePageView(generic.ListView):
             context['latest_movies'] = self.get_latest_movies_cached()
             context['latest_series'] = self.get_latest_series_cached()
             context['latest_shows'] = self.get_shows_for_main_cached()
+            context['series_to_check_true'] = series_models.Series.objects.all()[:10]
+            context["movies_to_check_true"] = movie_models.Movie.objects.all()[:10]
         else:
             info = self.who_is_entering_website_show_loggers()
             context['latest_movies'] = self.get_latest_movies()
             context['latest_series'] = self.get_latest_series()
             context['latest_shows'] = self.get_shows_for_main()
+            context['series_to_check_true'] = series_models.Series.objects.all()[:10]
+            context["movies_to_check_true"] = movie_models.Movie.objects.all()[:10]
         return context
 
     @staticmethod
