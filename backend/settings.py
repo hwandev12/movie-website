@@ -13,6 +13,7 @@ load_dotenv(dotenv_path)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -24,6 +25,7 @@ LOCAL_APPS = [
     "apps.movie.apps.MovieConfig",
     "apps.series.apps.SeriesConfig",
     "apps.cdn.apps.CdnConfig",
+    "apps.agent.apps.AgentConfig"
 ]
 
 INSTALLED_APPS = [
@@ -75,13 +77,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get("DB_NAME"),
+            'USER': os.environ.get("DB_USER"),
+            'PASSWORD': os.environ.get("DB_PASSWORD"),
+            'HOST': os.environ.get("HOST"),
+            'PORT': os.environ.get("PORT")
+        }
+    }
 
 
 # Password validation
@@ -133,7 +146,7 @@ if not DEBUG:
             "LOCATION": "/var/tmp/django_cache",
         }
     }
-    
+
 CACHE_DEFAULT_TIMEOUT = 86400
 
 
