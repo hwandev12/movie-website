@@ -28,15 +28,15 @@ class HomePageView(generic.ListView):
     context_object_name = "categories"
     template_name = "home.html"
 
-    if not settings.DEBUG:
-        def get_queryset(self):
-            queryset = super().get_queryset()
-            base_queryset_key = "category_cache_key"
-            queryset_from_cache = cache.get(base_queryset_key)
-            if not queryset_from_cache:
-                queryset_from_cache = super().get_queryset()
-                cache.set(base_queryset_key, queryset_from_cache)
-            return queryset_from_cache
+    # if not settings.DEBUG:
+    #     def get_queryset(self):
+    #         queryset = super().get_queryset()
+    #         base_queryset_key = "category_cache_key"
+    #         queryset_from_cache = cache.get(base_queryset_key)
+    #         if not queryset_from_cache:
+    #             queryset_from_cache = super().get_queryset()
+    #             cache.set(base_queryset_key, queryset_from_cache)
+    #         return queryset_from_cache
 
     def who_is_entering_website_show_loggers(self):
         ip_address = self.request.META.get("REMOTE_ADDR")
