@@ -10,7 +10,7 @@
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
         <video id="videoSingle">
-            {% if first_episode.video %}
+            {% if first_episode.video_url %}
             <source src="{{ first_episode.video_url }}" type="video/mp4">
             {% endif %}
         </video>
