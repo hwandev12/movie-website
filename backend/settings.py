@@ -9,7 +9,7 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -18,6 +18,7 @@ LOCAL_APPS = [
     "apps.movie.apps.MovieConfig",
     "apps.series.apps.SeriesConfig",
     "apps.cdn.apps.CdnConfig",
+    "apps.agent.apps.AgentConfig"
 ]
 
 INSTALLED_APPS = [
@@ -87,9 +88,6 @@ else:
     }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -131,7 +129,7 @@ if not DEBUG:
             "LOCATION": "/var/tmp/django_cache",
         }
     }
-    
+
 CACHE_DEFAULT_TIMEOUT = 86400
 
 if not DEBUG:

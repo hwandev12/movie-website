@@ -10,8 +10,8 @@
         <!-- bu yerda har bir fil uchun preview image kerak bo'ladi -->
         <!-- models orqali yaratiladi -->
         <video id="videoSingle">
-            {% if first_episode.video %}
-            <source src="{{ first_episode.video.url }}" type="video/mp4">
+            {% if first_episode.video_url %}
+            <source src="{{ first_episode.video_url }}" type="video/mp4">
             {% endif %}
         </video>
         <i class="fa-solid fa-circle-play custom-play"></i>
@@ -91,12 +91,9 @@
                         </div>
                         <div class="single__movie-detail-center-content-row-col-item">
                             <strong class="text-slate-950 dark:text-zinc-50">Davlati: </strong>
-                            {% for con in serie.countries %}
                             <a href="#" class="text-cyan-500">
-                                {{ con.code }}
-                                {% if not forloop.last %},{% endif %}
+                                {{ serie.countries }}
                             </a>
-                            {% endfor %}
                         </div>
                     </div>
                     <div class="single__movie-detail-center-content-row-col">
