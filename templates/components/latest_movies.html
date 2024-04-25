@@ -70,6 +70,7 @@
         <a href="{% url 'serie:series_list_view' %}" class="text-zinc-50">barchasi</a>
     </div>
     <div class="latest_movies-cards swiper latest_series-swiper">
+        <i class="fa-solid fa-chevron-left swiper-button-prev"></i>
         <div class="swiper-wrapper">
             <!-- LATEST NEW SERIES UPLOADED 2DAYS BEFORE -->
             <!-- LATEST UPLOADED SERIES LIST OF TEN EXCLUDED FROM 2DAYS SERIES UPLOADED -->
@@ -110,6 +111,7 @@
             </div>
             {% endfor %}
         </div>
+        <i class="fa-solid fa-chevron-left swiper-button-next"></i>
     </div>
 </div>
 {% endif %}
