@@ -37,11 +37,11 @@ class SerieDetailView(generic.DetailView):
 
         request_episode = self.request.GET.get("season-number-got")
         if not request_episode:
-            episodes = serie_models.Episode.objects.all().filter(series=serie, season_number=1)
+            episodes = serie_models.Episode.objects.all().filter(series=serie, season_number=1).order_by("episode_number")
         else:
             request_episode = int(request_episode)
             episodes = serie_models.Episode.objects.all().filter(
-                series=serie, season_number=request_episode)
+                series=serie, season_number=request_episode).order_by("episode_number")
         context['season_number'] = tuple(set(season_number))[1:]
         context['request_episode'] = request_episode
         context['categories'] = entry_models.Category.objects.all()

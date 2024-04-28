@@ -164,7 +164,7 @@
                     {% for episode in episodes %}
                     <a href="{% url 'serie:episode' episode.series.slug episode.id %}"
                         class="inline-block border-1 border-primary bg-primary mr-2 text-xs leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
-                        style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center; border-radius: 1px !important; text-transform: lowercase !important; padding: 6px 25px !important;">
+                        style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center; border-radius: 1px !important; text-transform: lowercase !important; padding: 6px 5px !important; width: 100px; margin: 0;">
                         {{ episode.episode_number }}-qism
                     </a>
                     {% endfor %}
