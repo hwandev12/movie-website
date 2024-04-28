@@ -146,7 +146,7 @@
     </h3>
     <!-- EPISODES -->
     <div class="serie__episodes container">
-        <div class="serie__episodes-top flex justify-left align-center">
+        <div class="serie__episodes-top flex justify-left align-center" style="transform: translateX(30px);">
             <a href="{% url 'serie:episode' serie.slug episode.id %}" data-serie-id="{{ serie.id }}"
                 class="inline-block rounded-lg border-2 border-primary {% if is_main_tag_home %} bg-primary {% endif %} px-6 mr-2 text-xs font-medium capitalize leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
                 style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center;">
@@ -162,11 +162,11 @@
         </div>
         <div class="latest_movies latest_serie-single container">
             <div class="latest_movies-cards latest_series-cards">
-                <div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px !important;">
                     {% for episode in episodes %}
-                    <a href="#"
+                    <a href="{% url 'serie:episode' episode.series.slug episode.id %}"
                         class="inline-block border-1 border-primary bg-primary px-6 mr-2 text-xs leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out dark:hover:bg-blue-600 dark:active:shadow-dark-strong"
-                        style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center; border-radius: 1px !important; text-transform: lowercase !important;">
+                        style="display: inline-block; height: 30px !important; display: flex; justify-content: center; align-items: center; border-radius: 1px !important; text-transform: lowercase !important; padding: 6px 25px !important;">
                         {{ episode.episode_number }}-qism
                     </a>
                     {% endfor %}
